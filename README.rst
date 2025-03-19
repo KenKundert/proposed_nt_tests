@@ -42,7 +42,7 @@ be overridden whenever *convert* is run.
 
 Each test case in *tests.nt* is a dictionary entry.  The key is used as the name 
 of the test.  The keys must be unique and are largely chosen at random, but any 
-words that are expected to be found within the test cases are rejected.  This 
+words that are expected to be found within the test cases are avoided.  This 
 allows test cases to be quickly found by searching for their name.
 
 The fields that may be specified are:
@@ -52,7 +52,8 @@ description (str):
 
 load_in (str):
     This is a string that will be fed into a NestedText load function.  This 
-    string should be NestedText, though it may contain errors.
+    string contain a *NestedText* document, though those that document may 
+    contain errors.
 
 load_out (None | str | list | dict):
     The expected output from the NestedText load function if no errors are 
@@ -80,8 +81,35 @@ load_err (dict):
         The number of the column where the error is likely to be.  The first 
         column is column 0.
 
+Here is an example of a test with a valid *NestedText* document::
+
+    falsity:
+        description: a single-level dictionary
+        load_in:
+            > key 1: value 1
+            > key 2: value 2
+            >
+        load_out:
+            key 1: value 1
+            key 2: value 2
+
+And here is an example of a test with an invalid *NestedText* document::
+
+    foundling:
+        load_in:
+            > ingredients:
+            >   - 3 green chilies
+            >     - 3 red chilies
+        load_err:
+            message: invalid indentation
+            line:     - 3 red chilies
+            lineno: 2
+            colno: 2
+
+The test keys (*falisity* and *foundline*) are arbitrary.
+
 Control characters and Unicode white space characters are expected to be 
-backslash escaped in load_in, load_out, and load_err.lines.  Here are some 
+backslash escaped in *load_in*, *load_out*, and *load_err.lines*.  Here are some 
 specific cases where backslash escapes should be used:
 
 **Line Terminations**  Newlines are replaced by line feed (LF) characters unless 
