@@ -106,11 +106,11 @@ made explicit by using backslash escape sequences.  Specifically tabs should be
 specified as \\t and the Unicode white spaces should be specified using there 
 \\x or \\u code (ex. \\xa0 for the no-break space).  In addition, end of line 
 spaces are optionally made explicit by replacing them with \\x20 if they are 
-important and there is concerns that they may be accidentally lost.
+important and there is concern that they may be accidentally lost.
 
 **Other Special Characters**  Backslash escape codes should also be used for 
 control code (\\a for bell, \\b for backspace, \\x7f for delete, \\x1b for 
-escape, etc) and for backslash itself (\\).
+escape, etc) and for backslash itself (\\\\).
 
 
 tests.json
