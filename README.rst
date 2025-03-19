@@ -90,8 +90,8 @@ backslash escaped in load_in, load_out, and load_err.lines.  Here are some
 specific cases where backslash escapes should be used:
 
 **Line Terminations**  Newlines are replaced by line feed (LF) characters unless 
-the newline is preceded by either \r or \n or both.  The \r is replaced by 
-a carriage return (CR) and the \n is replaced by a line feed (LF).  In this the 
+the newline is preceded by either \\r or \\n or both.  The \\r is replaced by 
+a carriage return (CR) and the \\n is replaced by a line feed (LF).  In this the 
 line termination characters can be specified explicitly on a per line basis.  
 For example::
 
@@ -103,14 +103,14 @@ For example::
 
 **White Space**  All white space other than ASCII spaces and newlines should be 
 made explicit by using backslash escape sequences.  Specifically tabs should be 
-specified as \t and the Unicode white spaces should be specified using there \x 
-or \u code (ex. \xa0 for the no-break space).  In addition, end of line spaces 
-are optionally made explicit by replacing them with \x20 if they are important 
-and there is concerns that they may be accidentally lost.
+specified as \\t and the Unicode white spaces should be specified using there 
+\\x or \\u code (ex. \\xa0 for the no-break space).  In addition, end of line 
+spaces are optionally made explicit by replacing them with \\x20 if they are 
+important and there is concerns that they may be accidentally lost.
 
 **Other Special Characters**  Backslash escape codes should also be used for 
-control code (\a for bell, \b for backspace, \x7f for delete, \x1b for escape, 
-etc) and for backslash itself (\).
+control code (\\a for bell, \\b for backspace, \\x7f for delete, \\x1b for 
+escape, etc) and for backslash itself (\\).
 
 
 tests.json
