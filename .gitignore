@@ -1,4 +1,5 @@
 **/__pycache__
+.*.swp
 
 # Unit test / coverage reports
 htmlcov/
