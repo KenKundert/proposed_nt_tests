@@ -2863,6 +2863,48 @@
                 "unrecognized": 1
             }
         },
+        "rascal": {
+            "load_in": [
+                "key 1:\n",
+                "   > value 1\n",
+                "key 2: \n",
+                "   > value 2\n",
+                "key 3:  \n",
+                "   > value 3"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "invalid indentation.",
+                "line": "   > value 3",
+                "lineno": 5
+            },
+            "types": {
+                "dict item": 1,
+                "string item": 3,
+                "unrecognized": 2
+            }
+        },
+        "truncheon": {
+            "load_in": [
+                "-\n",
+                "   > value 1\n",
+                "- \n",
+                "   > value 2\n",
+                "-  \n",
+                "   > value 3"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "invalid indentation.",
+                "line": "   > value 3",
+                "lineno": 5
+            },
+            "types": {
+                "list item": 1,
+                "string item": 3,
+                "unrecognized": 2
+            }
+        },
         "vagrant": {
             "load_in": [
                 "inline dict:\n",

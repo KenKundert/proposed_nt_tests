@@ -4,16 +4,16 @@
 # properly read and invalid NestedText is properly identified by an 
 # implementation of NestedText.
 #
-# No attempt is made to assure that an implementation produces valid NestedText.
-# There is considerably flexibility in the way that NestedText may be generated 
-# and it was felt that the best way to test a NestedText generator would be to 
+# No attempt is made to assure that an implementation produces valid NestedText.  
+# There is considerably flexibility in the way that NestedText may be generated.  
+# In light of this flexibility the best way to test a NestedText generator is to 
 # couple it with a NestedText reader and perform a round trip through both, 
-# which could be performed with these test cases.
+# which can be performed with these test cases.
 #
-# The convert command converts these test cases into JSON.  I may also add an 
-# additional field, types, which is a dictionary that contains the count of each 
-# possible line type that may be found in a NestedText document.  The line types 
-# are:
+# The test cases are contained in tests.nt.  The convert command converts these 
+# test cases into JSON.  It may also add an additional field, types, which is 
+# a dictionary that contains the count of each possible line type that may be 
+# found in a NestedText document.  The line types are:
 #     blank
 #     comment
 #     dict item
@@ -25,18 +25,17 @@
 #     unrecognized
 #
 # These counts can be used to filter the tests to be run if desired.
-# For these counts
 #
 # It is expected that the JSON file (tests.json) will be used to test NestedText 
 # implementations).  The NestedText file of test cases (tests.nt) is used to 
-# generate tests.json, and it only needed if you plan to add or modify the 
-# tests.  Do not modify the JSON file directly, as any changes will be 
-# overridden whenever convert is run.
+# generate tests.json, and it only needed if you plan to add or modify tests.  
+# Do not modify the JSON file directly, as any changes will be overridden 
+# whenever convert is run.
 #
-# Each test case is a dictionary entry.  The key is used as the name of the 
-# test.  The keys must be unique and are largely chosen at random, but any words 
-# that are expected to be found within the test cases are rejected.  This allow 
-# test cases to be quickly found by searching for their name.
+# Each test case in tests.nt is a dictionary entry.  The key is used as the name 
+# of the test.  The keys must be unique and are largely chosen at random, but 
+# any words that are expected to be found within the test cases are rejected.  
+# This allows test cases to be quickly found by searching for their name.
 #
 # The fields that may be specified are:
 #
@@ -2649,11 +2648,43 @@ cavern:
         key 1:
         key 2:
 
+# rascal  {{{1
+rascal:
+    description:
+        > a dictionary item with two values
+    load_in:
+        > key 1:
+        >    > value 1
+        > key 2:\x20
+        >    > value 2
+        > key 3:\x20\x20
+        >    > value 3
+    load_err:
+        message: invalid indentation.
+        line:    > value 3
+        lineno: 5
+
+# truncheon  {{{1
+truncheon:
+    description:
+        > a list item with two values
+    load_in:
+        > -
+        >    > value 1
+        > -\x20
+        >    > value 2
+        > -\x20\x20
+        >    > value 3
+    load_err:
+        message: invalid indentation.
+        line:    > value 3
+        lineno: 5
+
 # vagrant  {{{1
 vagrant:
     description:
         > inline strings (and inline dictionary-friendly strings)
-        > must trim whitespace from both sides
+        > must trim whitespace from both sides of values
     load_in:
         > inline dict:
         >     {a:A, b: B,c :C, d : D }

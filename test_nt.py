@@ -24,7 +24,7 @@ def as_int(arg):
     return int(arg)
 
 schema = Schema({
-    Required("test_name", default='❬not given❭'): str,
+    Required("id", default='❬not given❭'): str,
     Required("load_in"): [str],
     Required("load_out", default=None): Any(dict, list, str, None),
     Required("load_err", default={}): dict(
@@ -79,8 +79,8 @@ class Checker:
     key = "load_tests",
     schema = schema,
 )
-def test_nt(tmp_path, test_name, load_in, load_out, load_err, types):
-    checker = Checker(test_name)
+def test_nt(tmp_path, load_in, load_out, load_err, types, request):
+    checker = Checker(request.node.callspec.id)
 
     # check load
     content = ''.join(load_in)
