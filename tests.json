@@ -21,6 +21,379 @@
                 "string item": 2
             }
         },
+        "terrier": {
+            "load_in": [
+                "> Those who can make you believe absurdities can make you commit atrocities.  — Voltaire"
+            ],
+            "load_out": "Those who can make you believe absurdities can make you commit atrocities.  — Voltaire",
+            "load_err": {},
+            "types": {
+                "string item": 1
+            }
+        },
+        "perimeter": {
+            "load_in": [
+                "> “The worth of a man to his society can be measured by the contribution he\n",
+                ">  makes to it — less the cost of sustaining himself and his mistakes in it.”\n",
+                ">\n",
+                ">                                                — Erik Jonsson\n",
+                ">"
+            ],
+            "load_out": "“The worth of a man to his society can be measured by the contribution he\n makes to it — less the cost of sustaining himself and his mistakes in it.”\n\n                                               — Erik Jonsson\n",
+            "load_err": {},
+            "types": {
+                "string item": 5
+            }
+        },
+        "province": {
+            "load_in": [
+                "key 1: value 1\n",
+                "key 2: value 2\n",
+                "key 3: value 3\n",
+                ""
+            ],
+            "load_out": {
+                "key 1": "value 1",
+                "key 2": "value 2",
+                "key 3": "value 3"
+            },
+            "load_err": {},
+            "types": {
+                "dict item": 3
+            }
+        },
+        "detonator": {
+            "load_in": [
+                "key 1: value 1\n",
+                "key 2: value 2\n",
+                "key 3: value 3"
+            ],
+            "load_out": {
+                "key 1": "value 1",
+                "key 2": "value 2",
+                "key 3": "value 3"
+            },
+            "load_err": {},
+            "types": {
+                "dict item": 3
+            }
+        },
+        "theater": {
+            "load_in": [
+                "key 1: value 1\n",
+                "key 2:\n",
+                "key 3:\n",
+                "    - value 3a\n",
+                "    - value 3b\n",
+                "key 4:\n",
+                "    key 4a: value 4a\n",
+                "    key 4b: value 4b\n",
+                "key 5:\n",
+                "    > first line of value 5\n",
+                "    > second line of value 5"
+            ],
+            "load_out": {
+                "key 1": "value 1",
+                "key 2": "",
+                "key 3": [
+                    "value 3a",
+                    "value 3b"
+                ],
+                "key 4": {
+                    "key 4a": "value 4a",
+                    "key 4b": "value 4b"
+                },
+                "key 5": "first line of value 5\nsecond line of value 5"
+            },
+            "load_err": {},
+            "types": {
+                "dict item": 7,
+                "list item": 2,
+                "string item": 2
+            }
+        },
+        "screwy": {
+            "load_in": [
+                ": key 1\n",
+                ":     the first key\n",
+                "    > value 1\n",
+                ": key 2: the second key\n",
+                "    - value 2a\n",
+                "    - value 2b"
+            ],
+            "load_out": {
+                "key 1\n    the first key": "value 1",
+                "key 2: the second key": [
+                    "value 2a",
+                    "value 2b"
+                ]
+            },
+            "load_err": {},
+            "types": {
+                "key item": 3,
+                "string item": 1,
+                "list item": 2
+            }
+        },
+        "washday": {
+            "load_in": [
+                "{key 1: value 1, key 2: value 2, key 3: value 3}"
+            ],
+            "load_out": {
+                "key 1": "value 1",
+                "key 2": "value 2",
+                "key 3": "value 3"
+            },
+            "load_err": {},
+            "types": {
+                "inline dict": 1
+            }
+        },
+        "exhume": {
+            "load_in": [
+                "{key 1: value 1, key 2: [value 2a, value 2b], key 3: {key 3a: value 3a, key 3b: value 3b}}"
+            ],
+            "load_out": {
+                "key 1": "value 1",
+                "key 2": [
+                    "value 2a",
+                    "value 2b"
+                ],
+                "key 3": {
+                    "key 3a": "value 3a",
+                    "key 3b": "value 3b"
+                }
+            },
+            "load_err": {},
+            "types": {
+                "inline dict": 1
+            }
+        },
+        "automaton": {
+            "load_in": [
+                "- value 1\n",
+                "- value 2\n",
+                "- value 3\n",
+                ""
+            ],
+            "load_out": [
+                "value 1",
+                "value 2",
+                "value 3"
+            ],
+            "load_err": {},
+            "types": {
+                "list item": 3
+            }
+        },
+        "wally": {
+            "load_in": [
+                "- value 1\n",
+                "- value 2\n",
+                "- value 3"
+            ],
+            "load_out": [
+                "value 1",
+                "value 2",
+                "value 3"
+            ],
+            "load_err": {},
+            "types": {
+                "list item": 3
+            }
+        },
+        "native": {
+            "load_in": [
+                "- value 1\n",
+                "-\n",
+                "-\n",
+                "    - value 3a\n",
+                "    - value 3b\n",
+                "-\n",
+                "    key 4a: value 4a\n",
+                "    key 4b: value 4b\n",
+                "-\n",
+                "    > first line of value 5\n",
+                "    > second line of value 5"
+            ],
+            "load_out": [
+                "value 1",
+                "",
+                [
+                    "value 3a",
+                    "value 3b"
+                ],
+                {
+                    "key 4a": "value 4a",
+                    "key 4b": "value 4b"
+                },
+                "first line of value 5\nsecond line of value 5"
+            ],
+            "load_err": {},
+            "types": {
+                "list item": 7,
+                "dict item": 2,
+                "string item": 2
+            }
+        },
+        "stingray": {
+            "load_in": [
+                "[value 1, value 2, value 3]"
+            ],
+            "load_out": [
+                "value 1",
+                "value 2",
+                "value 3"
+            ],
+            "load_err": {},
+            "types": {
+                "inline list": 1
+            }
+        },
+        "spastic": {
+            "load_in": [
+                "[value 1, [value 2a, value 2b], {key 3a: value 3a, key 3b: value 3b}]"
+            ],
+            "load_out": [
+                "value 1",
+                [
+                    "value 2a",
+                    "value 2b"
+                ],
+                {
+                    "key 3a": "value 3a",
+                    "key 3b": "value 3b"
+                }
+            ],
+            "load_err": {},
+            "types": {
+                "inline list": 1
+            }
+        },
+        "insulate": {
+            "load_in": [
+                "code   : input signed [7:0] level\n",
+                "regex  : [+-]?([0-9]*[.])?[0-9]+\\s*\\w*\n",
+                "math   : $x = \frac{{-b \\pm \\sqrt {b^2 - 4ac}}}{2a}$\n",
+                "unicode: José and François"
+            ],
+            "load_out": {
+                "code": "input signed [7:0] level",
+                "regex": "[+-]?([0-9]*[.])?[0-9]+\\s*\\w*",
+                "math": "$x = \frac{{-b \\pm \\sqrt {b^2 - 4ac}}}{2a}$",
+                "unicode": "José and François"
+            },
+            "load_err": {},
+            "types": {
+                "dict item": 4
+            }
+        },
+        "scent": {
+            "load_in": [
+                ">     This is the first line of a multiline string, it is indented.\n",
+                "> This is the second line, it is not indented."
+            ],
+            "load_out": "    This is the first line of a multiline string, it is indented.\nThis is the second line, it is not indented.",
+            "load_err": {},
+            "types": {
+                "string item": 2
+            }
+        },
+        "smithy": {
+            "load_in": [
+                "# this line is ignored\n\n",
+                "# this line is also ignored, as is the blank line above.\n",
+                ""
+            ],
+            "load_out": null,
+            "load_err": {},
+            "types": {
+                "comment": 2,
+                "blank": 1
+            }
+        },
+        "import": {
+            "load_in": [
+                "> this is the first line of a multiline string\n",
+                "# this line is ignored\n",
+                "> this is the second line of the multiline string"
+            ],
+            "load_out": "this is the first line of a multiline string\nthis is the second line of the multiline string",
+            "load_err": {},
+            "types": {
+                "string item": 2,
+                "comment": 1
+            }
+        },
+        "unlearn": {
+            "load_in": [
+                "# Contact information for our officers\n\n",
+                "Katheryn McDaniel:\n",
+                "    position: president\n",
+                "    address:\n",
+                "        > 138 Almond Street\n",
+                "        > Topeka, Kansas 20697\n",
+                "    phone:\n",
+                "        cell: 1-210-555-5297\n",
+                "        work: 1-210-555-3423\n",
+                "        home: 1-210-555-8470\n",
+                "            # Katheryn prefers that we always call her on her cell phone.\n",
+                "    email: KateMcD@aol.com\n",
+                "    kids:\n",
+                "        - Joanie\n",
+                "        - Terrance\n\n",
+                "Margaret Hodge:\n",
+                "    position: vice president\n",
+                "    address:\n",
+                "        > 2586 Marigold Lane\n",
+                "        > Topeka, Kansas 20697\n",
+                "    phone:\n",
+                "        {cell: 1-470-555-0398, home: 1-470-555-7570}\n",
+                "    email: margaret.hodge@ku.edu\n",
+                "    kids:\n",
+                "        [Arnie, Zach, Maggie]"
+            ],
+            "load_out": {
+                "Katheryn McDaniel": {
+                    "position": "president",
+                    "address": "138 Almond Street\nTopeka, Kansas 20697",
+                    "phone": {
+                        "cell": "1-210-555-5297",
+                        "work": "1-210-555-3423",
+                        "home": "1-210-555-8470"
+                    },
+                    "email": "KateMcD@aol.com",
+                    "kids": [
+                        "Joanie",
+                        "Terrance"
+                    ]
+                },
+                "Margaret Hodge": {
+                    "position": "vice president",
+                    "address": "2586 Marigold Lane\nTopeka, Kansas 20697",
+                    "phone": {
+                        "cell": "1-470-555-0398",
+                        "home": "1-470-555-7570"
+                    },
+                    "email": "margaret.hodge@ku.edu",
+                    "kids": [
+                        "Arnie",
+                        "Zach",
+                        "Maggie"
+                    ]
+                }
+            },
+            "load_err": {},
+            "types": {
+                "comment": 2,
+                "blank": 2,
+                "dict item": 15,
+                "string item": 4,
+                "list item": 2,
+                "inline dict": 1,
+                "inline list": 1
+            }
+        },
         "cornea": {
             "load_in": [
                 "> Lorem Ipsum\n",

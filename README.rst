@@ -52,7 +52,7 @@ description (str):
 
 load_in (str):
     This is a string that will be fed into a NestedText load function.  This 
-    string contain a *NestedText* document, though those that document may 
+    string contains a *NestedText* document, though those that document may 
     contain errors.
 
 load_out (None | str | list | dict):

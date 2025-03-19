@@ -94,6 +94,283 @@ medical:
         >
         >
 
+# terrier  {{{1
+terrier:
+    description: single line multiline string
+    load_in:
+        > > Those who can make you believe absurdities can make you commit atrocities.  — Voltaire
+    load_out:
+        > Those who can make you believe absurdities can make you commit atrocities.  — Voltaire
+
+# perimeter  {{{1
+perimeter:
+    description: multiple line multiline string
+    load_in:
+        > > “The worth of a man to his society can be measured by the contribution he
+        > >  makes to it — less the cost of sustaining himself and his mistakes in it.”
+        > >
+        > >                                                — Erik Jonsson
+        > >
+    load_out:
+        > “The worth of a man to his society can be measured by the contribution he
+        >  makes to it — less the cost of sustaining himself and his mistakes in it.”
+        >
+        >                                                — Erik Jonsson
+        >
+
+# province  {{{1
+province:
+    description: simple single-level dictionary with eof linefeed
+    load_in:
+        > key 1: value 1
+        > key 2: value 2
+        > key 3: value 3
+        >
+    load_out:
+        key 1: value 1
+        key 2: value 2
+        key 3: value 3
+
+# detonator  {{{1
+detonator:
+    description: simple single-level dictionary, no eof linefeed
+    load_in:
+        > key 1: value 1
+        > key 2: value 2
+        > key 3: value 3
+    load_out:
+        key 1: value 1
+        key 2: value 2
+        key 3: value 3
+
+# theater  {{{1
+theater:
+    description: top-level dictionary with a second level of nesting
+    load_in:
+        > key 1: value 1
+        > key 2:
+        > key 3:
+        >     - value 3a
+        >     - value 3b
+        > key 4:
+        >     key 4a: value 4a
+        >     key 4b: value 4b
+        > key 5:
+        >     > first line of value 5
+        >     > second line of value 5
+    load_out:
+        key 1: value 1
+        key 2:
+        key 3:
+            - value 3a
+            - value 3b
+        key 4:
+            key 4a: value 4a
+            key 4b: value 4b
+        key 5:
+            > first line of value 5
+            > second line of value 5
+
+# screwy  {{{1
+screwy:
+    description: dictionary with key-items
+    load_in:
+        > : key 1
+        > :     the first key
+        >     > value 1
+        > : key 2: the second key
+        >     - value 2a
+        >     - value 2b
+    load_out:
+        : key 1
+        :     the first key
+            > value 1
+        : key 2: the second key
+            - value 2a
+            - value 2b
+
+# washday  {{{1
+washday:
+    description: a simple top-level inline dictionary
+    load_in: {key 1: value 1, key 2: value 2, key 3: value 3}
+    load_out:
+        {key 1: value 1, key 2: value 2, key 3: value 3}
+
+# exhume  {{{1
+exhume:
+    description: a nested top-level inline dictionary
+    load_in: {key 1: value 1, key 2: [value 2a, value 2b], key 3: {key 3a: value 3a, key 3b: value 3b}}
+    load_out:
+        {key 1: value 1, key 2: [value 2a, value 2b], key 3: {key 3a: value 3a, key 3b: value 3b}}
+
+# automaton  {{{1
+automaton:
+    description: simple single-level list with eof linefeed
+    load_in:
+        > - value 1
+        > - value 2
+        > - value 3
+        >
+    load_out:
+        - value 1
+        - value 2
+        - value 3
+
+# wally  {{{1
+wally:
+    description: simple single-level list, no eof linefeed
+    load_in:
+        > - value 1
+        > - value 2
+        > - value 3
+    load_out:
+        - value 1
+        - value 2
+        - value 3
+
+# native  {{{1
+native:
+    description: top-level list with a second level of nesting
+    load_in:
+        > - value 1
+        > -
+        > -
+        >     - value 3a
+        >     - value 3b
+        > -
+        >     key 4a: value 4a
+        >     key 4b: value 4b
+        > -
+        >     > first line of value 5
+        >     > second line of value 5
+    load_out:
+        - value 1
+        -
+        -
+            - value 3a
+            - value 3b
+        -
+            key 4a: value 4a
+            key 4b: value 4b
+        -
+            > first line of value 5
+            > second line of value 5
+
+# stingray  {{{1
+stingray:
+    description: a simple top-level inline lies
+    load_in: [value 1, value 2, value 3]
+    load_out:
+        [value 1, value 2, value 3]
+
+# spastic  {{{1
+spastic:
+    description: a nested top-level inline list
+    load_in: [value 1, [value 2a, value 2b], {key 3a: value 3a, key 3b: value 3b}]
+    load_out:
+        [value 1, [value 2a, value 2b], {key 3a: value 3a, key 3b: value 3b}]
+
+# insulate  {{{1
+insulate:
+    description: dictionary with a variety of end-of-line strings
+    load_in:
+        > code   : input signed [7:0] level
+        > regex  : [+-]?([0-9]*[.])?[0-9]+\\s*\\w*
+        > math   : $x = \frac{{-b \pm \sqrt {b^2 - 4ac}}}{2a}$
+        > unicode: José and François
+    load_out:
+        code   : input signed [7:0] level
+        regex  : [+-]?([0-9]*[.])?[0-9]+\\s*\\w*
+        math   : $x = \frac{{-b \pm \sqrt {b^2 - 4ac}}}{2a}$
+        unicode: José and François
+
+# scent  {{{1
+scent:
+    description: simple multiline string
+    load_in:
+        > >     This is the first line of a multiline string, it is indented.
+        > > This is the second line, it is not indented.
+    load_out:
+        >     This is the first line of a multiline string, it is indented.
+        > This is the second line, it is not indented.
+
+# smithy  {{{1
+smithy:
+    description: empty document
+    load_in:
+        > # this line is ignored
+        >
+        > # this line is also ignored, as is the blank line above.
+        >
+    load_out: !None
+
+# import  {{{1
+import:
+    description: multiline string interrupted with a comment
+    load_in:
+        > > this is the first line of a multiline string
+        > # this line is ignored
+        > > this is the second line of the multiline string
+    load_out:
+        > this is the first line of a multiline string
+        > this is the second line of the multiline string
+
+# unlearn  {{{1
+unlearn:
+    description: address book example
+    load_in:
+        > # Contact information for our officers
+        >
+        > Katheryn McDaniel:
+        >     position: president
+        >     address:
+        >         > 138 Almond Street
+        >         > Topeka, Kansas 20697
+        >     phone:
+        >         cell: 1-210-555-5297
+        >         work: 1-210-555-3423
+        >         home: 1-210-555-8470
+        >             # Katheryn prefers that we always call her on her cell phone.
+        >     email: KateMcD@aol.com
+        >     kids:
+        >         - Joanie
+        >         - Terrance
+        >
+        > Margaret Hodge:
+        >     position: vice president
+        >     address:
+        >         > 2586 Marigold Lane
+        >         > Topeka, Kansas 20697
+        >     phone:
+        >         {cell: 1-470-555-0398, home: 1-470-555-7570}
+        >     email: margaret.hodge@ku.edu
+        >     kids:
+        >         [Arnie, Zach, Maggie]
+    load_out:
+        Katheryn McDaniel:
+            position: president
+            address:
+                > 138 Almond Street
+                > Topeka, Kansas 20697
+            phone:
+                cell: 1-210-555-5297
+                work: 1-210-555-3423
+                home: 1-210-555-8470
+            email: KateMcD@aol.com
+            kids:
+                - Joanie
+                - Terrance
+        Margaret Hodge:
+            position: vice president
+            address:
+                > 2586 Marigold Lane
+                > Topeka, Kansas 20697
+            phone:
+                {cell: 1-470-555-0398, home: 1-470-555-7570}
+            email: margaret.hodge@ku.edu
+            kids:
+                [Arnie, Zach, Maggie]
+
 # cornea  {{{1
 cornea:
     description: multiple line multiline string with and embedded whitespace
