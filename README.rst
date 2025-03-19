@@ -156,7 +156,7 @@ load_in:
     This is a string that contains the *NestedText* document to be loaded for 
     the test.  In order to make the document more readable, the document is 
     split into lines and represented as a list of strings.  Each line includes 
-    its line ending character.
+    its line termination character.
 
 load_out:
     The expected output from the *NestedText* loader if no error is expected.
