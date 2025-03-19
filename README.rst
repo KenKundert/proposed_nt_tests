@@ -37,21 +37,7 @@ couple it with a NestedText reader and perform a round trip through both, which
 can be performed with these test cases.
 
 The test cases are contained in tests.nt.  The convert command converts these 
-test cases into JSON.  It may also add an additional field, types, which is 
-a dictionary that contains the count of each possible line type that may be 
-found in a NestedText document.  The line types are::
-
-    blank
-    comment
-    dict item
-    inline dict
-    inline list
-    key item
-    list item
-    string item
-    unrecognized
-
-These counts can be used to filter the tests to be run if desired.
+test cases into JSON.
 
 It is expected that the JSON file (tests.json) will be used to test NestedText 
 implementations).  The NestedText file of test cases (tests.nt) is used to 
@@ -100,7 +86,31 @@ load_err (dict):
         column is column 0.
 
 Control characters and Unicode white space characters are expected to be 
-backslash escaped in load_in, load_out, and load_err.lines.
+backslash escaped in load_in, load_out, and load_err.lines.  Here are some 
+specific cases where backslash escapes should be used:
+
+**Line Terminations**  Newlines are replaced by line feed (LF) characters unless 
+the newline is preceded by either \r or \n or both.  The \r is replaced by 
+a carriage return (CR) and the \n is replaced by a line feed (LF).  In this the 
+line termination characters can be specified explicitly on a per line basis.  
+For example::
+
+    key 1: this line ends with CR & LF\r\n
+    key 2: this line ends with CR\r
+    key 3: this line ends with LF\n
+    key 4: this line also ends with LF
+    key 5: this line, being the last, has no line termination character
+
+**White Space**  All white space other than ASCII spaces and newlines should be 
+made explicit by using backslash escape sequences.  Specifically tabs should be 
+specified as \t and the Unicode white spaces should be specified using there \x 
+or \u code (ex. \xa0 for the no-break space).  In addition, end of line spaces 
+are optionally made explicit by replacing them with \x20 if they are important 
+and there is concerns that they may be accidentally lost.
+
+**Other Special Characters**  Backslash escape codes should also be used for 
+control code (\a for bell, \b for backspace, \x7f for delete, \x1b for escape, 
+etc) and for backslash itself (\).
 
 
 tests.json
@@ -148,7 +158,19 @@ load_err:
         column.  Is *null* or missing if the column number is unknown.
 
 types:
-    If the *convert* command can import from the Python implementation of 
-    *NestedText* a dictionary of line-type counts is included.  It gives the 
+    If the *convert* command can directly import from the Python implementation 
+    of *NestedText* a dictionary of line-type counts is included.  It gives the 
     count of each type of line contained in the input document.  These counts 
     can be used to filter the tests if desired.
+
+    The line types are::
+
+        blank
+        comment
+        dict item
+        inline dict
+        inline list
+        key item
+        list item
+        string item
+        unrecognized
