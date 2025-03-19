@@ -1,0 +1,11 @@
+**/__pycache__
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+*.cover
+.hypothesis/
+.pytest_cache/

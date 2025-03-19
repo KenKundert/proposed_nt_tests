@@ -1,0 +1,2672 @@
+# NestedText Official Test Cases {{{1
+#
+# These test cases are focused on assuring that valid NestedText input is 
+# properly read and invalid NestedText is properly identified by an 
+# implementation of NestedText.
+#
+# No attempt is made to assure that an implementation produces valid NestedText.
+# There is considerably flexibility in the way that NestedText may be generated 
+# and it was felt that the best way to test a NestedText generator would be to 
+# couple it with a NestedText reader and perform a round trip through both, 
+# which could be performed with these test cases.
+#
+# The convert command converts these test cases into JSON.  I may also add an 
+# additional field, types, which is a dictionary that contains the count of each 
+# possible line type that may be found in a NestedText document.  The line types 
+# are:
+#     blank
+#     comment
+#     dict item
+#     inline dict
+#     inline list
+#     key item
+#     list item
+#     string item
+#     unrecognized
+#
+# These counts can be used to filter the tests to be run if desired.
+# For these counts
+#
+# It is expected that the JSON file (tests.json) will be used to test NestedText 
+# implementations).  The NestedText file of test cases (tests.nt) is used to 
+# generate tests.json, and it only needed if you plan to add or modify the 
+# tests.  Do not modify the JSON file directly, as any changes will be 
+# overridden whenever convert is run.
+#
+# Each test case is a dictionary entry.  The key is used as the name of the 
+# test.  The keys must be unique and are largely chosen at random, but any words 
+# that are expected to be found within the test cases are rejected.  This allow 
+# test cases to be quickly found by searching for their name.
+#
+# The fields that may be specified are:
+#
+# description (str):
+#     Simply describes the test.  Is optional and unused.
+#
+# load_in (str):
+#     This is a string that will be fed into a NestedText load function.  This 
+#     string should be NestedText, though it may contain errors.
+#
+# load_out (None | str | list | dict):
+#     The expected output from the NestedText load function if no errors are 
+#     expected.  If a string is given and if the first character in the string 
+#     is ‘!’, then the mark is removed and what remains is evaluated by Python, 
+#     with the result being the expected output.
+#
+# load_err (dict):
+#     Details about the error that is expected to be found and reported by the 
+#     NestedText load function.  It consists of 4 fields:
+#
+#     message (str):
+#         The error message that is emitted by the Python implementation of 
+#         NestedText.
+#
+#     line (str):
+#         The text of the line in the NestedText input from load_in that 
+#         contains the error.
+#
+#     lineno (None, int):
+#         The line number of the line that contains the error.  The first line 
+#         is line 0.
+#
+#     colno (None, int):
+#         The number of the column where the error is likely to be.  The first 
+#         column is column 0.
+#
+# Control characters and Unicode white space characters are expected to be 
+# backslash escaped in load_in, load_out, and load_err.lines.
+
+
+# alpine  {{{1
+alpine:
+    description: empty single line multiline string
+    load_in:
+        > >
+    load_out:
+        >
+
+# medical  {{{1
+medical:
+    description: empty multiple line multiline string
+    load_in:
+        > >
+        > >
+    load_out:
+        >
+        >
+
+# cornea  {{{1
+cornea:
+    description: multiple line multiline string with and embedded whitespace
+    load_in:
+        > > Lorem Ipsum
+        > >
+        > >     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+        > > eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad 
+        > > minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
+        > > aliquip ex ea commodo consequat. Duis aute irure dolor in 
+        > > reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
+        > > pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+        > > culpa qui officia deserunt mollit anim id est laborum.
+    load_out:
+        > Lorem Ipsum
+        > 
+        >     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+        > eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad 
+        > minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
+        > aliquip ex ea commodo consequat. Duis aute irure dolor in 
+        > reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
+        > pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+        > culpa qui officia deserunt mollit anim id est laborum.
+
+# tacky  {{{1
+tacky:
+    description:
+        > multiple line multiline string with leading, trailing and embedded 
+        > whitespace
+    load_in:
+        > >
+        > > Lorem Ipsum
+        > >
+        > >     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+        > > eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad 
+        > > minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
+        > > aliquip ex ea commodo consequat. Duis aute irure dolor in 
+        > > reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
+        > > pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+        > > culpa qui officia deserunt mollit anim id est laborum.
+        > >
+    load_out:
+        >
+        > Lorem Ipsum
+        >
+        >     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+        > eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad 
+        > minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
+        > aliquip ex ea commodo consequat. Duis aute irure dolor in 
+        > reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
+        > pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+        > culpa qui officia deserunt mollit anim id est laborum.
+        >
+
+# mailbox  {{{1
+mailbox:
+    description:
+        > multiple line multiline string with leading, trailing and embedded 
+        > comments
+    load_in:
+        > >
+        > > Lorem Ipsum
+        > >
+        > >     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+        > > eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad 
+        > > minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
+        > > aliquip ex ea commodo consequat. Duis aute irure dolor in 
+        > > reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
+        > > pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+        > > culpa qui officia deserunt mollit anim id est laborum.
+        > >
+        >
+        > # Here is a bit more that one rarely sees ...
+        > >     Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+        > > accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae 
+        > > ab illo inventore veritatis et quasi architecto beatae vitae dicta 
+        > > sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit 
+        > > aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos 
+        > > qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui 
+        > > dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed 
+        > > quia non numquam eius modi tempora incidunt ut labore et dolore magnam 
+        > > aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum 
+        > > exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex 
+        > > ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in 
+        > > ea voluptate velit esse quam nihil molestiae consequatur, vel illum 
+        > > qui dolorem eum fugiat quo voluptas nulla pariatur?"
+        > >
+        >
+        > # There is more, but let's stop here.
+    load_out:
+        >
+        > Lorem Ipsum
+        >
+        >     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+        > eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad 
+        > minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
+        > aliquip ex ea commodo consequat. Duis aute irure dolor in 
+        > reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
+        > pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+        > culpa qui officia deserunt mollit anim id est laborum.
+        >
+        >     Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+        > accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae 
+        > ab illo inventore veritatis et quasi architecto beatae vitae dicta 
+        > sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit 
+        > aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos 
+        > qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui 
+        > dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed 
+        > quia non numquam eius modi tempora incidunt ut labore et dolore magnam 
+        > aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum 
+        > exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex 
+        > ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in 
+        > ea voluptate velit esse quam nihil molestiae consequatur, vel illum 
+        > qui dolorem eum fugiat quo voluptas nulla pariatur?"
+        >
+
+# reprobate  {{{1
+reprobate:
+    description:
+        > Check ability of NestedText to hold some special characters.
+        > The CR and LF characters will be lost in the conversion to NT.
+    load_in:
+        > the backslash character: \\
+        > the single quote character: '
+        > the double quote character: "
+        > the bell character: \a
+        > the back space character: \b
+        > the form feed character: \f
+        > the line feed character: \n
+        > the carriage return character: \r
+        > the horizontal tab character: \t
+        > the vertical tab character: \v
+        > the escape character: \x1b
+        > the delete character: \x7f
+        >
+    load_out:
+        the backslash character: \\
+        the single quote character: '
+        the double quote character: "
+        the bell character: \x07
+        the back space character: \x08
+        the form feed character: \x0c
+        the line feed character:
+        the carriage return character:
+        the horizontal tab character: \t
+        the vertical tab character: \x0b
+        the escape character: \x1b
+        the delete character: \x7f
+
+# incision  {{{1
+incision:
+    description:
+        > Check ability of NestedText to hold some special characters.
+        > The CR and LF characters will be lost in the conversion to NT.
+        > Window line terminators (CR-LF) are used.
+    load_in:
+        > the backslash character: \\\r\n
+        > the single quote character: '\r\n
+        > the double quote character: "\r\n
+        > the bell character: \a\r\n
+        > the back space character: \b\r\n
+        > the form feed character: \f\r\n
+        > the line feed character: \n\r\n
+        > the carriage return character: \r\r\n
+        > the horizontal tab character: \t\r\n
+        > the vertical tab character: \v\r\n
+        > the escape character: \x1b\r\n
+        > the delete character: \x7f\r\n
+        > \r\n
+    load_out:
+        the backslash character: \\
+        the single quote character: '
+        the double quote character: "
+        the bell character: \x07
+        the back space character: \b
+        the form feed character: \f
+        the line feed character: 
+        the carriage return character: 
+        the horizontal tab character: \t
+        the vertical tab character: \x0b
+        the escape character: \x1b
+        the delete character: \x7f
+
+# pelvis  {{{1
+pelvis:
+    description:
+        > Check ability of NestedText to hold some special characters.
+        > The CR and LF characters will be lost in the conversion to NT.
+        > Mac line terminators (CR) are used.
+    load_in:
+        > the backslash character: \\\r
+        > the single quote character: '\r
+        > the double quote character: "\r
+        > the bell character: \a\r
+        > the back space character: \b\r
+        > the form feed character: \f\r
+        > the line feed character: \n\r
+        > the carriage return character: \r\r
+        > the horizontal tab character: \t\r
+        > the vertical tab character: \v\r
+        > the escape character: \x1b\r
+        > the delete character: \x7f\r
+        > \r
+    load_out:
+        the backslash character: \\
+        the single quote character: '
+        the double quote character: "
+        the bell character: \x07
+        the back space character: \b
+        the form feed character: \f
+        the line feed character: 
+        the carriage return character: 
+        the horizontal tab character: \t
+        the vertical tab character: \x0b
+        the escape character: \x1b
+        the delete character: \x7f
+
+# pursuit  {{{1
+pursuit:
+    description:
+        > Check ability of NestedText to hold some special characters.
+        > The CR and LF characters will be lost in the conversion to NT.
+        > Mixed line terminators (LF, CR, CR-LF) are used.
+    load_in:
+        > the backslash character: \\\r\n
+        > the single quote character: '\r
+        > the double quote character: "\n
+        > the bell character: \a\r\n
+        > the back space character: \b\r
+        > the form feed character: \f\n
+        > the line feed character: \n\r\n
+        > the carriage return character: \r\r
+        > the horizontal tab character: \t\n
+        > the vertical tab character: \v\r\n
+        > the escape character: \x1b\r\n
+        > the delete character: \x7f\r\n
+        > \r\n
+    load_out:
+        the backslash character: \\
+        the single quote character: '
+        the double quote character: "
+        the bell character: \x07
+        the back space character: \b
+        the form feed character: \f
+        the line feed character: 
+        the carriage return character: 
+        the horizontal tab character: \t
+        the vertical tab character: \x0b
+        the escape character: \x1b
+        the delete character: \x7f
+
+# beset  {{{1
+beset:
+    description:
+        > various multiline strings with leading, trailing, and internal 
+        > newlines and comments
+    load_in:
+        > no newlines:
+        >     > line 1
+        >     > line 2
+        > leading newline:
+        >     >
+        >     > line 1
+        >     > line 2
+        > internal newline:
+        >     > line 1
+        >     >
+        >     > line 2
+        > trailing newline:
+        >     > line 1
+        >     > line 2
+        >     >
+        > leading, internal, and trailing newline:
+        >     >
+        >     > line 1
+        >     >
+        >     > line 2
+        >     >
+        > leading newlines:
+        >     >
+        >     >
+        >     > line 1
+        >     > line 2
+        > internal newlines:
+        >     > line 1
+        >     >
+        >     >
+        >     > line 2
+        > trailing newlines:
+        >     > line 1
+        >     > line 2
+        >     >
+        >     >
+        > leading, internal, and trailing newlines:
+        >     >
+        >     >
+        >     > line 1
+        >     >
+        >     >
+        >     > line 2
+        >     >
+        >     >
+        > leading blank line:
+        >
+        >     > line 1
+        >     > line 2
+        > internal blank line:
+        >     > line 1
+        >
+        >     > line 2
+        > trailing blank line:
+        >     > line 1
+        >     > line 2
+        >
+        > leading comment:
+        >   # ignore me
+        >     > line 1
+        >     > line 2
+        > internal comment:
+        >     > line 1
+        >         # ignore me
+        >     > line 2
+        > trailing comment:
+        >     > line 1
+        >     > line 2
+        >   # ignore me
+        >
+        >             # ignore me
+        >
+        >                        
+    # load_out:
+    #     > !{
+    #     >     'no newlines': 'line 1\nline 2',
+    #     >     'leading newline': '\nline 1\nline 2',
+    #     >     'internal newline': 'line 1\n\nline 2',
+    #     >     'trailing newline': 'line 1\nline 2\n',
+    #     >     'leading, internal, and trailing newline': '\nline 1\n\nline 2\n',
+    #     >     'leading newlines': '\n\nline 1\nline 2',
+    #     >     'internal newlines': 'line 1\n\n\nline 2',
+    #     >     'trailing newlines': 'line 1\nline 2\n\n',
+    #     >     'leading, internal, and trailing newlines': '\n\nline 1\n\n\nline 2\n\n',
+    #     >     'leading blank line': 'line 1\nline 2',
+    #     >     'internal blank line': 'line 1\nline 2',
+    #     >     'trailing blank line': 'line 1\nline 2',
+    #     >     'leading comment': 'line 1\nline 2',
+    #     >     'internal comment': 'line 1\nline 2',
+    #     >     'trailing comment': 'line 1\nline 2',
+    #     > }
+    load_out:
+        no newlines:
+            > line 1
+            > line 2
+        leading newline:
+            >
+            > line 1
+            > line 2
+        internal newline:
+            > line 1
+            > 
+            > line 2
+        trailing newline:
+            > line 1
+            > line 2
+            >
+        leading, internal, and trailing newline:
+            >
+            > line 1
+            >
+            > line 2
+            >
+        leading newlines:
+            >
+            >
+            > line 1
+            > line 2
+        internal newlines:
+            > line 1
+            >
+            >
+            > line 2
+        trailing newlines:
+            > line 1
+            > line 2
+            >
+            >
+        leading, internal, and trailing newlines:
+            >
+            >
+            > line 1
+            >
+            >
+            > line 2
+            >
+            >
+        leading blank line:
+            > line 1
+            > line 2
+        internal blank line:
+            > line 1
+            > line 2
+        trailing blank line:
+            > line 1
+            > line 2
+        leading comment:
+            > line 1
+            > line 2
+        internal comment:
+            > line 1
+            > line 2
+        trailing comment:
+            > line 1
+            > line 2
+
+# gendarme  {{{1
+gendarme:
+    description: error due to inconsistent indent level
+    load_in:
+        > ingredients:
+        >   > green chilies
+        >     > red chilies
+    load_err:
+        message: invalid indentation.
+        line:     > red chilies
+        lineno: 2
+        colno: 2
+
+# sketchy  {{{1
+sketchy:
+    description: error because content does not start in column 1
+    load_in:
+        >      > green chilies
+        >      > red chilies
+    load_err:
+        message: top-level content must start in column 1.
+        line:      > green chilies
+        lineno: 0
+        colno: 0
+
+# prankster  {{{1
+prankster:
+    description: error because the indents are tabs
+    load_in:
+        > ingredients:
+        > \t> green chilies
+        > \t> red chilies
+    load_err:
+        message: invalid character in indentation: '\t'.
+        line: \t> green chilies
+        lineno: 1
+        colno: 0
+
+# streamer  {{{1
+streamer:
+    description: error because indentation contains a unicode space
+    load_in:
+        > ingredients:
+        >         > green chilies
+        >     \xa0   > red chilies
+        > #   ↑ this is a non-breaking space
+    load_err:
+        message: invalid character in indentation: '\xa0' (NO-BREAK SPACE).
+        line:     \xa0   > red chilies
+        lineno: 2
+        colno: 4
+
+# guinea  {{{1
+guinea:
+    description: dictionary with empty values
+    load_in:
+        > key1:
+        > key2:
+    load_out:
+        > !{'key1': '', 'key2': ''}
+
+# dusty  {{{1
+dusty:
+    description: dictionary with empty values
+    load_in:
+        > key1: 
+        > key2: 
+    load_out:
+        > !{'key1': '', 'key2': ''}
+
+# jaunt  {{{1
+jaunt:
+    description: dictionary with multiline key
+    load_in:
+        > : apricot
+        > :
+        >     > 8
+    load_out:
+        : apricot
+        :
+            > 8
+
+# abide  {{{1
+abide:
+    description: dictionary with multiline key
+    load_in:
+        > :  key-a" : key-b' : key-c 
+        >     > value
+    load_out:
+        > !{""" key-a" : key-b' : key-c """: 'value'}
+
+# benchmark  {{{1
+benchmark:
+    description: empty dictionary
+    load_in:
+        > {}
+    load_out:
+        > !{}
+
+# milligram  {{{1
+milligram:
+    description: error because top dictionary is indented
+    load_in:
+        >     key: value
+    load_err:
+        message: top-level content must start in column 1.
+        line:     key: value
+        lineno: 0
+        colno: 0
+
+# fifth  {{{1
+fifth:
+    description:
+        > error because value is specified twice for the same dictionary key
+        > first as an end-of-line string that contains only a single space
+        > second as an indented dictionary
+    load_in:
+        > key 1:  
+        >         # notice the extra space at the end of the above line
+        >
+        >         # that, combined with the indent in the line below is an error
+        >         key 2: value 2
+    load_err:
+        message: invalid indentation.
+        line:         key 2: value 2
+        lineno: 4
+        colno: 0
+
+# chatterer  {{{1
+chatterer:
+    description: error because there is a tab in the indentation
+    load_in:
+        > # invalid indentation, tab in indentation
+        > key 1:
+        >     \t    key 1.1: value 1.1
+        > 
+    load_err:
+        message: invalid character in indentation: '\t'.
+        line:     \t    key 1.1: value 1.1
+        lineno: 2
+        colno: 4
+
+# concuss  {{{1
+concuss:
+    description: error because the sublist is not indented
+    load_in:
+        > ingredients:
+        > - green chilies
+    load_err:
+        message: expected dictionary item.
+        line: - green chilies
+        lineno: 1
+        colno: 0
+
+# marinade  {{{1
+marinade:
+    description: error because the two list items do not have the same indent
+    load_in:
+        > ingredients:
+        >   - green chilies
+        >     - red chilies
+    load_err:
+        message: invalid indentation.
+        line:     - red chilies
+        lineno: 2
+        colno: 2
+
+# detract  {{{1
+detract:
+    description: error because the two dict items do not have the same indent
+    load_in:
+        > candidates:
+        >     name:
+        >   phone:
+    load_err:
+        message: invalid indentation, partial dedent.
+        line:   phone:
+        lineno: 2
+        colno: 0
+
+# silky  {{{1
+silky:
+    description: error because the two list items do not have the same indent
+    load_in:
+        > ingredients:
+        >     - green chilies
+        >   - red chilies
+    load_err:
+        message: invalid indentation, partial dedent.
+        line:   - red chilies
+        lineno: 2
+        colno: 0
+
+# matinee  {{{1
+matinee:
+    description: error because differing types at same level of indentation
+    load_in:
+        > ingredients: red chilies
+        > - green chilies
+    load_err:
+        message: expected dictionary item.
+        line: - green chilies
+        lineno: 1
+        colno: 0
+
+# slipknot  {{{1
+slipknot:
+    description: error because there is no tag on line 2
+    load_in:
+        > ingredients:
+        >     green chilies
+    load_err:
+        message: unrecognized line.
+        line:     green chilies
+        lineno: 1
+        colno: 4
+
+# facet  {{{1
+facet:
+    description: error because there are duplicate keys
+    load_in:
+        > key: value 1
+        > key: value 2
+    load_err:
+        message: duplicate key: key.
+        line: key: value 2
+        lineno: 1
+        colno: 0
+
+# smudge  {{{1
+smudge:
+    description: error because of tab in indentation
+    load_in:
+        > key:
+        >     \t    > first line
+        >     \t    > second line
+    load_err:
+        message: invalid character in indentation: '\t'.
+        line:     \t    > first line
+        lineno: 1
+        colno: 4
+
+# spindly  {{{1
+spindly:
+    description: checks for support of : in key
+    load_in:
+        > key::
+    load_out:
+        > !{"key:": ""}
+
+# charter  {{{1
+charter:
+    description: dictionary with a mix of multiline keys and unicode nonsense
+    load_in:
+        > :
+        >     >
+        > ~!@#$%^&*()_+-1234567890{}[]|;<>?,./: ~!@#$%^&*()_+-1234567890{}[]|:;<>?,./
+        > : - key 3
+        >     > - value 3
+        > : key 4: 
+        >     > value 4: 
+        > : > key 5
+        >     > > value 5
+        > : # key 6
+        >     > #value 6
+        > : : key 7
+        >     > : value 7
+        > " key 8 ": " value 8 "
+        > ' key 9 ': ' value 9 '
+        > key 10: value '" 10
+        > key 11: And Fred said 'yabba dabba doo!' to Barney.
+        > key " 12: value ' 12
+        > $€¥£₩₺₽₹ɃΞȄ: $€¥£₩₺₽₹ɃΞȄ
+        > YZEPTGMKk_cmuµμnpfazy: YZEPTGMKk_cmuµμnpfazy
+        > a-zA-Z%√{us}{cur}][-^/()·⁻⁰¹²³⁴⁵⁶⁷⁸⁹°ÅΩƱΩ℧: a-zA-Z%√{us}{cur}][-^/()·⁻⁰¹²³⁴⁵⁶⁷⁸⁹°ÅΩƱΩ℧
+    load_out:
+        > !{
+        > "": "",
+        > "~!@#$%^&*()_+-1234567890{}[]|;<>?,./": "~!@#$%^&*()_+-1234567890{}[]|:;<>?,./",
+        > "- key 3": "- value 3",
+        > "key 4: ": "value 4: ",
+        > "> key 5": "> value 5",
+        > "# key 6": "#value 6",
+        > ": key 7": ": value 7",
+        > '" key 8 "': '" value 8 "',
+        > "' key 9 '": "' value 9 '",
+        > "key 10": """value '" 10""",
+        > "key 11": "And Fred said 'yabba dabba doo!' to Barney.",
+        > 'key " 12': "value ' 12",
+        > "$€¥£₩₺₽₹ɃΞȄ": "$€¥£₩₺₽₹ɃΞȄ",
+        > "YZEPTGMKk_cmuµμnpfazy": "YZEPTGMKk_cmuµμnpfazy",
+        > "a-zA-Z%√{us}{cur}][-^/()·⁻⁰¹²³⁴⁵⁶⁷⁸⁹°ÅΩƱΩ℧": "a-zA-Z%√{us}{cur}][-^/()·⁻⁰¹²³⁴⁵⁶⁷⁸⁹°ÅΩƱΩ℧"
+        > }
+
+# patchy  {{{1
+patchy:
+    description: dictionary with key that contains quote characters
+    load_in:
+        > key 1: value 1
+        > key'"2: value 2
+    load_out:
+        > !{
+        >     'key 1': 'value 1',
+        >     """key'"2""": 'value 2'
+        > }
+
+# excuse  {{{1
+excuse:
+    description: dictionary with white space after keys
+    load_in:
+        > k1: v1
+        > k2 : v2
+        > k3  : v3
+        > k4\t: v4
+    load_out:
+        > !{"k1": "v1", "k2": "v2", "k3": "v3", "k4": "v4"}
+
+# sandstorm  {{{1
+sandstorm:
+    description: various valid dictionary items with unusual unquoted keys
+    load_in:
+        > -#:'>: -#:">:
+        > -#:">: -#:'>:
+        > -#'\'>:: -#"\">::
+        > -#"\">:: -#'\'>::
+        >     # indented comment
+        > :-#:'>: :-#:">:
+        > :-#:">: :-#:'>:
+        > :-#'\'>:: :-#"\">::
+        > :-#"\">:: :-#'\'>::
+        >         # indented comment
+        > >:-#:'>: >:-#:">:
+        > >:-#:">: >:-#:'>:
+        > >:-#'\'>:: >:-#"\">::
+        > >:-#"\">:: >:-#'\'>::
+    load_out:
+        > !{
+        >   "-#:'>": '-#:">:',
+        >   '-#:">': "-#:'>:",
+        >   "-#'\'>:": '-#"\">::',
+        >   '-#"\">:': "-#'\'>::",
+        >   ":-#:'>": ':-#:">:',
+        >   ':-#:">': ":-#:'>:",
+        >   ":-#'\'>:": ':-#"\">::',
+        >   ':-#"\">:': ":-#'\'>::",
+        >   ">:-#:'>": '>:-#:">:',
+        >   '>:-#:">': ">:-#:'>:",
+        >   ">:-#'\'>:": '>:-#"\">::',
+        >   '>:-#"\">:': ">:-#'\'>::"
+        > }
+
+# shard  {{{1
+shard:
+    description: keys contain quote character and value contains dict item key.
+    load_in:
+        > 'a: ': a:
+        > : 'b: 
+        >     > ': b:
+    load_out:
+        > !{"'a": "': a:", "'b: ": "': b:"}
+
+# beach  {{{1
+beach:
+    description: long multiline keys
+    load_in:
+        > : This is a key that is
+        > : spread over multiple lines.
+        > : Like normal multiline strings,
+        > : it can contain any character
+        > : without restriction.
+        >     > This is its value
+        >
+        > : Here is another multiline key.
+        > : But in this case it has an empty value.
+        >     >
+        >
+        > : This is another multiline key,
+        > : this one with a multiline value.
+        >     > Here is the multiline value.
+        >     > It is paired with a multiline key.
+        >
+        > here is a simple key: with a simple value
+        >
+        > : Here is a multiline key
+        > : with a list value.
+        >     - 0
+        >     - 1
+        >
+        > : Here is a multiline key
+        > : with a dictionary value.
+        >     a: a
+        >     b: b
+        >
+        > here is another simple key: with another simple value
+        >
+        > : here is a multiline key: that kind of looks a dict item
+        >     > a multiline value
+        >
+        > : This is another multiline key,
+        > : this one with a dictionary as a value that has a multiline key.
+        >     : This is another multiline key,
+        >     : this one with a multiline value.
+        >         > Here is the multiline value.
+        >         > It is paired with a multiline key.
+        >
+        > : This a multiline key with a blank second line.
+        > :
+        >     > yabba dabba doo
+    load_out:
+        > !{
+        >     "This is a key that is\nspread over multiple lines.\nLike normal multiline strings,\nit can contain any character\nwithout restriction.": "This is its value",
+        >     "Here is another multiline key.\nBut in this case it has an empty value.": "",
+        >     "This is another multiline key,\nthis one with a multiline value.": "Here is the multiline value.\nIt is paired with a multiline key.",
+        >     "here is a simple key": "with a simple value",
+        >     "Here is a multiline key\nwith a list value.": [
+        >         "0",
+        >         "1"
+        >     ],
+        >     "Here is a multiline key\nwith a dictionary value.": {
+        >         "a": "a",
+        >         "b": "b"
+        >     },
+        >     "here is another simple key": "with another simple value",
+        >     "here is a multiline key: that kind of looks a dict item": "a multiline value",
+        >     "This is another multiline key,\nthis one with a dictionary as a value that has a multiline key.": {
+        >         "This is another multiline key,\nthis one with a multiline value.": "Here is the multiline value.\nIt is paired with a multiline key."
+        >     },
+        >     "This a multiline key with a blank second line.\n": "yabba dabba doo"
+        > }
+
+# crumbly  {{{1
+crumbly:
+    description: multiline keys
+    load_in:
+        > A :
+        >  : B:
+        >   >
+        > : C :
+        >  >
+        > D :
+        > : E
+        >  >
+        > : F1
+        > : F2
+        >  >
+    #KSK load_out:
+    #KSK     > !{
+    #KSK     >     "A": {
+    #KSK     >         "B:": ""
+    #KSK     >     },
+    #KSK     >     "C :": "",
+    #KSK     >     "D": "",
+    #KSK     >     "E": "",
+    #KSK     >     "F1\nF2": ""
+    #KSK     > }
+    load_out:
+        A :
+         : B:
+          >
+        : C :
+         >
+        D :
+        : E
+         >
+        : F1
+        : F2
+         >
+
+# despair  {{{1
+despair:
+    description: error with multiline keys due to multiline key missing value
+    load_in:
+        > A :
+        >  : B:
+        > : C :
+        > D :
+        > : E
+    load_err:
+        message: multiline key requires a value.
+        line:  : B:
+        lineno: 1
+        colno: 1
+
+# doodle  {{{1
+doodle:
+    description: rather large real world example with all word replaced by random words
+    load_in:
+        > tether:
+        >     disclose: paranoid clunk gaggle
+        >     prolong: stove banish
+        >     navel: -clipboard organist signify
+        >     crane: -washout honey guarantor=aircrew
+        >     inure: fondle = 10kΩ*dissect
+        >
+        > majesty:
+        >     fatten: washbowl flagon gentile hairstyle
+        >     static: lender busby
+        >     niece: -humpback adduce ferryboat
+        >     reservoir: -dally idiot enlarge=avalanche
+        >     wally: divorcee = 10kΩ*fugue
+        >
+        > banner:
+        >     scepter: trollop living giddy
+        >     lager: piper glacier
+        >     debunk: -trapeze person matron
+        >     pecan: -uncanny perform megaton=profiteer
+        >     register: answer = 10kΩ*trend
+        >
+        > monolith:
+        >     partitive: bookie outcome buckskin
+        >     roller: pixie fraud
+        >     change: scullery-roach rubber reveal+payoff
+        >     simulator: smock fritter consign=chateau
+        >     narrow: betrothal = 10kΩ*trooper - landau
+        >
+        > reinstate:
+        >     dramatist: pasture glade enslave upright
+        >     kinky: deuce birdie
+        >     bathroom: people-layoff fluke flood+sonata
+        >     heart: loiter feature scamper=drivel
+        >     vendetta: nauseate = 10kΩ*hoodlum - signboard
+        >
+        > overstate:
+        >     deter: clitoris treachery reading
+        >     saddlebag: doodle enunciate
+        >     cherub: cupboard-shingle refuge reefer+animate
+        >     overcome: gasometer crease bazooka=thriller
+        >     poplar: centipede = 10kΩ*headman - dewlap
+        >
+        > : [testament:blight] spangle
+        >     otter: adherent disguise electrode biplane
+        >     stormy: curfew neuter
+        >     spaceman: addict = snowman*(anxiety+embitter)*bayonet kestrel liken
+        >     hardy thinner: 'pretend
+        >     belief: sphere
+        >     sachet:
+        >         > fortnight: twitch(hopper) rebut duodenum=bottom; pleat=onward.
+        >         > frizz: galley(genealogy) advantage whelk=-sprawl; waist=-immigrant.
+        >
+        > : [mongrel:sequester] prism
+        >     bairn: easterner racketeer shortfall bootlace amoeba
+        >     canopy: refuse profit
+        >     snuggle: baritone = scrounger*(supplier+clobber)*flutter agate simplify
+        >     edition industry: 'castle
+        >     tenth: rhyme
+        >     scrunch:
+        >         > ledge: exporter(wrongdoer) levitate daiquiri=subsidize; bulletin=reason.
+        >         > jackpot: butcher(frequent) medicine memento=-diaphragm; ointment=-raving.
+        >
+        > : [frogman:alleyway] fatigue
+        >     hyena: believer timepiece infuriate sixty
+        >     cache: bootee scoopful
+        >     laborer: egoist = lunatic*(obeisance+voice)*gambit nickel queer
+        >     scraggy doggie: 'cedar
+        >     requisite: pastor
+        >     teacher:
+        >         > toboggan: champion(dominion) adieu golfer=linen; divorce=stake.
+        >         > fireguard: vineyard(confide) seashore diddle=-dartboard; genuflect=-fidget.
+        >
+        > install:
+        >     abide: waistline
+        >     skunk: coarsen nuisance
+        >     briar: eviction = glide && !reliquary overfeed resent
+        >     magnum accident: 'quince
+        >     nightmare: cheapen
+        >
+        > withdraw:
+        >     chalice: noble canard
+        >     siphon: utility overhead
+        >     butler: aspirin.starlet < heater < brace.blockade
+        >     juggler: crumpet = sunny + slattern + persuade. cataclysm = scolding.
+        >     betake: projector.insulator
+        >     hearth: convector
+        >
+        > surgery:
+        >     sunbathe: decathlon
+        >     fixation: heighten watcher
+        >     stretchy: -washday < burnish < debrief
+        >     scabbard: reward
+        >
+        > intercede barony:
+        >     busker: yachtsman-fleshpot sandbag flummox
+        >     vestry: panorama
+        >     sanction: drench="%keyboard"
+        >
+        > harmony creaky:
+        >     physicist: gauge-doublet bungalow clink
+        >     swerve: cleanser
+        >     royalty:
+        >         > essay="%honeymoon";
+        >         > extol = "swampy";
+        >         > almshouse = "".
+        >
+        > caterwaul imitation:
+        >     dunce: bodice sitcom chipmunk
+        >     profane: monocle
+        >     sortie: impute="%covert"
+        >
+        > menace:
+        >     dredge: miasma litigant broil
+        >     bishop: medley
+        >     inquest: scourer="%gamma"; mesmerize='ballcock
+        >
+        > mattock:
+        >     taint: buttery combatant stalwart
+        >     oculist: implicate
+        >     support: closure='snake; phoenix="%smoothie"
+        >
+        > chance:
+        >     riposte: crusade
+        >     scripture: cathode
+        >     doorstep: dukedom=screening; lifebuoy="%crackle"
+        >     salesman: shimmer cobweb spool=butter.
+        >
+        > asset:
+        >     overthrow: dainty
+        >     chancy: bough psychotic
+        >     sultana: father hormone caliber=mayday.
+        >
+        > pollinate:
+        >     doctor: masochist
+        >     strangler: saloon ensemble shower
+        >     tuxedo:
+        >         > inject='strategy;
+        >         > purport={toffee,ripper}.
+        >     citadel:
+        >         > shrew repellent dairymaid=laser; elevator=biped.
+        >         > resound garage mistreat=rebuild; scree=choke.
+        >         > anchor begrudge slalom=reassert; molester=chopper.
+        >         > dizzy outbreak snifter=tussle; remove=survive.
+        >         > noodle panegyric importune=native; accredit=loser.
+        >
+        > acquit invest gravity:
+        >     remain: beetroot maroon cliche ninety
+        >     bookmark: munch
+        >     commodore:
+        >         > plank=sundry;
+        >         > prick=rehear;
+        >         > bonnet="banana"
+        >     transfer:
+        >         > blister project adjective=slinky; uncover=salty.
+        >         > bowler acquiesce nobody=syllabus; bushy=fossilize.
+        >
+        > horror megalith:
+        >     spurt: flower towpath rejoicing dowry rupture
+        >     recur: capacity
+        >     tract:
+        >         > goatee='graze;
+        >         > liqueur="scream";
+        >         > detain=prefigure;
+        >         > spill={eggplant,poach}
+        >     plunger:
+        >         > cutting dislocate prince=spongy; flirt=debut.
+        >         > neurone cricketer shredder=property; break=octagon; plutocrat=lapwing.
+        >         > softy expert tycoon=qualify; coachman=heretic.
+        >         > redwood notebook heath=blackjack; frump=washstand.
+        >         > loose keeper applaud=destroyer; intention=hymnal.
+        >         > potentate brasserie souvenir=tumor; masseur=hasten.
+        >         > sanctify report touchdown=afford; combat=impart.
+        >         > brute elder bisexual=penknife; treadmill=thesaurus.
+        >         > tissue sickly dimmer=dowdy; cylinder=actor.
+        >         > awakening robotic fascia=paperboy; scalp=length; seashell=50μA.
+        >         > larch fashion crack=scorpion; explicate=retire.
+        >         > mature lapel incline=dressing; thwack=rivet.
+        >         > neologism phonetic zebra=upstage; realtor=showpiece.
+        >         > evacuee stride softener=ditty; earth=bookcase.
+        >         > uproot cross titter=constrict; specific=wayside.
+        >         > overwrite overshoot quandary=panther; cartwheel=ratio.
+        >
+        > informer payroll:
+        >     sequin: armadillo exclaim foray cuckoo
+        >     lynch: punchbowl
+        >     trump:
+        >         > bedeck=quota;
+        >         > machete=croupier;
+        >         > alpine="response";
+        >         > vegetable=slowdown.
+        >     whisker:
+        >         > lottery sheath moonlight=chamber.
+        >         > fantasize pullover stool=eject.
+        >
+        > barbarity, allude, whittle:
+        >     militant: garret dictate sweeper
+        >     extension: senator
+        >     justify:
+        >         > taxicab=ferry;
+        >         > paragraph=spokesman;
+        >         > politic=codpiece;
+        >         > grizzle=clerk;
+        >         > perturb=mudguard;
+        >         > decade="sickness"
+        >     broad:
+        >         > ceramic morsel sahib=gelding.
+        >         > gravy shoddy fixative=scramble.
+        >         > smelt beatnik describe=duckling.
+        >         > bourbon crusader tabloid=wordy.
+        >
+        > extenuate, promoter:
+        >     store: treasury dumpling emotion skirmish
+        >     epitaph: incumbent
+        >     yearning:
+        >         > adjudge='yearbook;
+        >         > maneuver="infer";
+        >         > cabaret=deception;
+        >         > hostel={fossil,diagnose}
+        >     sporran:
+        >         > alphabet counter haughty=ceiling; treadle=reedy.
+        >         > hierarchy hardship troll=detractor; holocaust=deafen; gangway=translate.
+        >         > thought termite limousine=hustle; tweed=majorette.
+        >         > batten swindler parkland=outsider; crawl=prevail.
+        >         > provision fabric indict=amaze; weight=commando.
+        >         > extend cabal charge=admit; umlaut=steel.
+        >         > strength councilor entity=address; encamp=slake.
+        >         > trespass soapbox knoll=befriend; aggregate=allusion.
+        >         > sequel fingertip billfold=staunch; particle=combine.
+        >         > sediment intellect organizer=blurry; fatty=beard; revel=50μA.
+        >         > toxin steak panacea=elite; scavenge=acoustic.
+        >         > farmyard resign presage=peasant; jumble=regret.
+        >         > berry valet alchemist=greasy; clonk=eyesore.
+        >         > treat temper antenatal=interlink; hurtle=catchy.
+        >         > obtain seaweed offender=cameo; jostle=reprove.
+        >         > rigidity radish braise=scoot; petty=marquee.
+        >
+        > menage, quail:
+        >     outspread: share pinion fruitcake portend
+        >     reference: appendix
+        >     daily:
+        >         > scrapbook=rejoin;
+        >         > drier=agonize;
+        >         > sewer="dollop";
+        >         > bistro=ratepayer.
+        >     flabby:
+        >         > pentagon rotor science=besiege.
+        >         > spider distance shaggy=mayor.
+        >         > statement venture priory=seance.
+        >         > sextet riddle shabby=stationer.
+        >
+        > jelly, exude:
+        >     naught: misread sandbank speculate
+        >     espresso: dispel
+        >     oilman:
+        >         > amalgam=additive;
+        >         > tatty=unsettle;
+        >         > lousy="clamber";
+        >         > radiator = "paring, anatomist";
+        >         > sidle=thatch.
+        >     episode:
+        >         > council whiplash muscle=carriage.
+        >         > baseline nymph tantrum=spoof; prognosis=trundle; friend=plump.comedy.
+        >         > induct tubby compost=crank.
+        >         > family stately expunge=echelon.
+        >
+        > holding, scruple:
+        >     ramrod: tableau beret
+        >     flatten: tributary
+        >     cobra:
+        >         > hunchback=bumpy;
+        >         > lorry="inkling";
+        >         > holler = "pedant, lifeboat";
+        >         > butchery=antique.
+        >     decree:
+        >         > embroil numskull stigma=explosion.
+        >         > grand bonus accord=scarf.
+        >         > amplifier prattle submerge=justice.
+        >         > grace arrowhead athlete=shaver.
+    #KSK load_out:
+    #KSK     > !{
+    #KSK     >     "tether": {
+    #KSK     >         "disclose": "paranoid clunk gaggle",
+    #KSK     >         "prolong": "stove banish",
+    #KSK     >         "navel": "-clipboard organist signify",
+    #KSK     >         "crane": "-washout honey guarantor=aircrew",
+    #KSK     >         "inure": "fondle = 10kΩ*dissect"
+    #KSK     >     },
+    #KSK     >     "majesty": {
+    #KSK     >         "fatten": "washbowl flagon gentile hairstyle",
+    #KSK     >         "static": "lender busby",
+    #KSK     >         "niece": "-humpback adduce ferryboat",
+    #KSK     >         "reservoir": "-dally idiot enlarge=avalanche",
+    #KSK     >         "wally": "divorcee = 10kΩ*fugue"
+    #KSK     >     },
+    #KSK     >     "banner": {
+    #KSK     >         "scepter": "trollop living giddy",
+    #KSK     >         "lager": "piper glacier",
+    #KSK     >         "debunk": "-trapeze person matron",
+    #KSK     >         "pecan": "-uncanny perform megaton=profiteer",
+    #KSK     >         "register": "answer = 10kΩ*trend"
+    #KSK     >     },
+    #KSK     >     "monolith": {
+    #KSK     >         "partitive": "bookie outcome buckskin",
+    #KSK     >         "roller": "pixie fraud",
+    #KSK     >         "change": "scullery-roach rubber reveal+payoff",
+    #KSK     >         "simulator": "smock fritter consign=chateau",
+    #KSK     >         "narrow": "betrothal = 10kΩ*trooper - landau"
+    #KSK     >     },
+    #KSK     >     "reinstate": {
+    #KSK     >         "dramatist": "pasture glade enslave upright",
+    #KSK     >         "kinky": "deuce birdie",
+    #KSK     >         "bathroom": "people-layoff fluke flood+sonata",
+    #KSK     >         "heart": "loiter feature scamper=drivel",
+    #KSK     >         "vendetta": "nauseate = 10kΩ*hoodlum - signboard"
+    #KSK     >     },
+    #KSK     >     "overstate": {
+    #KSK     >         "deter": "clitoris treachery reading",
+    #KSK     >         "saddlebag": "doodle enunciate",
+    #KSK     >         "cherub": "cupboard-shingle refuge reefer+animate",
+    #KSK     >         "overcome": "gasometer crease bazooka=thriller",
+    #KSK     >         "poplar": "centipede = 10kΩ*headman - dewlap"
+    #KSK     >     },
+    #KSK     >     "[testament:blight] spangle": {
+    #KSK     >         "otter": "adherent disguise electrode biplane",
+    #KSK     >         "stormy": "curfew neuter",
+    #KSK     >         "spaceman": "addict = snowman*(anxiety+embitter)*bayonet kestrel liken",
+    #KSK     >         "hardy thinner": "'pretend",
+    #KSK     >         "belief": "sphere",
+    #KSK     >         "sachet": "fortnight: twitch(hopper) rebut duodenum=bottom; pleat=onward.\\nfrizz: galley(genealogy) advantage whelk=-sprawl; waist=-immigrant."
+    #KSK     >     },
+    #KSK     >     "[mongrel:sequester] prism": {
+    #KSK     >         "bairn": "easterner racketeer shortfall bootlace amoeba",
+    #KSK     >         "canopy": "refuse profit",
+    #KSK     >         "snuggle": "baritone = scrounger*(supplier+clobber)*flutter agate simplify",
+    #KSK     >         "edition industry": "'castle",
+    #KSK     >         "tenth": "rhyme",
+    #KSK     >         "scrunch": "ledge: exporter(wrongdoer) levitate daiquiri=subsidize; bulletin=reason.\\njackpot: butcher(frequent) medicine memento=-diaphragm; ointment=-raving."
+    #KSK     >     },
+    #KSK     >     "[frogman:alleyway] fatigue": {
+    #KSK     >         "hyena": "believer timepiece infuriate sixty",
+    #KSK     >         "cache": "bootee scoopful",
+    #KSK     >         "laborer": "egoist = lunatic*(obeisance+voice)*gambit nickel queer",
+    #KSK     >         "scraggy doggie": "'cedar",
+    #KSK     >         "requisite": "pastor",
+    #KSK     >         "teacher": "toboggan: champion(dominion) adieu golfer=linen; divorce=stake.\\nfireguard: vineyard(confide) seashore diddle=-dartboard; genuflect=-fidget."
+    #KSK     >     },
+    #KSK     >     "install": {
+    #KSK     >         "abide": "waistline",
+    #KSK     >         "skunk": "coarsen nuisance",
+    #KSK     >         "briar": "eviction = glide && !reliquary overfeed resent",
+    #KSK     >         "magnum accident": "'quince",
+    #KSK     >         "nightmare": "cheapen"
+    #KSK     >     },
+    #KSK     >     "withdraw": {
+    #KSK     >         "chalice": "noble canard",
+    #KSK     >         "siphon": "utility overhead",
+    #KSK     >         "butler": "aspirin.starlet < heater < brace.blockade",
+    #KSK     >         "juggler": "crumpet = sunny + slattern + persuade. cataclysm = scolding.",
+    #KSK     >         "betake": "projector.insulator",
+    #KSK     >         "hearth": "convector"
+    #KSK     >     },
+    #KSK     >     "surgery": {
+    #KSK     >         "sunbathe": "decathlon",
+    #KSK     >         "fixation": "heighten watcher",
+    #KSK     >         "stretchy": "-washday < burnish < debrief",
+    #KSK     >         "scabbard": "reward"
+    #KSK     >     },
+    #KSK     >     "intercede barony": {
+    #KSK     >         "busker": "yachtsman-fleshpot sandbag flummox",
+    #KSK     >         "vestry": "panorama",
+    #KSK     >         "sanction": 'drench="%keyboard"'
+    #KSK     >     },
+    #KSK     >     "harmony creaky": {
+    #KSK     >         "physicist": "gauge-doublet bungalow clink",
+    #KSK     >         "swerve": "cleanser",
+    #KSK     >         "royalty": 'essay="%honeymoon";\\nextol = "swampy";\\nalmshouse = "".'
+    #KSK     >     },
+    #KSK     >     "caterwaul imitation": {
+    #KSK     >         "dunce": "bodice sitcom chipmunk",
+    #KSK     >         "profane": "monocle",
+    #KSK     >         "sortie": 'impute="%covert"'
+    #KSK     >     },
+    #KSK     >     "menace": {
+    #KSK     >         "dredge": "miasma litigant broil",
+    #KSK     >         "bishop": "medley",
+    #KSK     >         "inquest": """scourer="%gamma"; mesmerize='ballcock"""
+    #KSK     >     },
+    #KSK     >     "mattock": {
+    #KSK     >         "taint": "buttery combatant stalwart",
+    #KSK     >         "oculist": "implicate",
+    #KSK     >         "support": '''closure='snake; phoenix="%smoothie"'''
+    #KSK     >     },
+    #KSK     >     "chance": {
+    #KSK     >         "riposte": "crusade",
+    #KSK     >         "scripture": "cathode",
+    #KSK     >         "doorstep": 'dukedom=screening; lifebuoy="%crackle"',
+    #KSK     >         "salesman": "shimmer cobweb spool=butter."
+    #KSK     >     },
+    #KSK     >     "asset": {
+    #KSK     >         "overthrow": "dainty",
+    #KSK     >         "chancy": "bough psychotic",
+    #KSK     >         "sultana": "father hormone caliber=mayday."
+    #KSK     >     },
+    #KSK     >     "pollinate": {
+    #KSK     >         "doctor": "masochist",
+    #KSK     >         "strangler": "saloon ensemble shower",
+    #KSK     >         "tuxedo": "inject='strategy;\\npurport={toffee,ripper}.",
+    #KSK     >         "citadel": "shrew repellent dairymaid=laser; elevator=biped.\\nresound garage mistreat=rebuild; scree=choke.\\nanchor begrudge slalom=reassert; molester=chopper.\\ndizzy outbreak snifter=tussle; remove=survive.\\nnoodle panegyric importune=native; accredit=loser."
+    #KSK     >     },
+    #KSK     >     "acquit invest gravity": {
+    #KSK     >         "remain": "beetroot maroon cliche ninety",
+    #KSK     >         "bookmark": "munch",
+    #KSK     >         "commodore": 'plank=sundry;\\nprick=rehear;\\nbonnet="banana"',
+    #KSK     >         "transfer": "blister project adjective=slinky; uncover=salty.\\nbowler acquiesce nobody=syllabus; bushy=fossilize."
+    #KSK     >     },
+    #KSK     >     "horror megalith": {
+    #KSK     >         "spurt": "flower towpath rejoicing dowry rupture",
+    #KSK     >         "recur": "capacity",
+    #KSK     >         "tract": '''goatee='graze;\\nliqueur="scream";\\ndetain=prefigure;\\nspill={eggplant,poach}''',
+    #KSK     >         "plunger": "cutting dislocate prince=spongy; flirt=debut.\\nneurone cricketer shredder=property; break=octagon; plutocrat=lapwing.\\nsofty expert tycoon=qualify; coachman=heretic.\\nredwood notebook heath=blackjack; frump=washstand.\\nloose keeper applaud=destroyer; intention=hymnal.\\npotentate brasserie souvenir=tumor; masseur=hasten.\\nsanctify report touchdown=afford; combat=impart.\\nbrute elder bisexual=penknife; treadmill=thesaurus.\\ntissue sickly dimmer=dowdy; cylinder=actor.\\nawakening robotic fascia=paperboy; scalp=length; seashell=50μA.\\nlarch fashion crack=scorpion; explicate=retire.\\nmature lapel incline=dressing; thwack=rivet.\\nneologism phonetic zebra=upstage; realtor=showpiece.\\nevacuee stride softener=ditty; earth=bookcase.\\nuproot cross titter=constrict; specific=wayside.\\noverwrite overshoot quandary=panther; cartwheel=ratio."
+    #KSK     >     },
+    #KSK     >     "informer payroll": {
+    #KSK     >         "sequin": "armadillo exclaim foray cuckoo",
+    #KSK     >         "lynch": "punchbowl",
+    #KSK     >         "trump": 'bedeck=quota;\\nmachete=croupier;\\nalpine="response";\\nvegetable=slowdown.',
+    #KSK     >         "whisker": "lottery sheath moonlight=chamber.\\nfantasize pullover stool=eject."
+    #KSK     >     },
+    #KSK     >     "barbarity, allude, whittle": {
+    #KSK     >         "militant": "garret dictate sweeper",
+    #KSK     >         "extension": "senator",
+    #KSK     >         "justify": 'taxicab=ferry;\\nparagraph=spokesman;\\npolitic=codpiece;\\ngrizzle=clerk;\\nperturb=mudguard;\\ndecade="sickness"',
+    #KSK     >         "broad": "ceramic morsel sahib=gelding.\\ngravy shoddy fixative=scramble.\\nsmelt beatnik describe=duckling.\\nbourbon crusader tabloid=wordy."
+    #KSK     >     },
+    #KSK     >     "extenuate, promoter": {
+    #KSK     >         "store": "treasury dumpling emotion skirmish",
+    #KSK     >         "epitaph": "incumbent",
+    #KSK     >         "yearning": '''adjudge='yearbook;\\nmaneuver="infer";\\ncabaret=deception;\\nhostel={fossil,diagnose}''',
+    #KSK     >         "sporran": "alphabet counter haughty=ceiling; treadle=reedy.\\nhierarchy hardship troll=detractor; holocaust=deafen; gangway=translate.\\nthought termite limousine=hustle; tweed=majorette.\\nbatten swindler parkland=outsider; crawl=prevail.\\nprovision fabric indict=amaze; weight=commando.\\nextend cabal charge=admit; umlaut=steel.\\nstrength councilor entity=address; encamp=slake.\\ntrespass soapbox knoll=befriend; aggregate=allusion.\\nsequel fingertip billfold=staunch; particle=combine.\\nsediment intellect organizer=blurry; fatty=beard; revel=50μA.\\ntoxin steak panacea=elite; scavenge=acoustic.\\nfarmyard resign presage=peasant; jumble=regret.\\nberry valet alchemist=greasy; clonk=eyesore.\\ntreat temper antenatal=interlink; hurtle=catchy.\\nobtain seaweed offender=cameo; jostle=reprove.\\nrigidity radish braise=scoot; petty=marquee."
+    #KSK     >     },
+    #KSK     >     "menage, quail": {
+    #KSK     >         "outspread": "share pinion fruitcake portend",
+    #KSK     >         "reference": "appendix",
+    #KSK     >         "daily": 'scrapbook=rejoin;\\ndrier=agonize;\\nsewer="dollop";\\nbistro=ratepayer.',
+    #KSK     >         "flabby": "pentagon rotor science=besiege.\\nspider distance shaggy=mayor.\\nstatement venture priory=seance.\\nsextet riddle shabby=stationer."
+    #KSK     >     },
+    #KSK     >     "jelly, exude": {
+    #KSK     >         "naught": "misread sandbank speculate",
+    #KSK     >         "espresso": "dispel",
+    #KSK     >         "oilman": 'amalgam=additive;\\ntatty=unsettle;\\nlousy="clamber";\\nradiator = "paring, anatomist";\\nsidle=thatch.',
+    #KSK     >         "episode": "council whiplash muscle=carriage.\\nbaseline nymph tantrum=spoof; prognosis=trundle; friend=plump.comedy.\\ninduct tubby compost=crank.\\nfamily stately expunge=echelon."
+    #KSK     >     },
+    #KSK     >     "holding, scruple": {
+    #KSK     >         "ramrod": "tableau beret",
+    #KSK     >         "flatten": "tributary",
+    #KSK     >         "cobra": 'hunchback=bumpy;\\nlorry="inkling";\\nholler = "pedant, lifeboat";\\nbutchery=antique.',
+    #KSK     >         "decree": "embroil numskull stigma=explosion.\\ngrand bonus accord=scarf.\\namplifier prattle submerge=justice.\\ngrace arrowhead athlete=shaver."
+    #KSK     >     }
+    #KSK     > }
+    load_out:
+        tether:
+            disclose: paranoid clunk gaggle
+            prolong: stove banish
+            navel: -clipboard organist signify
+            crane: -washout honey guarantor=aircrew
+            inure: fondle = 10kΩ*dissect
+        majesty:
+            fatten: washbowl flagon gentile hairstyle
+            static: lender busby
+            niece: -humpback adduce ferryboat
+            reservoir: -dally idiot enlarge=avalanche
+            wally: divorcee = 10kΩ*fugue
+        banner:
+            scepter: trollop living giddy
+            lager: piper glacier
+            debunk: -trapeze person matron
+            pecan: -uncanny perform megaton=profiteer
+            register: answer = 10kΩ*trend
+        monolith:
+            partitive: bookie outcome buckskin
+            roller: pixie fraud
+            change: scullery-roach rubber reveal+payoff
+            simulator: smock fritter consign=chateau
+            narrow: betrothal = 10kΩ*trooper - landau
+        reinstate:
+            dramatist: pasture glade enslave upright
+            kinky: deuce birdie
+            bathroom: people-layoff fluke flood+sonata
+            heart: loiter feature scamper=drivel
+            vendetta: nauseate = 10kΩ*hoodlum - signboard
+        overstate:
+            deter: clitoris treachery reading
+            saddlebag: doodle enunciate
+            cherub: cupboard-shingle refuge reefer+animate
+            overcome: gasometer crease bazooka=thriller
+            poplar: centipede = 10kΩ*headman - dewlap
+        : [testament:blight] spangle
+            otter: adherent disguise electrode biplane
+            stormy: curfew neuter
+            spaceman: addict = snowman*(anxiety+embitter)*bayonet kestrel liken
+            hardy thinner: 'pretend
+            belief: sphere
+            sachet:
+                > fortnight: twitch(hopper) rebut duodenum=bottom; pleat=onward.
+                > frizz: galley(genealogy) advantage whelk=-sprawl; waist=-immigrant.
+        : [mongrel:sequester] prism
+            bairn: easterner racketeer shortfall bootlace amoeba
+            canopy: refuse profit
+            snuggle: baritone = scrounger*(supplier+clobber)*flutter agate simplify
+            edition industry: 'castle
+            tenth: rhyme
+            scrunch:
+                > ledge: exporter(wrongdoer) levitate daiquiri=subsidize; bulletin=reason.
+                > jackpot: butcher(frequent) medicine memento=-diaphragm; ointment=-raving.
+        : [frogman:alleyway] fatigue
+            hyena: believer timepiece infuriate sixty
+            cache: bootee scoopful
+            laborer: egoist = lunatic*(obeisance+voice)*gambit nickel queer
+            scraggy doggie: 'cedar
+            requisite: pastor
+            teacher:
+                > toboggan: champion(dominion) adieu golfer=linen; divorce=stake.
+                > fireguard: vineyard(confide) seashore diddle=-dartboard; genuflect=-fidget.
+        install:
+            abide: waistline
+            skunk: coarsen nuisance
+            briar: eviction = glide && !reliquary overfeed resent
+            magnum accident: 'quince
+            nightmare: cheapen
+        withdraw:
+            chalice: noble canard
+            siphon: utility overhead
+            butler: aspirin.starlet < heater < brace.blockade
+            juggler: crumpet = sunny + slattern + persuade. cataclysm = scolding.
+            betake: projector.insulator
+            hearth: convector
+        surgery:
+            sunbathe: decathlon
+            fixation: heighten watcher
+            stretchy: -washday < burnish < debrief
+            scabbard: reward
+        intercede barony:
+            busker: yachtsman-fleshpot sandbag flummox
+            vestry: panorama
+            sanction: drench="%keyboard"
+        harmony creaky:
+            physicist: gauge-doublet bungalow clink
+            swerve: cleanser
+            royalty:
+                > essay="%honeymoon";
+                > extol = "swampy";
+                > almshouse = "".
+        caterwaul imitation:
+            dunce: bodice sitcom chipmunk
+            profane: monocle
+            sortie: impute="%covert"
+        menace:
+            dredge: miasma litigant broil
+            bishop: medley
+            inquest: scourer="%gamma"; mesmerize='ballcock
+        mattock:
+            taint: buttery combatant stalwart
+            oculist: implicate
+            support: closure='snake; phoenix="%smoothie"
+        chance:
+            riposte: crusade
+            scripture: cathode
+            doorstep: dukedom=screening; lifebuoy="%crackle"
+            salesman: shimmer cobweb spool=butter.
+        asset:
+            overthrow: dainty
+            chancy: bough psychotic
+            sultana: father hormone caliber=mayday.
+        pollinate:
+            doctor: masochist
+            strangler: saloon ensemble shower
+            tuxedo:
+                > inject='strategy;
+                > purport={toffee,ripper}.
+            citadel:
+                > shrew repellent dairymaid=laser; elevator=biped.
+                > resound garage mistreat=rebuild; scree=choke.
+                > anchor begrudge slalom=reassert; molester=chopper.
+                > dizzy outbreak snifter=tussle; remove=survive.
+                > noodle panegyric importune=native; accredit=loser.
+        acquit invest gravity:
+            remain: beetroot maroon cliche ninety
+            bookmark: munch
+            commodore:
+                > plank=sundry;
+                > prick=rehear;
+                > bonnet="banana"
+            transfer:
+                > blister project adjective=slinky; uncover=salty.
+                > bowler acquiesce nobody=syllabus; bushy=fossilize.
+        horror megalith:
+            spurt: flower towpath rejoicing dowry rupture
+            recur: capacity
+            tract:
+                > goatee='graze;
+                > liqueur="scream";
+                > detain=prefigure;
+                > spill={eggplant,poach}
+            plunger:
+                > cutting dislocate prince=spongy; flirt=debut.
+                > neurone cricketer shredder=property; break=octagon; plutocrat=lapwing.
+                > softy expert tycoon=qualify; coachman=heretic.
+                > redwood notebook heath=blackjack; frump=washstand.
+                > loose keeper applaud=destroyer; intention=hymnal.
+                > potentate brasserie souvenir=tumor; masseur=hasten.
+                > sanctify report touchdown=afford; combat=impart.
+                > brute elder bisexual=penknife; treadmill=thesaurus.
+                > tissue sickly dimmer=dowdy; cylinder=actor.
+                > awakening robotic fascia=paperboy; scalp=length; seashell=50μA.
+                > larch fashion crack=scorpion; explicate=retire.
+                > mature lapel incline=dressing; thwack=rivet.
+                > neologism phonetic zebra=upstage; realtor=showpiece.
+                > evacuee stride softener=ditty; earth=bookcase.
+                > uproot cross titter=constrict; specific=wayside.
+                > overwrite overshoot quandary=panther; cartwheel=ratio.
+        informer payroll:
+            sequin: armadillo exclaim foray cuckoo
+            lynch: punchbowl
+            trump:
+                > bedeck=quota;
+                > machete=croupier;
+                > alpine="response";
+                > vegetable=slowdown.
+            whisker:
+                > lottery sheath moonlight=chamber.
+                > fantasize pullover stool=eject.
+        barbarity, allude, whittle:
+            militant: garret dictate sweeper
+            extension: senator
+            justify:
+                > taxicab=ferry;
+                > paragraph=spokesman;
+                > politic=codpiece;
+                > grizzle=clerk;
+                > perturb=mudguard;
+                > decade="sickness"
+            broad:
+                > ceramic morsel sahib=gelding.
+                > gravy shoddy fixative=scramble.
+                > smelt beatnik describe=duckling.
+                > bourbon crusader tabloid=wordy.
+        extenuate, promoter:
+            store: treasury dumpling emotion skirmish
+            epitaph: incumbent
+            yearning:
+                > adjudge='yearbook;
+                > maneuver="infer";
+                > cabaret=deception;
+                > hostel={fossil,diagnose}
+            sporran:
+                > alphabet counter haughty=ceiling; treadle=reedy.
+                > hierarchy hardship troll=detractor; holocaust=deafen; gangway=translate.
+                > thought termite limousine=hustle; tweed=majorette.
+                > batten swindler parkland=outsider; crawl=prevail.
+                > provision fabric indict=amaze; weight=commando.
+                > extend cabal charge=admit; umlaut=steel.
+                > strength councilor entity=address; encamp=slake.
+                > trespass soapbox knoll=befriend; aggregate=allusion.
+                > sequel fingertip billfold=staunch; particle=combine.
+                > sediment intellect organizer=blurry; fatty=beard; revel=50μA.
+                > toxin steak panacea=elite; scavenge=acoustic.
+                > farmyard resign presage=peasant; jumble=regret.
+                > berry valet alchemist=greasy; clonk=eyesore.
+                > treat temper antenatal=interlink; hurtle=catchy.
+                > obtain seaweed offender=cameo; jostle=reprove.
+                > rigidity radish braise=scoot; petty=marquee.
+        menage, quail:
+            outspread: share pinion fruitcake portend
+            reference: appendix
+            daily:
+                > scrapbook=rejoin;
+                > drier=agonize;
+                > sewer="dollop";
+                > bistro=ratepayer.
+            flabby:
+                > pentagon rotor science=besiege.
+                > spider distance shaggy=mayor.
+                > statement venture priory=seance.
+                > sextet riddle shabby=stationer.
+        jelly, exude:
+            naught: misread sandbank speculate
+            espresso: dispel
+            oilman:
+                > amalgam=additive;
+                > tatty=unsettle;
+                > lousy="clamber";
+                > radiator = "paring, anatomist";
+                > sidle=thatch.
+            episode:
+                > council whiplash muscle=carriage.
+                > baseline nymph tantrum=spoof; prognosis=trundle; friend=plump.comedy.
+                > induct tubby compost=crank.
+                > family stately expunge=echelon.
+        holding, scruple:
+            ramrod: tableau beret
+            flatten: tributary
+            cobra:
+                > hunchback=bumpy;
+                > lorry="inkling";
+                > holler = "pedant, lifeboat";
+                > butchery=antique.
+            decree:
+                > embroil numskull stigma=explosion.
+                > grand bonus accord=scarf.
+                > amplifier prattle submerge=justice.
+                > grace arrowhead athlete=shaver.
+
+# imbibe  {{{1
+imbibe:
+    description: multiline keys holding urls (multiline key require because of leading braces)
+    load_in:
+        > : {http://www.kde.org/standards/kcfg/1.0}kcfgfile
+        >     >
+        > : {http://www.kde.org/standards/kcfg/1.0}group
+        >     : {http://www.kde.org/standards/kcfg/1.0}entry
+        >         -
+        >             : {http://www.kde.org/standards/kcfg/1.0}default
+        >                 > 250
+        >         -
+        >             : {http://www.kde.org/standards/kcfg/1.0}default
+        >                 > krunner,yakuake
+    load_out:
+        > !{
+        >     "{http://www.kde.org/standards/kcfg/1.0}kcfgfile": "",
+        >     "{http://www.kde.org/standards/kcfg/1.0}group": {
+        >         "{http://www.kde.org/standards/kcfg/1.0}entry": [
+        >             {"{http://www.kde.org/standards/kcfg/1.0}default": "250"},
+        >             {"{http://www.kde.org/standards/kcfg/1.0}default": "krunner,yakuake"}
+        >         ]
+        >     }
+        > }
+
+# emollient  {{{1
+emollient:
+    description: reject duplicate keys
+    load_in:
+        > key: value 1
+        > key: value 2
+        > key: value 3
+    load_err:
+        message: duplicate key: key.
+        line: key: value 2
+        lineno: 1
+        colno: 0
+
+# modernize  {{{1
+modernize:
+    description: Miscellaneous inline dictionaries
+    load_in:
+        > -
+        >     {}
+        > -
+        >     {:}
+        > -
+        >     {a:0}
+        > -
+        >     {a: k}
+        > -
+        >     {a:[]}
+        > -
+        >     {a: [b]}
+        > -
+        >     {a:{}}
+        > -
+        >     {a: {b:1}}
+        > -
+        >     {a:0, b:1}
+        > -
+        >     {a:{A:0}, b:{B:1}}
+        > -
+        >     { a : { A : 0 } , b : { B : 1 } }   
+        > -
+        >     {a:[1,2,3], b:[4,5,6]}
+        > -
+        >     {a:0,b:1}
+        > -
+        >     {a:[],b:[]}
+        > -
+        >     {a:[0,1],b:[2,3]}
+        > -
+        >     {a:{},b:{}}
+        > -
+        >     {a:{b:0,c:1},d:{e:2,f:3}}
+        > -
+        >     {a:0,b:[]}
+        > -
+        >     {a:[],b:{}}
+        > -
+        >     {a:{},b:0}
+        > -
+        >     { a:0}
+        > -
+        >     {a :0}
+        > -
+        >     {a: 0}
+        > -
+        >     {a:0 }
+        > -
+        >     { a : 0 }
+        > -
+        >     {a:0, b:1}
+        > -
+        >     {a:0 ,b:1}
+        > -
+        >     {a:0 , b:1}
+        > -
+        >     {key 1:value 1, key 2 : value 2 }
+    load_out:
+        > ![
+        >     {},
+        >     {"": ""},
+        >     {"a": "0"},
+        >     {"a": "k"},
+        >     {"a": []},
+        >     {"a": ["b"]},
+        >     {"a": {}},
+        >     {"a": {"b": "1"}},
+        >     {"a": "0", "b": "1"},
+        >     {"a": {"A": "0"}, "b": {"B": "1"}},
+        >     {"a": {"A": "0"}, "b": {"B": "1"}},
+        >     {"a": ["1", "2", "3"], "b": ["4", "5", "6"]},
+        >     {"a": "0", "b": "1"},
+        >     {"a": [], "b": []},
+        >     {"a": ["0", "1"], "b": ["2", "3"]},
+        >     {"a": {}, "b": {}},
+        >     {"a": {"b": "0", "c": "1"}, "d": {"e": "2", "f": "3"}},
+        >     {"a": "0", "b": []},
+        >     {"a": [], "b": {}},
+        >     {"a": {}, "b": "0"},
+        >     {"a": "0"},
+        >     {"a": "0"},
+        >     {"a": "0"},
+        >     {"a": "0"},
+        >     {"a": "0"},
+        >     {"a": "0", "b": "1"},
+        >     {"a": "0", "b": "1"},
+        >     {"a": "0", "b": "1"},
+        >     {"key 1": "value 1", "key 2": "value 2"}
+        > ]
+
+# baptism  {{{1
+baptism:
+    description: error due to malformed inline dictionary
+    load_in:
+        > -
+        >     {a}
+    load_err:
+        message: expected ‘:’, found ‘}’.
+        line:     {a}
+        lineno: 1
+        colno: 6
+
+# collate  {{{1
+collate:
+    description: error due to malformed inline dictionary
+    load_in:
+        > -
+        >     {
+    load_err:
+        message: line ended without closing delimiter.
+        line:     {
+        lineno: 1
+        colno: 5
+
+# ballroom  {{{1
+ballroom:
+    description: error due to malformed inline dictionary
+    load_in:
+        > -
+        >     {{}
+    load_err:
+        message: expected ‘:’, found ‘{’.
+        line:     {{}
+        lineno: 1
+        colno: 5
+
+# mercy  {{{1
+mercy:
+    description: error due to malformed inline dictionary
+    load_in:
+        > -
+        >     {}}
+    load_err:
+        message: extra character after closing delimiter: ‘}’.
+        line:     {}}
+        lineno: 1
+        colno: 6
+
+# canto  {{{1
+canto:
+    description: error due to malformed inline dictionary
+    load_in:
+        > -
+        >     {a,:b}
+    load_err:
+        message: expected ‘:’, found ‘,’.
+        line:     {a,:b}
+        lineno: 1
+        colno: 6
+
+# stooge  {{{1
+stooge:
+    description: error due to malformed inline dictionary
+    load_in:
+        > -
+        >     {a,:b}
+    load_err:
+        message: expected ‘:’, found ‘,’.
+        line:     {a,:b}
+        lineno: 1
+        colno: 6
+
+# cowboy  {{{1
+cowboy:
+    description: error due to malformed inline dictionary
+    load_in:
+        > -
+        >     {a,:b}
+    load_err:
+        message: expected ‘:’, found ‘,’.
+        line:     {a,:b}
+        lineno: 1
+        colno: 6
+
+# criterion  {{{1
+criterion:
+    description: error due to malformed inline dictionary
+    load_in:
+        > -
+        >     {a}:b}
+    load_err:
+        message: expected ‘:’, found ‘}’.
+        line:     {a}:b}
+        lineno: 1
+        colno: 6
+
+# protrude  {{{1
+protrude:
+    description: error due to malformed inline dictionary
+    load_in:
+        > -
+        >     {a[:b}
+    load_err:
+        message: expected ‘:’, found ‘[’.
+        line:     {a[:b}
+        lineno: 1
+        colno: 6
+
+# caftan  {{{1
+caftan:
+    description: error due to malformed inline dictionary
+    load_in:
+        > -
+        >     {a]:b}
+    load_err:
+        message: expected ‘:’, found ‘]’.
+        line:     {a]:b}
+        lineno: 1
+        colno: 6
+
+# siphon  {{{1
+siphon:
+    description: error due to malformed inline dictionary
+    load_in:
+        > -
+        >     {a:b{}
+    load_err:
+        message: expected ‘,’ or ‘}’, found ‘{’.
+        line:     {a:b{}
+        lineno: 1
+        colno: 8
+
+# unpick  {{{1
+unpick:
+    description: error due to malformed inline dictionary
+    load_in:
+        > -
+        >     {a:b}}
+    load_err:
+        message: extra character after closing delimiter: ‘}’.
+        line:     {a:b}}
+        lineno: 1
+        colno: 9
+
+# patchwork  {{{1
+patchwork:
+    description: error due to malformed inline dictionary
+    load_in:
+        > -
+        >     {a:b[}
+    load_err:
+        message: expected ‘,’ or ‘}’, found ‘[’.
+        line:     {a:b[}
+        lineno: 1
+        colno: 8
+
+# frustrate  {{{1
+frustrate:
+    description: error due to malformed inline dictionary
+    load_in:
+        > -
+        >     {a:b]}
+    load_err:
+        message: expected ‘,’ or ‘}’, found ‘]’.
+        line:     {a:b]}
+        lineno: 1
+        colno: 8
+
+# donation  {{{1
+donation:
+    description: error due to malformed inline dictionary
+    load_in:
+        > -
+        >     {a:0, , }
+    load_err:
+        message: expected ‘:’, found ‘,’.
+        line:     {a:0, , }
+        lineno: 1
+        colno: 10
+
+# flaunt  {{{1
+flaunt:
+    description: error due to malformed inline dictionary
+    load_in:
+        > -
+        >     {a:{A:0}, b{B:1}}
+    load_err:
+        message: expected ‘:’, found ‘{’.
+        line:     {a:{A:0}, b{B:1}}
+        lineno: 1
+        colno: 15
+
+# magnetize  {{{1
+magnetize:
+    description: multilevel inline dictionaries
+    load_in:
+        > {a: {b:0, c:1}, d: {e:2, f:3}}
+    load_out:
+        > !{"a": {"b": "0", "c": "1"}, "d": {"e": "2", "f": "3"}}
+
+# succor  {{{1
+succor:
+    description: multilevel inline dictionaries
+    load_in:
+        > key 1:
+        >         {k1.1:v1.1,\t  k1.2:v1.2,      \tk1.3:v1.3\t}\t
+        > key 2:
+        >         {k2.1\t:v2.1,\t  k2.2\t:v2.2,      \tk2.3\t:v2.3\t}\t
+        > key 3:
+        >         {k3.1:\tv3.1,\t  k3.2:\tv3.2,      \tk3.3:\tv3.3\t}\t
+        > key 4:
+        >         {k4.1\t:\tv4.1,\t  k4.2\t:\tv4.2,      \tk4.3\t:\tv4.3\t}\t
+    load_out:
+        > !{
+        >     "key 1": {
+        >         "k1.1": "v1.1",
+        >         "k1.2": "v1.2",
+        >         "k1.3": "v1.3"
+        >     },
+        >     "key 2": {
+        >         "k2.1": "v2.1",
+        >         "k2.2": "v2.2",
+        >         "k2.3": "v2.3"
+        >     },
+        >     "key 3": {
+        >         "k3.1": "v3.1",
+        >         "k3.2": "v3.2",
+        >         "k3.3": "v3.3"
+        >     },
+        >     "key 4": {
+        >         "k4.1": "v4.1",
+        >         "k4.2": "v4.2",
+        >         "k4.3": "v4.3"
+        >     }
+        > }
+
+# raven  {{{1
+raven:
+    description: malformed inline dictionary (comma after last item)
+    load_in:
+        > key 1:
+        >        {k1.1:v1.1,\t  k1.2:v1.2,      \tk1.3:v1.3,\t}\t
+        > key 2:
+        >         {k2.1\t:v2.1,\t  k2.2\t:v2.2,      \tk2.3\t:v2.3,\t}\t
+        > key 3:
+        >         {k3.1:\tv3.1,\t  k3.2:\tv3.2,      \tk3.3:\tv3.3,\t}\t
+        > key 4:
+        >         {k4.1\t:\tv4.1,\t  k4.2\t:\tv4.2,      \tk4.3\t:\tv4.3,\t}\t
+    load_err:
+        message: expected ‘:’, found ‘}’.
+        line:        {k1.1:v1.1,\t  k1.2:v1.2,      \tk1.3:v1.3,\t}\t
+        lineno: 1
+        colno: 49
+
+# emanate  {{{1
+emanate:
+    description: malformed inline dictionary (comma after last item)
+    load_in:
+        > {a:0,}
+    load_err:
+        message: expected value.
+        line: {a:0,}
+        lineno: 0
+        colno: 5
+
+# moonlight  {{{1
+moonlight:
+    description: malformed inline dictionary (comma after last item)
+    load_in:
+        > {a:0, }
+    load_err:
+        message: expected ‘:’, found ‘}’.
+        line: {a:0, }
+        lineno: 0
+        colno: 6
+
+# conclude  {{{1
+conclude:
+    description: malformed inline dictionary (comma after last item)
+    load_in:
+        > {a:0,:,}
+    load_err:
+        message: expected value.
+        line: {a:0,:,}
+        lineno: 0
+        colno: 7
+
+# prairie  {{{1
+prairie:
+    description: error due to dict item following an inline dictionary
+    load_in:
+        > {cases: {*: {*: {*:*}}}}
+        > checks: *.sv
+    load_err:
+        message: extra content.
+        line: checks: *.sv
+        lineno: 1
+
+# typhoon  {{{1
+typhoon:
+    description: error due to dict item following an inline dictionary
+    load_in:
+        > {cases: {*: {*: {*:*}}}}
+        > checks: *.sv
+    load_err:
+        message: extra content.
+        line: checks: *.sv
+        lineno: 1
+
+# revolver  {{{1
+revolver:
+    description: simple list with empty values
+    load_in:
+        > -
+        > -
+    load_out:
+        > !["",""]
+
+# denigrate  {{{1
+denigrate:
+    description: typical list
+    load_in:
+        > - A
+        > - B
+        > - C
+        > -
+        >     - D1
+        >     - D2
+        > - E
+    load_out:
+        > !["A", "B", "C", ["D1", "D2"], "E"]
+
+# isometric  {{{1
+isometric:
+    description: empty list
+    load_in:
+        > []
+    load_out:
+        > ![]
+
+# seller  {{{1
+seller:
+    description:
+        > error because data switches between list items to dict item in same 
+        > level of hierarchy
+    load_in:
+        > ingredients:
+        >   - green chilies
+        >   cannot mix list with: dictionary
+        >
+    load_err:
+        message: expected list item.
+        line:   cannot mix list with: dictionary
+        lineno: 2
+        colno: 2
+
+# element  {{{1
+element:
+    description: error because first item does not start in column 1
+    load_in:
+        >
+        >     - green chilies
+        >
+        > - red chilies
+        >
+    load_err:
+        message: top-level content must start in column 1.
+        line:     - green chilies
+        lineno: 1
+        colno: 0
+
+# twelve  {{{1
+twelve:
+    description: error because first item does not start in column 1
+    load_in:
+        > - green chilies
+        >     - red chilies
+        >
+    load_err:
+        message: invalid indentation.
+        line:     - red chilies
+        lineno: 1
+        colno: 0
+
+# derelict  {{{1
+derelict:
+    description: error because indentation includes a tab
+    load_in:
+        > # this is an error because indentation is a tab
+        > - 
+        > \t- red chilies
+    load_err:
+        message: invalid character in indentation: '\t'.
+        line: \t- red chilies
+        lineno: 2
+        colno: 0
+
+# handbook  {{{1
+handbook:
+    description: list with variety of odd values
+    load_in:
+        > - :
+        > - ~!@#$%^&*()_+-1234567890{}[]|:;<>?,./
+        > - - value 3
+        > - ' : value 4:'
+        > - > value 5
+        > - #value 6
+        > - key 7' : : value 7
+        > - " value 8 "
+        > - ' value 9 '
+        > -
+        >   > value '" 10
+        > - And Fred said 'yabba dabba doo!' to Barney.
+    load_out:
+        > ![
+        >     ":",
+        >     "~!@#$%^&*()_+-1234567890{}[]|:;<>?,./",
+        >     "- value 3",
+        >     "' : value 4:'",
+        >     "> value 5",
+        >     "#value 6",
+        >     "key 7' : : value 7",
+        >     '" value 8 "',
+        >     "' value 9 '",
+        >     '''value '" 10''',
+        >     "And Fred said 'yabba dabba doo!' to Barney."
+        > ]
+
+# epoch  {{{1
+epoch:
+    description: list with variety of inline lists
+    load_in:
+        > -
+        >     []
+        > -
+        >     [ ]
+        > -
+        >     [,]
+        > -
+        >     [a]
+        > -
+        >     [:]
+        > -
+        >     [[]]
+        > -
+        >     [[ ]]
+        > -
+        >     [[a]]
+        > -
+        >     [{}]
+        > -
+        >     [{a:0}]
+        > -
+        >     [a,b]
+        > -
+        >     [,,]
+        > -
+        >     [[],[]]
+        > -
+        >     [[],[ ]]
+        > -
+        >     [[a,b],[c,d]]
+        > -
+        >     [ [ a , b ] , [ c , d ] ]   
+        > -
+        >     [{},{}]
+        > -
+        >     [{a:0,b:1},{c:2,d:3}]
+        > -
+        >     [a,[]]
+        > -
+        >     [[],{}]
+        > -
+        >     [{},b]
+        > -
+        >     [a,]
+        > -
+        >     [a, b, ]
+        > -
+        >     [ a]
+        > -
+        >     [a ]
+        > -
+        >     [ a ]
+        > -
+        >     [a, b]
+        > -
+        >     [a ,b]
+        > -
+        >     [a , b]
+        > -
+        >     [ ,]
+        > -
+        >     [, ]
+        > -
+        >     [ , ]
+        > -
+        >     [a, b, , ]
+        > -
+        >     [[11,12,13],[21,22,23],[31,32,33]]
+        > -
+        >     [value 1, value 2 ,  value 3  , ]
+    load_out:
+        > ![
+        >     [],
+        >     [""],
+        >     ["", ""],
+        >     ["a"],
+        >     [":"],
+        >     [[]],
+        >     [[""]],
+        >     [["a"]],
+        >     [{}],
+        >     [{"a": "0"}],
+        >     ["a", "b"],
+        >     ["", "", ""],
+        >     [[], []],
+        >     [[], [""]],
+        >     [["a", "b"], ["c", "d"]],
+        >     [["a", "b"], ["c", "d"]],
+        >     [{}, {}],
+        >     [{"a": "0", "b": "1"}, {"c": "2", "d": "3"}],
+        >     ["a", []],
+        >     [[], {}],
+        >     [{}, "b"],
+        >     ["a", ""],
+        >     ["a", "b", ""],
+        >     ["a"],
+        >     ["a"],
+        >     ["a"],
+        >     ["a", "b"],
+        >     ["a", "b"],
+        >     ["a", "b"],
+        >     ["", ""],
+        >     ["", ""],
+        >     ["", ""],
+        >     ["a", "b", "", ""],
+        >     [["11", "12", "13"], ["21", "22", "23"], ["31", "32", "33"]],
+        >     ["value 1", "value 2", "value 3", ""]
+        > ]
+
+# nobleman  {{{1
+nobleman:
+    description: malformed inline list
+    load_in:
+        > -
+        >     [
+    load_err:
+        message: line ended without closing delimiter.
+        line:     [
+        lineno: 1
+        colno: 5
+
+# proverb  {{{1
+proverb:
+    description: malformed inline list
+    load_in:
+        > -
+        >     [,
+    load_err:
+        message: line ended without closing delimiter.
+        line:     [,
+        lineno: 1
+        colno: 6
+
+# marina  {{{1
+marina:
+    description: malformed inline list
+    load_in:
+        > -
+        >     [[]
+    load_err:
+        message: line ended without closing delimiter.
+        line:     [[]
+        lineno: 1
+        colno: 7
+
+# blister  {{{1
+blister:
+    description: malformed inlines
+    load_in:
+        > -
+        >     []{a:0}
+    load_err:
+        message: extra characters after closing delimiter: ‘{a:0}’.
+        line:     []{a:0}
+        lineno: 1
+        colno: 6
+
+# mentor  {{{1
+mentor:
+    description: malformed inline list
+    load_in:
+        > -
+        >     [a[b]
+    load_err:
+        message: expected ‘,’ or ‘]’, found ‘[’.
+        line:     [a[b]
+        lineno: 1
+        colno: 6
+
+# valance  {{{1
+valance:
+    description: malformed inline list
+    load_in:
+        > -
+        >     [a]b]
+    load_err:
+        message: extra characters after closing delimiter: ‘b]’.
+        line:     [a]b]
+        lineno: 1
+        colno: 7
+
+# eleven  {{{1
+eleven:
+    description: malformed inlines
+    load_in:
+        > -
+        >     [{]
+    load_err:
+        message: expected ‘:’, found ‘]’.
+        line:     [{]
+        lineno: 1
+        colno: 6
+
+# casing  {{{1
+casing:
+    description: malformed inlines
+    load_in:
+        > -
+        >     [}]
+    load_err:
+        message: expected value.
+        line:     [}]
+        lineno: 1
+        colno: 5
+
+# promenade  {{{1
+promenade:
+    description: malformed inlines
+    load_in:
+        > -
+        >     [a{b]
+    load_err:
+        message: expected ‘,’ or ‘]’, found ‘{’.
+        line:     [a{b]
+        lineno: 1
+        colno: 6
+
+# splurge  {{{1
+splurge:
+    description: malformed inlines
+    load_in:
+        > -
+        >     [a}b]
+    load_err:
+        message: expected ‘,’ or ‘]’, found ‘}’.
+        line:     [a}b]
+        lineno: 1
+        colno: 6
+
+# delusion  {{{1
+delusion:
+    description: 3x3 array
+    load_in:
+        > [[11, 12, 13], [21, 22, 23], [31, 32, 33]]
+    load_out:
+        [[11, 12, 13], [21, 22, 23], [31, 32, 33]]
+
+# itinerant  {{{1
+itinerant:
+    description: regular dict item with key that begins with brackets
+    load_in:
+        > [7:0] gain:
+        >     desc: the gain
+        >     type: input signed
+    load_err:
+        message: extra characters after closing delimiter: ‘gain:’.
+        line: [7:0] gain:
+        lineno: 0
+        colno: 6
+
+# geyser  {{{1
+geyser:
+    description: inline list with embedded tabs
+    load_in:
+        > key 1:
+        >         [v1,\t  v2,      \tv3,\t]\t
+    load_out:
+        > !{"key 1": ["v1", "v2", "v3", ""]}
+
+# muzzle  {{{1
+muzzle:
+    description: strings with embedded tabs
+    load_in:
+        > what makes it green\t: \tgreen\tchilies\t
+    load_out:
+        > !{"what makes it green": "\tgreen\tchilies\t"}
+
+# stylistic  {{{1
+stylistic:
+    description: strings with embedded quote character
+    load_in:
+        > key: value " value
+    load_out:
+        > !{"key": 'value " value'}
+
+# hallway  {{{1
+hallway:
+    description: strings with embedded quote character
+    load_in:
+        > key: value ' value
+    load_out:
+        > !{"key": "value ' value"}
+
+# acquire  {{{1
+acquire:
+    description: strings with embedded quote characters
+    load_in:
+        > key1: 'And Fred said "yabba dabba doo!" to Barney.'
+        > key2: "And Fred said 'yabba dabba doo!' to Barney."
+        > key3: "And Fred said "yabba dabba doo!" to Barney."
+        > key4: 'And Fred said 'yabba dabba doo!' to Barney.'
+        > key5: And Fred said "yabba dabba doo!" to Barney.
+        > key6: And Fred said 'yabba dabba doo!' to Barney.
+    load_out:
+        > !{
+        >   "key1": """'And Fred said "yabba dabba doo!" to Barney.'""",
+        >   "key2": '''"And Fred said 'yabba dabba doo!' to Barney."''',
+        >   "key3": '"And Fred said "yabba dabba doo!" to Barney."',
+        >   "key4": "'And Fred said 'yabba dabba doo!' to Barney.'",
+        >   "key5": 'And Fred said "yabba dabba doo!" to Barney.',
+        >   "key6": "And Fred said 'yabba dabba doo!' to Barney."
+        > }
+
+# sexton  {{{1
+sexton:
+    description: empty string
+    load_in: >
+    load_out:
+
+# roomy  {{{1
+roomy:
+    description: error, expected multiline string
+    load_in:
+        > ingredients:
+        >     green chilies
+    load_err:
+        message: unrecognized line.
+        line:     green chilies
+        lineno: 1
+        colno: 4
+
+# brainwash  {{{1
+brainwash:
+    description: top-level single line string
+    load_in:
+        > > what makes it green?
+        > >
+    load_out:
+        > what makes it green?
+        >
+
+# president  {{{1
+president:
+    description: minimal inline dictionary
+    load_in: {:}
+    load_out: !{"":""}
+
+# propose  {{{1
+propose:
+    description: empty content
+    load_in:
+    load_out: !None
+
+# pillage  {{{1
+pillage:
+    description: dictionary keys cannot start with unicode white-space
+    load_in:
+        > key 1: value 1
+        > \xa0key 2: value 2
+    load_err:
+        message: invalid character in indentation: '\xa0' (NO-BREAK SPACE).
+        line: \xa0key 2: value 2
+        lineno: 1
+        colno: 0
+
+# tombstone  {{{1
+tombstone:
+    description: dictionary item keys must have whitespace trimmed from the tail
+    load_in:
+        > key 1 : value 1
+        > key 2\t : value 2
+        > key 3\xa0 : value 3
+    load_out:
+        key 1: value 1
+        key 2: value 2
+        key 3: value 3
+
+# cavern  {{{1
+cavern:
+    description:
+        > inline dictionary items must ignore whitespace following the colon
+    load_in:
+        > key 1:
+        > key 2:\x20
+    load_out:
+        key 1:
+        key 2:
+
+# vagrant  {{{1
+vagrant:
+    description:
+        > inline strings (and inline dictionary-friendly strings)
+        > must trim whitespace from both sides
+    load_in:
+        > inline dict:
+        >     {a:A, b: B,c :C, d : D }
+        > inline list:
+        >     [a, b,c , d ]
+    load_out:
+        inline dict:
+            a: A
+            b: B
+            c: C
+            d: D
+        inline list:
+            - a
+            - b
+            - c
+            - d

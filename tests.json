@@ -1,0 +1,2895 @@
+{
+    "load_tests": {
+        "alpine": {
+            "load_in": [
+                ">"
+            ],
+            "load_out": "",
+            "load_err": {},
+            "types": {
+                "string item": 1
+            }
+        },
+        "medical": {
+            "load_in": [
+                ">\n",
+                ">"
+            ],
+            "load_out": "\n",
+            "load_err": {},
+            "types": {
+                "string item": 2
+            }
+        },
+        "cornea": {
+            "load_in": [
+                "> Lorem Ipsum\n",
+                ">\n",
+                ">     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n",
+                "> eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad \n",
+                "> minim veniam, quis nostrud exercitation ullamco laboris nisi ut \n",
+                "> aliquip ex ea commodo consequat. Duis aute irure dolor in \n",
+                "> reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla \n",
+                "> pariatur. Excepteur sint occaecat cupidatat non proident, sunt in \n",
+                "> culpa qui officia deserunt mollit anim id est laborum."
+            ],
+            "load_out": "Lorem Ipsum\n\n    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\neiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad \nminim veniam, quis nostrud exercitation ullamco laboris nisi ut \naliquip ex ea commodo consequat. Duis aute irure dolor in \nreprehenderit in voluptate velit esse cillum dolore eu fugiat nulla \npariatur. Excepteur sint occaecat cupidatat non proident, sunt in \nculpa qui officia deserunt mollit anim id est laborum.",
+            "load_err": {},
+            "types": {
+                "string item": 9
+            }
+        },
+        "tacky": {
+            "load_in": [
+                ">\n",
+                "> Lorem Ipsum\n",
+                ">\n",
+                ">     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n",
+                "> eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad \n",
+                "> minim veniam, quis nostrud exercitation ullamco laboris nisi ut \n",
+                "> aliquip ex ea commodo consequat. Duis aute irure dolor in \n",
+                "> reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla \n",
+                "> pariatur. Excepteur sint occaecat cupidatat non proident, sunt in \n",
+                "> culpa qui officia deserunt mollit anim id est laborum.\n",
+                ">"
+            ],
+            "load_out": "\nLorem Ipsum\n\n    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\neiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad \nminim veniam, quis nostrud exercitation ullamco laboris nisi ut \naliquip ex ea commodo consequat. Duis aute irure dolor in \nreprehenderit in voluptate velit esse cillum dolore eu fugiat nulla \npariatur. Excepteur sint occaecat cupidatat non proident, sunt in \nculpa qui officia deserunt mollit anim id est laborum.\n",
+            "load_err": {},
+            "types": {
+                "string item": 11
+            }
+        },
+        "mailbox": {
+            "load_in": [
+                ">\n",
+                "> Lorem Ipsum\n",
+                ">\n",
+                ">     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n",
+                "> eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad \n",
+                "> minim veniam, quis nostrud exercitation ullamco laboris nisi ut \n",
+                "> aliquip ex ea commodo consequat. Duis aute irure dolor in \n",
+                "> reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla \n",
+                "> pariatur. Excepteur sint occaecat cupidatat non proident, sunt in \n",
+                "> culpa qui officia deserunt mollit anim id est laborum.\n",
+                ">\n\n",
+                "# Here is a bit more that one rarely sees ...\n",
+                ">     Sed ut perspiciatis unde omnis iste natus error sit voluptatem\n",
+                "> accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae \n",
+                "> ab illo inventore veritatis et quasi architecto beatae vitae dicta \n",
+                "> sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit \n",
+                "> aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos \n",
+                "> qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui \n",
+                "> dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed \n",
+                "> quia non numquam eius modi tempora incidunt ut labore et dolore magnam \n",
+                "> aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum \n",
+                "> exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex \n",
+                "> ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in \n",
+                "> ea voluptate velit esse quam nihil molestiae consequatur, vel illum \n",
+                "> qui dolorem eum fugiat quo voluptas nulla pariatur?\"\n",
+                ">\n\n",
+                "# There is more, but let's stop here."
+            ],
+            "load_out": "\nLorem Ipsum\n\n    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\neiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad \nminim veniam, quis nostrud exercitation ullamco laboris nisi ut \naliquip ex ea commodo consequat. Duis aute irure dolor in \nreprehenderit in voluptate velit esse cillum dolore eu fugiat nulla \npariatur. Excepteur sint occaecat cupidatat non proident, sunt in \nculpa qui officia deserunt mollit anim id est laborum.\n\n    Sed ut perspiciatis unde omnis iste natus error sit voluptatem\naccusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae \nab illo inventore veritatis et quasi architecto beatae vitae dicta \nsunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit \naspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos \nqui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui \ndolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed \nquia non numquam eius modi tempora incidunt ut labore et dolore magnam \naliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum \nexercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex \nea commodi consequatur? Quis autem vel eum iure reprehenderit qui in \nea voluptate velit esse quam nihil molestiae consequatur, vel illum \nqui dolorem eum fugiat quo voluptas nulla pariatur?\"\n",
+            "load_err": {},
+            "types": {
+                "string item": 25,
+                "blank": 2,
+                "comment": 2
+            }
+        },
+        "reprobate": {
+            "load_in": [
+                "the backslash character: \\\n",
+                "the single quote character: '\n",
+                "the double quote character: \"\n",
+                "the bell character: \u0007\n",
+                "the back space character: \b\n",
+                "the form feed character: \f\n",
+                "the line feed character: \n",
+                "the carriage return character: \r",
+                "the horizontal tab character: \t\n",
+                "the vertical tab character: \u000b\n",
+                "the escape character: \u001b\n",
+                "the delete character: \n",
+                ""
+            ],
+            "load_out": {
+                "the backslash character": "\\",
+                "the single quote character": "'",
+                "the double quote character": "\"",
+                "the bell character": "\u0007",
+                "the back space character": "\b",
+                "the form feed character": "\f",
+                "the line feed character": "",
+                "the carriage return character": "",
+                "the horizontal tab character": "\t",
+                "the vertical tab character": "\u000b",
+                "the escape character": "\u001b",
+                "the delete character": ""
+            },
+            "load_err": {},
+            "types": {
+                "dict item": 12
+            }
+        },
+        "incision": {
+            "load_in": [
+                "the backslash character: \\\r\n",
+                "the single quote character: '\r\n",
+                "the double quote character: \"\r\n",
+                "the bell character: \u0007\r\n",
+                "the back space character: \b\r\n",
+                "the form feed character: \f\r\n",
+                "the line feed character: \n\r",
+                "\n",
+                "the carriage return character: \r\r",
+                "\n",
+                "the horizontal tab character: \t\r\n",
+                "the vertical tab character: \u000b\r\n",
+                "the escape character: \u001b\r\n",
+                "the delete character: \r\n",
+                "\r\n",
+                ""
+            ],
+            "load_out": {
+                "the backslash character": "\\",
+                "the single quote character": "'",
+                "the double quote character": "\"",
+                "the bell character": "\u0007",
+                "the back space character": "\b",
+                "the form feed character": "\f",
+                "the line feed character": "",
+                "the carriage return character": "",
+                "the horizontal tab character": "\t",
+                "the vertical tab character": "\u000b",
+                "the escape character": "\u001b",
+                "the delete character": ""
+            },
+            "load_err": {},
+            "types": {
+                "dict item": 12,
+                "unrecognized": 1
+            }
+        },
+        "pelvis": {
+            "load_in": [
+                "the backslash character: \\\r",
+                "the single quote character: '\r",
+                "the double quote character: \"\r",
+                "the bell character: \u0007\r",
+                "the back space character: \b\r",
+                "the form feed character: \f\r",
+                "the line feed character: \n\r",
+                "the carriage return character: \r\r",
+                "the horizontal tab character: \t\r",
+                "the vertical tab character: \u000b\r",
+                "the escape character: \u001b\r",
+                "the delete character: \r\r",
+                ""
+            ],
+            "load_out": {
+                "the backslash character": "\\",
+                "the single quote character": "'",
+                "the double quote character": "\"",
+                "the bell character": "\u0007",
+                "the back space character": "\b",
+                "the form feed character": "\f",
+                "the line feed character": "",
+                "the carriage return character": "",
+                "the horizontal tab character": "\t",
+                "the vertical tab character": "\u000b",
+                "the escape character": "\u001b",
+                "the delete character": ""
+            },
+            "load_err": {},
+            "types": {
+                "dict item": 12,
+                "unrecognized": 1
+            }
+        },
+        "pursuit": {
+            "load_in": [
+                "the backslash character: \\\r\n",
+                "the single quote character: '\r",
+                "the double quote character: \"\n",
+                "the bell character: \u0007\r\n",
+                "the back space character: \b\r",
+                "the form feed character: \f\n",
+                "the line feed character: \n\r",
+                "\n",
+                "the carriage return character: \r\r",
+                "the horizontal tab character: \t\n",
+                "the vertical tab character: \u000b\r\n",
+                "the escape character: \u001b\r\n",
+                "the delete character: \r\n",
+                "\r\n",
+                ""
+            ],
+            "load_out": {
+                "the backslash character": "\\",
+                "the single quote character": "'",
+                "the double quote character": "\"",
+                "the bell character": "\u0007",
+                "the back space character": "\b",
+                "the form feed character": "\f",
+                "the line feed character": "",
+                "the carriage return character": "",
+                "the horizontal tab character": "\t",
+                "the vertical tab character": "\u000b",
+                "the escape character": "\u001b",
+                "the delete character": ""
+            },
+            "load_err": {},
+            "types": {
+                "dict item": 12,
+                "unrecognized": 1
+            }
+        },
+        "beset": {
+            "load_in": [
+                "no newlines:\n",
+                "    > line 1\n",
+                "    > line 2\n",
+                "leading newline:\n",
+                "    >\n",
+                "    > line 1\n",
+                "    > line 2\n",
+                "internal newline:\n",
+                "    > line 1\n",
+                "    >\n",
+                "    > line 2\n",
+                "trailing newline:\n",
+                "    > line 1\n",
+                "    > line 2\n",
+                "    >\n",
+                "leading, internal, and trailing newline:\n",
+                "    >\n",
+                "    > line 1\n",
+                "    >\n",
+                "    > line 2\n",
+                "    >\n",
+                "leading newlines:\n",
+                "    >\n",
+                "    >\n",
+                "    > line 1\n",
+                "    > line 2\n",
+                "internal newlines:\n",
+                "    > line 1\n",
+                "    >\n",
+                "    >\n",
+                "    > line 2\n",
+                "trailing newlines:\n",
+                "    > line 1\n",
+                "    > line 2\n",
+                "    >\n",
+                "    >\n",
+                "leading, internal, and trailing newlines:\n",
+                "    >\n",
+                "    >\n",
+                "    > line 1\n",
+                "    >\n",
+                "    >\n",
+                "    > line 2\n",
+                "    >\n",
+                "    >\n",
+                "leading blank line:\n\n",
+                "    > line 1\n",
+                "    > line 2\n",
+                "internal blank line:\n",
+                "    > line 1\n\n",
+                "    > line 2\n",
+                "trailing blank line:\n",
+                "    > line 1\n",
+                "    > line 2\n\n",
+                "leading comment:\n",
+                "  # ignore me\n",
+                "    > line 1\n",
+                "    > line 2\n",
+                "internal comment:\n",
+                "    > line 1\n",
+                "        # ignore me\n",
+                "    > line 2\n",
+                "trailing comment:\n",
+                "    > line 1\n",
+                "    > line 2\n",
+                "  # ignore me\n\n",
+                "            # ignore me\n\n",
+                "                       "
+            ],
+            "load_out": {
+                "no newlines": "line 1\nline 2",
+                "leading newline": "\nline 1\nline 2",
+                "internal newline": "line 1\n\nline 2",
+                "trailing newline": "line 1\nline 2\n",
+                "leading, internal, and trailing newline": "\nline 1\n\nline 2\n",
+                "leading newlines": "\n\nline 1\nline 2",
+                "internal newlines": "line 1\n\n\nline 2",
+                "trailing newlines": "line 1\nline 2\n\n",
+                "leading, internal, and trailing newlines": "\n\nline 1\n\n\nline 2\n\n",
+                "leading blank line": "line 1\nline 2",
+                "internal blank line": "line 1\nline 2",
+                "trailing blank line": "line 1\nline 2",
+                "leading comment": "line 1\nline 2",
+                "internal comment": "line 1\nline 2",
+                "trailing comment": "line 1\nline 2"
+            },
+            "load_err": {},
+            "types": {
+                "dict item": 15,
+                "string item": 48,
+                "blank": 6,
+                "comment": 4
+            }
+        },
+        "gendarme": {
+            "load_in": [
+                "ingredients:\n",
+                "  > green chilies\n",
+                "    > red chilies"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "invalid indentation.",
+                "line": "    > red chilies",
+                "lineno": 2,
+                "colno": 2
+            },
+            "types": {
+                "dict item": 1,
+                "string item": 2
+            }
+        },
+        "sketchy": {
+            "load_in": [
+                "     > green chilies\n",
+                "     > red chilies"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "top-level content must start in column 1.",
+                "line": "     > green chilies",
+                "lineno": 0,
+                "colno": 0
+            },
+            "types": {
+                "string item": 2
+            }
+        },
+        "prankster": {
+            "load_in": [
+                "ingredients:\n",
+                "\t> green chilies\n",
+                "\t> red chilies"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "invalid character in indentation: '\\t'.",
+                "line": "\t> green chilies",
+                "lineno": 1,
+                "colno": 0
+            },
+            "types": {
+                "dict item": 1,
+                "unrecognized": 2
+            }
+        },
+        "streamer": {
+            "load_in": [
+                "ingredients:\n",
+                "        > green chilies\n",
+                "        > red chilies\n",
+                "#   ↑ this is a non-breaking space"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "invalid character in indentation: '\\xa0' (NO-BREAK SPACE).",
+                "line": "        > red chilies",
+                "lineno": 2,
+                "colno": 4
+            },
+            "types": {
+                "dict item": 1,
+                "string item": 1,
+                "unrecognized": 1,
+                "comment": 1
+            }
+        },
+        "guinea": {
+            "load_in": [
+                "key1:\n",
+                "key2:"
+            ],
+            "load_out": {
+                "key1": "",
+                "key2": ""
+            },
+            "load_err": {},
+            "types": {
+                "dict item": 2
+            }
+        },
+        "dusty": {
+            "load_in": [
+                "key1: \n",
+                "key2: "
+            ],
+            "load_out": {
+                "key1": "",
+                "key2": ""
+            },
+            "load_err": {},
+            "types": {
+                "dict item": 2
+            }
+        },
+        "jaunt": {
+            "load_in": [
+                ": apricot\n",
+                ":\n",
+                "    > 8"
+            ],
+            "load_out": {
+                "apricot\n": "8"
+            },
+            "load_err": {},
+            "types": {
+                "key item": 2,
+                "string item": 1
+            }
+        },
+        "abide": {
+            "load_in": [
+                ":  key-a\" : key-b' : key-c \n",
+                "    > value"
+            ],
+            "load_out": {
+                " key-a\" : key-b' : key-c ": "value"
+            },
+            "load_err": {},
+            "types": {
+                "key item": 1,
+                "string item": 1
+            }
+        },
+        "benchmark": {
+            "load_in": [
+                "{}"
+            ],
+            "load_out": {},
+            "load_err": {},
+            "types": {
+                "inline dict": 1
+            }
+        },
+        "milligram": {
+            "load_in": [
+                "    key: value"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "top-level content must start in column 1.",
+                "line": "    key: value",
+                "lineno": 0,
+                "colno": 0
+            },
+            "types": {
+                "dict item": 1
+            }
+        },
+        "fifth": {
+            "load_in": [
+                "key 1:  \n",
+                "        # notice the extra space at the end of the above line\n\n",
+                "        # that, combined with the indent in the line below is an error\n",
+                "        key 2: value 2"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "invalid indentation.",
+                "line": "        key 2: value 2",
+                "lineno": 4,
+                "colno": 0
+            },
+            "types": {
+                "dict item": 2,
+                "comment": 2,
+                "blank": 1
+            }
+        },
+        "chatterer": {
+            "load_in": [
+                "# invalid indentation, tab in indentation\n",
+                "key 1:\n",
+                "    \t    key 1.1: value 1.1\n",
+                ""
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "invalid character in indentation: '\\t'.",
+                "line": "    \t    key 1.1: value 1.1",
+                "lineno": 2,
+                "colno": 4
+            },
+            "types": {
+                "comment": 1,
+                "dict item": 2
+            }
+        },
+        "concuss": {
+            "load_in": [
+                "ingredients:\n",
+                "- green chilies"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "expected dictionary item.",
+                "line": "- green chilies",
+                "lineno": 1,
+                "colno": 0
+            },
+            "types": {
+                "dict item": 1,
+                "list item": 1
+            }
+        },
+        "marinade": {
+            "load_in": [
+                "ingredients:\n",
+                "  - green chilies\n",
+                "    - red chilies"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "invalid indentation.",
+                "line": "    - red chilies",
+                "lineno": 2,
+                "colno": 2
+            },
+            "types": {
+                "dict item": 1,
+                "list item": 2
+            }
+        },
+        "detract": {
+            "load_in": [
+                "candidates:\n",
+                "    name:\n",
+                "  phone:"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "invalid indentation, partial dedent.",
+                "line": "  phone:",
+                "lineno": 2,
+                "colno": 0
+            },
+            "types": {
+                "dict item": 3
+            }
+        },
+        "silky": {
+            "load_in": [
+                "ingredients:\n",
+                "    - green chilies\n",
+                "  - red chilies"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "invalid indentation, partial dedent.",
+                "line": "  - red chilies",
+                "lineno": 2,
+                "colno": 0
+            },
+            "types": {
+                "dict item": 1,
+                "list item": 2
+            }
+        },
+        "matinee": {
+            "load_in": [
+                "ingredients: red chilies\n",
+                "- green chilies"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "expected dictionary item.",
+                "line": "- green chilies",
+                "lineno": 1,
+                "colno": 0
+            },
+            "types": {
+                "dict item": 1,
+                "list item": 1
+            }
+        },
+        "slipknot": {
+            "load_in": [
+                "ingredients:\n",
+                "    green chilies"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "unrecognized line.",
+                "line": "    green chilies",
+                "lineno": 1,
+                "colno": 4
+            },
+            "types": {
+                "dict item": 1,
+                "unrecognized": 1
+            }
+        },
+        "facet": {
+            "load_in": [
+                "key: value 1\n",
+                "key: value 2"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "duplicate key: key.",
+                "line": "key: value 2",
+                "lineno": 1,
+                "colno": 0
+            },
+            "types": {
+                "dict item": 2
+            }
+        },
+        "smudge": {
+            "load_in": [
+                "key:\n",
+                "    \t    > first line\n",
+                "    \t    > second line"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "invalid character in indentation: '\\t'.",
+                "line": "    \t    > first line",
+                "lineno": 1,
+                "colno": 4
+            },
+            "types": {
+                "dict item": 1,
+                "unrecognized": 2
+            }
+        },
+        "spindly": {
+            "load_in": [
+                "key::"
+            ],
+            "load_out": {
+                "key:": ""
+            },
+            "load_err": {},
+            "types": {
+                "dict item": 1
+            }
+        },
+        "charter": {
+            "load_in": [
+                ":\n",
+                "    >\n",
+                "~!@#$%^&*()_+-1234567890{}[]|;<>?,./: ~!@#$%^&*()_+-1234567890{}[]|:;<>?,./\n",
+                ": - key 3\n",
+                "    > - value 3\n",
+                ": key 4: \n",
+                "    > value 4: \n",
+                ": > key 5\n",
+                "    > > value 5\n",
+                ": # key 6\n",
+                "    > #value 6\n",
+                ": : key 7\n",
+                "    > : value 7\n",
+                "\" key 8 \": \" value 8 \"\n",
+                "' key 9 ': ' value 9 '\n",
+                "key 10: value '\" 10\n",
+                "key 11: And Fred said 'yabba dabba doo!' to Barney.\n",
+                "key \" 12: value ' 12\n",
+                "$€¥£₩₺₽₹ɃΞȄ: $€¥£₩₺₽₹ɃΞȄ\n",
+                "YZEPTGMKk_cmuµμnpfazy: YZEPTGMKk_cmuµμnpfazy\n",
+                "a-zA-Z%√{us}{cur}][-^/()·⁻⁰¹²³⁴⁵⁶⁷⁸⁹°ÅΩƱΩ℧: a-zA-Z%√{us}{cur}][-^/()·⁻⁰¹²³⁴⁵⁶⁷⁸⁹°ÅΩƱΩ℧"
+            ],
+            "load_out": {
+                "": "",
+                "~!@#$%^&*()_+-1234567890{}[]|;<>?,./": "~!@#$%^&*()_+-1234567890{}[]|:;<>?,./",
+                "- key 3": "- value 3",
+                "key 4: ": "value 4: ",
+                "> key 5": "> value 5",
+                "# key 6": "#value 6",
+                ": key 7": ": value 7",
+                "\" key 8 \"": "\" value 8 \"",
+                "' key 9 '": "' value 9 '",
+                "key 10": "value '\" 10",
+                "key 11": "And Fred said 'yabba dabba doo!' to Barney.",
+                "key \" 12": "value ' 12",
+                "$€¥£₩₺₽₹ɃΞȄ": "$€¥£₩₺₽₹ɃΞȄ",
+                "YZEPTGMKk_cmuµμnpfazy": "YZEPTGMKk_cmuµμnpfazy",
+                "a-zA-Z%√{us}{cur}][-^/()·⁻⁰¹²³⁴⁵⁶⁷⁸⁹°ÅΩƱΩ℧": "a-zA-Z%√{us}{cur}][-^/()·⁻⁰¹²³⁴⁵⁶⁷⁸⁹°ÅΩƱΩ℧"
+            },
+            "load_err": {},
+            "types": {
+                "key item": 6,
+                "string item": 6,
+                "dict item": 9
+            }
+        },
+        "patchy": {
+            "load_in": [
+                "key 1: value 1\n",
+                "key'\"2: value 2"
+            ],
+            "load_out": {
+                "key 1": "value 1",
+                "key'\"2": "value 2"
+            },
+            "load_err": {},
+            "types": {
+                "dict item": 2
+            }
+        },
+        "excuse": {
+            "load_in": [
+                "k1: v1\n",
+                "k2 : v2\n",
+                "k3  : v3\n",
+                "k4\t: v4"
+            ],
+            "load_out": {
+                "k1": "v1",
+                "k2": "v2",
+                "k3": "v3",
+                "k4": "v4"
+            },
+            "load_err": {},
+            "types": {
+                "dict item": 4
+            }
+        },
+        "sandstorm": {
+            "load_in": [
+                "-#:'>: -#:\">:\n",
+                "-#:\">: -#:'>:\n",
+                "-#''>:: -#\"\">::\n",
+                "-#\"\">:: -#''>::\n",
+                "    # indented comment\n",
+                ":-#:'>: :-#:\">:\n",
+                ":-#:\">: :-#:'>:\n",
+                ":-#''>:: :-#\"\">::\n",
+                ":-#\"\">:: :-#''>::\n",
+                "        # indented comment\n",
+                ">:-#:'>: >:-#:\">:\n",
+                ">:-#:\">: >:-#:'>:\n",
+                ">:-#''>:: >:-#\"\">::\n",
+                ">:-#\"\">:: >:-#''>::"
+            ],
+            "load_out": {
+                "-#:'>": "-#:\">:",
+                "-#:\">": "-#:'>:",
+                "-#''>:": "-#\"\">::",
+                "-#\"\">:": "-#''>::",
+                ":-#:'>": ":-#:\">:",
+                ":-#:\">": ":-#:'>:",
+                ":-#''>:": ":-#\"\">::",
+                ":-#\"\">:": ":-#''>::",
+                ">:-#:'>": ">:-#:\">:",
+                ">:-#:\">": ">:-#:'>:",
+                ">:-#''>:": ">:-#\"\">::",
+                ">:-#\"\">:": ">:-#''>::"
+            },
+            "load_err": {},
+            "types": {
+                "dict item": 12,
+                "comment": 2
+            }
+        },
+        "shard": {
+            "load_in": [
+                "'a: ': a:\n",
+                ": 'b: \n",
+                "    > ': b:"
+            ],
+            "load_out": {
+                "'a": "': a:",
+                "'b: ": "': b:"
+            },
+            "load_err": {},
+            "types": {
+                "dict item": 1,
+                "key item": 1,
+                "string item": 1
+            }
+        },
+        "beach": {
+            "load_in": [
+                ": This is a key that is\n",
+                ": spread over multiple lines.\n",
+                ": Like normal multiline strings,\n",
+                ": it can contain any character\n",
+                ": without restriction.\n",
+                "    > This is its value\n\n",
+                ": Here is another multiline key.\n",
+                ": But in this case it has an empty value.\n",
+                "    >\n\n",
+                ": This is another multiline key,\n",
+                ": this one with a multiline value.\n",
+                "    > Here is the multiline value.\n",
+                "    > It is paired with a multiline key.\n\n",
+                "here is a simple key: with a simple value\n\n",
+                ": Here is a multiline key\n",
+                ": with a list value.\n",
+                "    - 0\n",
+                "    - 1\n\n",
+                ": Here is a multiline key\n",
+                ": with a dictionary value.\n",
+                "    a: a\n",
+                "    b: b\n\n",
+                "here is another simple key: with another simple value\n\n",
+                ": here is a multiline key: that kind of looks a dict item\n",
+                "    > a multiline value\n\n",
+                ": This is another multiline key,\n",
+                ": this one with a dictionary as a value that has a multiline key.\n",
+                "    : This is another multiline key,\n",
+                "    : this one with a multiline value.\n",
+                "        > Here is the multiline value.\n",
+                "        > It is paired with a multiline key.\n\n",
+                ": This a multiline key with a blank second line.\n",
+                ":\n",
+                "    > yabba dabba doo"
+            ],
+            "load_out": {
+                "This is a key that is\nspread over multiple lines.\nLike normal multiline strings,\nit can contain any character\nwithout restriction.": "This is its value",
+                "Here is another multiline key.\nBut in this case it has an empty value.": "",
+                "This is another multiline key,\nthis one with a multiline value.": "Here is the multiline value.\nIt is paired with a multiline key.",
+                "here is a simple key": "with a simple value",
+                "Here is a multiline key\nwith a list value.": [
+                    "0",
+                    "1"
+                ],
+                "Here is a multiline key\nwith a dictionary value.": {
+                    "a": "a",
+                    "b": "b"
+                },
+                "here is another simple key": "with another simple value",
+                "here is a multiline key: that kind of looks a dict item": "a multiline value",
+                "This is another multiline key,\nthis one with a dictionary as a value that has a multiline key.": {
+                    "This is another multiline key,\nthis one with a multiline value.": "Here is the multiline value.\nIt is paired with a multiline key."
+                },
+                "This a multiline key with a blank second line.\n": "yabba dabba doo"
+            },
+            "load_err": {},
+            "types": {
+                "key item": 20,
+                "string item": 8,
+                "blank": 9,
+                "dict item": 4,
+                "list item": 2
+            }
+        },
+        "crumbly": {
+            "load_in": [
+                "A :\n",
+                " : B:\n",
+                "  >\n",
+                ": C :\n",
+                " >\n",
+                "D :\n",
+                ": E\n",
+                " >\n",
+                ": F1\n",
+                ": F2\n",
+                " >"
+            ],
+            "load_out": {
+                "A": {
+                    "B:": ""
+                },
+                "C :": "",
+                "D": "",
+                "E": "",
+                "F1\nF2": ""
+            },
+            "load_err": {},
+            "types": {
+                "dict item": 2,
+                "key item": 5,
+                "string item": 4
+            }
+        },
+        "despair": {
+            "load_in": [
+                "A :\n",
+                " : B:\n",
+                ": C :\n",
+                "D :\n",
+                ": E"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "multiline key requires a value.",
+                "line": " : B:",
+                "lineno": 1,
+                "colno": 1
+            },
+            "types": {
+                "dict item": 2,
+                "key item": 3
+            }
+        },
+        "doodle": {
+            "load_in": [
+                "tether:\n",
+                "    disclose: paranoid clunk gaggle\n",
+                "    prolong: stove banish\n",
+                "    navel: -clipboard organist signify\n",
+                "    crane: -washout honey guarantor=aircrew\n",
+                "    inure: fondle = 10kΩ*dissect\n\n",
+                "majesty:\n",
+                "    fatten: washbowl flagon gentile hairstyle\n",
+                "    static: lender busby\n",
+                "    niece: -humpback adduce ferryboat\n",
+                "    reservoir: -dally idiot enlarge=avalanche\n",
+                "    wally: divorcee = 10kΩ*fugue\n\n",
+                "banner:\n",
+                "    scepter: trollop living giddy\n",
+                "    lager: piper glacier\n",
+                "    debunk: -trapeze person matron\n",
+                "    pecan: -uncanny perform megaton=profiteer\n",
+                "    register: answer = 10kΩ*trend\n\n",
+                "monolith:\n",
+                "    partitive: bookie outcome buckskin\n",
+                "    roller: pixie fraud\n",
+                "    change: scullery-roach rubber reveal+payoff\n",
+                "    simulator: smock fritter consign=chateau\n",
+                "    narrow: betrothal = 10kΩ*trooper - landau\n\n",
+                "reinstate:\n",
+                "    dramatist: pasture glade enslave upright\n",
+                "    kinky: deuce birdie\n",
+                "    bathroom: people-layoff fluke flood+sonata\n",
+                "    heart: loiter feature scamper=drivel\n",
+                "    vendetta: nauseate = 10kΩ*hoodlum - signboard\n\n",
+                "overstate:\n",
+                "    deter: clitoris treachery reading\n",
+                "    saddlebag: doodle enunciate\n",
+                "    cherub: cupboard-shingle refuge reefer+animate\n",
+                "    overcome: gasometer crease bazooka=thriller\n",
+                "    poplar: centipede = 10kΩ*headman - dewlap\n\n",
+                ": [testament:blight] spangle\n",
+                "    otter: adherent disguise electrode biplane\n",
+                "    stormy: curfew neuter\n",
+                "    spaceman: addict = snowman*(anxiety+embitter)*bayonet kestrel liken\n",
+                "    hardy thinner: 'pretend\n",
+                "    belief: sphere\n",
+                "    sachet:\n",
+                "        > fortnight: twitch(hopper) rebut duodenum=bottom; pleat=onward.\n",
+                "        > frizz: galley(genealogy) advantage whelk=-sprawl; waist=-immigrant.\n\n",
+                ": [mongrel:sequester] prism\n",
+                "    bairn: easterner racketeer shortfall bootlace amoeba\n",
+                "    canopy: refuse profit\n",
+                "    snuggle: baritone = scrounger*(supplier+clobber)*flutter agate simplify\n",
+                "    edition industry: 'castle\n",
+                "    tenth: rhyme\n",
+                "    scrunch:\n",
+                "        > ledge: exporter(wrongdoer) levitate daiquiri=subsidize; bulletin=reason.\n",
+                "        > jackpot: butcher(frequent) medicine memento=-diaphragm; ointment=-raving.\n\n",
+                ": [frogman:alleyway] fatigue\n",
+                "    hyena: believer timepiece infuriate sixty\n",
+                "    cache: bootee scoopful\n",
+                "    laborer: egoist = lunatic*(obeisance+voice)*gambit nickel queer\n",
+                "    scraggy doggie: 'cedar\n",
+                "    requisite: pastor\n",
+                "    teacher:\n",
+                "        > toboggan: champion(dominion) adieu golfer=linen; divorce=stake.\n",
+                "        > fireguard: vineyard(confide) seashore diddle=-dartboard; genuflect=-fidget.\n\n",
+                "install:\n",
+                "    abide: waistline\n",
+                "    skunk: coarsen nuisance\n",
+                "    briar: eviction = glide && !reliquary overfeed resent\n",
+                "    magnum accident: 'quince\n",
+                "    nightmare: cheapen\n\n",
+                "withdraw:\n",
+                "    chalice: noble canard\n",
+                "    siphon: utility overhead\n",
+                "    butler: aspirin.starlet < heater < brace.blockade\n",
+                "    juggler: crumpet = sunny + slattern + persuade. cataclysm = scolding.\n",
+                "    betake: projector.insulator\n",
+                "    hearth: convector\n\n",
+                "surgery:\n",
+                "    sunbathe: decathlon\n",
+                "    fixation: heighten watcher\n",
+                "    stretchy: -washday < burnish < debrief\n",
+                "    scabbard: reward\n\n",
+                "intercede barony:\n",
+                "    busker: yachtsman-fleshpot sandbag flummox\n",
+                "    vestry: panorama\n",
+                "    sanction: drench=\"%keyboard\"\n\n",
+                "harmony creaky:\n",
+                "    physicist: gauge-doublet bungalow clink\n",
+                "    swerve: cleanser\n",
+                "    royalty:\n",
+                "        > essay=\"%honeymoon\";\n",
+                "        > extol = \"swampy\";\n",
+                "        > almshouse = \"\".\n\n",
+                "caterwaul imitation:\n",
+                "    dunce: bodice sitcom chipmunk\n",
+                "    profane: monocle\n",
+                "    sortie: impute=\"%covert\"\n\n",
+                "menace:\n",
+                "    dredge: miasma litigant broil\n",
+                "    bishop: medley\n",
+                "    inquest: scourer=\"%gamma\"; mesmerize='ballcock\n\n",
+                "mattock:\n",
+                "    taint: buttery combatant stalwart\n",
+                "    oculist: implicate\n",
+                "    support: closure='snake; phoenix=\"%smoothie\"\n\n",
+                "chance:\n",
+                "    riposte: crusade\n",
+                "    scripture: cathode\n",
+                "    doorstep: dukedom=screening; lifebuoy=\"%crackle\"\n",
+                "    salesman: shimmer cobweb spool=butter.\n\n",
+                "asset:\n",
+                "    overthrow: dainty\n",
+                "    chancy: bough psychotic\n",
+                "    sultana: father hormone caliber=mayday.\n\n",
+                "pollinate:\n",
+                "    doctor: masochist\n",
+                "    strangler: saloon ensemble shower\n",
+                "    tuxedo:\n",
+                "        > inject='strategy;\n",
+                "        > purport={toffee,ripper}.\n",
+                "    citadel:\n",
+                "        > shrew repellent dairymaid=laser; elevator=biped.\n",
+                "        > resound garage mistreat=rebuild; scree=choke.\n",
+                "        > anchor begrudge slalom=reassert; molester=chopper.\n",
+                "        > dizzy outbreak snifter=tussle; remove=survive.\n",
+                "        > noodle panegyric importune=native; accredit=loser.\n\n",
+                "acquit invest gravity:\n",
+                "    remain: beetroot maroon cliche ninety\n",
+                "    bookmark: munch\n",
+                "    commodore:\n",
+                "        > plank=sundry;\n",
+                "        > prick=rehear;\n",
+                "        > bonnet=\"banana\"\n",
+                "    transfer:\n",
+                "        > blister project adjective=slinky; uncover=salty.\n",
+                "        > bowler acquiesce nobody=syllabus; bushy=fossilize.\n\n",
+                "horror megalith:\n",
+                "    spurt: flower towpath rejoicing dowry rupture\n",
+                "    recur: capacity\n",
+                "    tract:\n",
+                "        > goatee='graze;\n",
+                "        > liqueur=\"scream\";\n",
+                "        > detain=prefigure;\n",
+                "        > spill={eggplant,poach}\n",
+                "    plunger:\n",
+                "        > cutting dislocate prince=spongy; flirt=debut.\n",
+                "        > neurone cricketer shredder=property; break=octagon; plutocrat=lapwing.\n",
+                "        > softy expert tycoon=qualify; coachman=heretic.\n",
+                "        > redwood notebook heath=blackjack; frump=washstand.\n",
+                "        > loose keeper applaud=destroyer; intention=hymnal.\n",
+                "        > potentate brasserie souvenir=tumor; masseur=hasten.\n",
+                "        > sanctify report touchdown=afford; combat=impart.\n",
+                "        > brute elder bisexual=penknife; treadmill=thesaurus.\n",
+                "        > tissue sickly dimmer=dowdy; cylinder=actor.\n",
+                "        > awakening robotic fascia=paperboy; scalp=length; seashell=50μA.\n",
+                "        > larch fashion crack=scorpion; explicate=retire.\n",
+                "        > mature lapel incline=dressing; thwack=rivet.\n",
+                "        > neologism phonetic zebra=upstage; realtor=showpiece.\n",
+                "        > evacuee stride softener=ditty; earth=bookcase.\n",
+                "        > uproot cross titter=constrict; specific=wayside.\n",
+                "        > overwrite overshoot quandary=panther; cartwheel=ratio.\n\n",
+                "informer payroll:\n",
+                "    sequin: armadillo exclaim foray cuckoo\n",
+                "    lynch: punchbowl\n",
+                "    trump:\n",
+                "        > bedeck=quota;\n",
+                "        > machete=croupier;\n",
+                "        > alpine=\"response\";\n",
+                "        > vegetable=slowdown.\n",
+                "    whisker:\n",
+                "        > lottery sheath moonlight=chamber.\n",
+                "        > fantasize pullover stool=eject.\n\n",
+                "barbarity, allude, whittle:\n",
+                "    militant: garret dictate sweeper\n",
+                "    extension: senator\n",
+                "    justify:\n",
+                "        > taxicab=ferry;\n",
+                "        > paragraph=spokesman;\n",
+                "        > politic=codpiece;\n",
+                "        > grizzle=clerk;\n",
+                "        > perturb=mudguard;\n",
+                "        > decade=\"sickness\"\n",
+                "    broad:\n",
+                "        > ceramic morsel sahib=gelding.\n",
+                "        > gravy shoddy fixative=scramble.\n",
+                "        > smelt beatnik describe=duckling.\n",
+                "        > bourbon crusader tabloid=wordy.\n\n",
+                "extenuate, promoter:\n",
+                "    store: treasury dumpling emotion skirmish\n",
+                "    epitaph: incumbent\n",
+                "    yearning:\n",
+                "        > adjudge='yearbook;\n",
+                "        > maneuver=\"infer\";\n",
+                "        > cabaret=deception;\n",
+                "        > hostel={fossil,diagnose}\n",
+                "    sporran:\n",
+                "        > alphabet counter haughty=ceiling; treadle=reedy.\n",
+                "        > hierarchy hardship troll=detractor; holocaust=deafen; gangway=translate.\n",
+                "        > thought termite limousine=hustle; tweed=majorette.\n",
+                "        > batten swindler parkland=outsider; crawl=prevail.\n",
+                "        > provision fabric indict=amaze; weight=commando.\n",
+                "        > extend cabal charge=admit; umlaut=steel.\n",
+                "        > strength councilor entity=address; encamp=slake.\n",
+                "        > trespass soapbox knoll=befriend; aggregate=allusion.\n",
+                "        > sequel fingertip billfold=staunch; particle=combine.\n",
+                "        > sediment intellect organizer=blurry; fatty=beard; revel=50μA.\n",
+                "        > toxin steak panacea=elite; scavenge=acoustic.\n",
+                "        > farmyard resign presage=peasant; jumble=regret.\n",
+                "        > berry valet alchemist=greasy; clonk=eyesore.\n",
+                "        > treat temper antenatal=interlink; hurtle=catchy.\n",
+                "        > obtain seaweed offender=cameo; jostle=reprove.\n",
+                "        > rigidity radish braise=scoot; petty=marquee.\n\n",
+                "menage, quail:\n",
+                "    outspread: share pinion fruitcake portend\n",
+                "    reference: appendix\n",
+                "    daily:\n",
+                "        > scrapbook=rejoin;\n",
+                "        > drier=agonize;\n",
+                "        > sewer=\"dollop\";\n",
+                "        > bistro=ratepayer.\n",
+                "    flabby:\n",
+                "        > pentagon rotor science=besiege.\n",
+                "        > spider distance shaggy=mayor.\n",
+                "        > statement venture priory=seance.\n",
+                "        > sextet riddle shabby=stationer.\n\n",
+                "jelly, exude:\n",
+                "    naught: misread sandbank speculate\n",
+                "    espresso: dispel\n",
+                "    oilman:\n",
+                "        > amalgam=additive;\n",
+                "        > tatty=unsettle;\n",
+                "        > lousy=\"clamber\";\n",
+                "        > radiator = \"paring, anatomist\";\n",
+                "        > sidle=thatch.\n",
+                "    episode:\n",
+                "        > council whiplash muscle=carriage.\n",
+                "        > baseline nymph tantrum=spoof; prognosis=trundle; friend=plump.comedy.\n",
+                "        > induct tubby compost=crank.\n",
+                "        > family stately expunge=echelon.\n\n",
+                "holding, scruple:\n",
+                "    ramrod: tableau beret\n",
+                "    flatten: tributary\n",
+                "    cobra:\n",
+                "        > hunchback=bumpy;\n",
+                "        > lorry=\"inkling\";\n",
+                "        > holler = \"pedant, lifeboat\";\n",
+                "        > butchery=antique.\n",
+                "    decree:\n",
+                "        > embroil numskull stigma=explosion.\n",
+                "        > grand bonus accord=scarf.\n",
+                "        > amplifier prattle submerge=justice.\n",
+                "        > grace arrowhead athlete=shaver."
+            ],
+            "load_out": {
+                "tether": {
+                    "disclose": "paranoid clunk gaggle",
+                    "prolong": "stove banish",
+                    "navel": "-clipboard organist signify",
+                    "crane": "-washout honey guarantor=aircrew",
+                    "inure": "fondle = 10kΩ*dissect"
+                },
+                "majesty": {
+                    "fatten": "washbowl flagon gentile hairstyle",
+                    "static": "lender busby",
+                    "niece": "-humpback adduce ferryboat",
+                    "reservoir": "-dally idiot enlarge=avalanche",
+                    "wally": "divorcee = 10kΩ*fugue"
+                },
+                "banner": {
+                    "scepter": "trollop living giddy",
+                    "lager": "piper glacier",
+                    "debunk": "-trapeze person matron",
+                    "pecan": "-uncanny perform megaton=profiteer",
+                    "register": "answer = 10kΩ*trend"
+                },
+                "monolith": {
+                    "partitive": "bookie outcome buckskin",
+                    "roller": "pixie fraud",
+                    "change": "scullery-roach rubber reveal+payoff",
+                    "simulator": "smock fritter consign=chateau",
+                    "narrow": "betrothal = 10kΩ*trooper - landau"
+                },
+                "reinstate": {
+                    "dramatist": "pasture glade enslave upright",
+                    "kinky": "deuce birdie",
+                    "bathroom": "people-layoff fluke flood+sonata",
+                    "heart": "loiter feature scamper=drivel",
+                    "vendetta": "nauseate = 10kΩ*hoodlum - signboard"
+                },
+                "overstate": {
+                    "deter": "clitoris treachery reading",
+                    "saddlebag": "doodle enunciate",
+                    "cherub": "cupboard-shingle refuge reefer+animate",
+                    "overcome": "gasometer crease bazooka=thriller",
+                    "poplar": "centipede = 10kΩ*headman - dewlap"
+                },
+                "[testament:blight] spangle": {
+                    "otter": "adherent disguise electrode biplane",
+                    "stormy": "curfew neuter",
+                    "spaceman": "addict = snowman*(anxiety+embitter)*bayonet kestrel liken",
+                    "hardy thinner": "'pretend",
+                    "belief": "sphere",
+                    "sachet": "fortnight: twitch(hopper) rebut duodenum=bottom; pleat=onward.\nfrizz: galley(genealogy) advantage whelk=-sprawl; waist=-immigrant."
+                },
+                "[mongrel:sequester] prism": {
+                    "bairn": "easterner racketeer shortfall bootlace amoeba",
+                    "canopy": "refuse profit",
+                    "snuggle": "baritone = scrounger*(supplier+clobber)*flutter agate simplify",
+                    "edition industry": "'castle",
+                    "tenth": "rhyme",
+                    "scrunch": "ledge: exporter(wrongdoer) levitate daiquiri=subsidize; bulletin=reason.\njackpot: butcher(frequent) medicine memento=-diaphragm; ointment=-raving."
+                },
+                "[frogman:alleyway] fatigue": {
+                    "hyena": "believer timepiece infuriate sixty",
+                    "cache": "bootee scoopful",
+                    "laborer": "egoist = lunatic*(obeisance+voice)*gambit nickel queer",
+                    "scraggy doggie": "'cedar",
+                    "requisite": "pastor",
+                    "teacher": "toboggan: champion(dominion) adieu golfer=linen; divorce=stake.\nfireguard: vineyard(confide) seashore diddle=-dartboard; genuflect=-fidget."
+                },
+                "install": {
+                    "abide": "waistline",
+                    "skunk": "coarsen nuisance",
+                    "briar": "eviction = glide && !reliquary overfeed resent",
+                    "magnum accident": "'quince",
+                    "nightmare": "cheapen"
+                },
+                "withdraw": {
+                    "chalice": "noble canard",
+                    "siphon": "utility overhead",
+                    "butler": "aspirin.starlet < heater < brace.blockade",
+                    "juggler": "crumpet = sunny + slattern + persuade. cataclysm = scolding.",
+                    "betake": "projector.insulator",
+                    "hearth": "convector"
+                },
+                "surgery": {
+                    "sunbathe": "decathlon",
+                    "fixation": "heighten watcher",
+                    "stretchy": "-washday < burnish < debrief",
+                    "scabbard": "reward"
+                },
+                "intercede barony": {
+                    "busker": "yachtsman-fleshpot sandbag flummox",
+                    "vestry": "panorama",
+                    "sanction": "drench=\"%keyboard\""
+                },
+                "harmony creaky": {
+                    "physicist": "gauge-doublet bungalow clink",
+                    "swerve": "cleanser",
+                    "royalty": "essay=\"%honeymoon\";\nextol = \"swampy\";\nalmshouse = \"\"."
+                },
+                "caterwaul imitation": {
+                    "dunce": "bodice sitcom chipmunk",
+                    "profane": "monocle",
+                    "sortie": "impute=\"%covert\""
+                },
+                "menace": {
+                    "dredge": "miasma litigant broil",
+                    "bishop": "medley",
+                    "inquest": "scourer=\"%gamma\"; mesmerize='ballcock"
+                },
+                "mattock": {
+                    "taint": "buttery combatant stalwart",
+                    "oculist": "implicate",
+                    "support": "closure='snake; phoenix=\"%smoothie\""
+                },
+                "chance": {
+                    "riposte": "crusade",
+                    "scripture": "cathode",
+                    "doorstep": "dukedom=screening; lifebuoy=\"%crackle\"",
+                    "salesman": "shimmer cobweb spool=butter."
+                },
+                "asset": {
+                    "overthrow": "dainty",
+                    "chancy": "bough psychotic",
+                    "sultana": "father hormone caliber=mayday."
+                },
+                "pollinate": {
+                    "doctor": "masochist",
+                    "strangler": "saloon ensemble shower",
+                    "tuxedo": "inject='strategy;\npurport={toffee,ripper}.",
+                    "citadel": "shrew repellent dairymaid=laser; elevator=biped.\nresound garage mistreat=rebuild; scree=choke.\nanchor begrudge slalom=reassert; molester=chopper.\ndizzy outbreak snifter=tussle; remove=survive.\nnoodle panegyric importune=native; accredit=loser."
+                },
+                "acquit invest gravity": {
+                    "remain": "beetroot maroon cliche ninety",
+                    "bookmark": "munch",
+                    "commodore": "plank=sundry;\nprick=rehear;\nbonnet=\"banana\"",
+                    "transfer": "blister project adjective=slinky; uncover=salty.\nbowler acquiesce nobody=syllabus; bushy=fossilize."
+                },
+                "horror megalith": {
+                    "spurt": "flower towpath rejoicing dowry rupture",
+                    "recur": "capacity",
+                    "tract": "goatee='graze;\nliqueur=\"scream\";\ndetain=prefigure;\nspill={eggplant,poach}",
+                    "plunger": "cutting dislocate prince=spongy; flirt=debut.\nneurone cricketer shredder=property; break=octagon; plutocrat=lapwing.\nsofty expert tycoon=qualify; coachman=heretic.\nredwood notebook heath=blackjack; frump=washstand.\nloose keeper applaud=destroyer; intention=hymnal.\npotentate brasserie souvenir=tumor; masseur=hasten.\nsanctify report touchdown=afford; combat=impart.\nbrute elder bisexual=penknife; treadmill=thesaurus.\ntissue sickly dimmer=dowdy; cylinder=actor.\nawakening robotic fascia=paperboy; scalp=length; seashell=50μA.\nlarch fashion crack=scorpion; explicate=retire.\nmature lapel incline=dressing; thwack=rivet.\nneologism phonetic zebra=upstage; realtor=showpiece.\nevacuee stride softener=ditty; earth=bookcase.\nuproot cross titter=constrict; specific=wayside.\noverwrite overshoot quandary=panther; cartwheel=ratio."
+                },
+                "informer payroll": {
+                    "sequin": "armadillo exclaim foray cuckoo",
+                    "lynch": "punchbowl",
+                    "trump": "bedeck=quota;\nmachete=croupier;\nalpine=\"response\";\nvegetable=slowdown.",
+                    "whisker": "lottery sheath moonlight=chamber.\nfantasize pullover stool=eject."
+                },
+                "barbarity, allude, whittle": {
+                    "militant": "garret dictate sweeper",
+                    "extension": "senator",
+                    "justify": "taxicab=ferry;\nparagraph=spokesman;\npolitic=codpiece;\ngrizzle=clerk;\nperturb=mudguard;\ndecade=\"sickness\"",
+                    "broad": "ceramic morsel sahib=gelding.\ngravy shoddy fixative=scramble.\nsmelt beatnik describe=duckling.\nbourbon crusader tabloid=wordy."
+                },
+                "extenuate, promoter": {
+                    "store": "treasury dumpling emotion skirmish",
+                    "epitaph": "incumbent",
+                    "yearning": "adjudge='yearbook;\nmaneuver=\"infer\";\ncabaret=deception;\nhostel={fossil,diagnose}",
+                    "sporran": "alphabet counter haughty=ceiling; treadle=reedy.\nhierarchy hardship troll=detractor; holocaust=deafen; gangway=translate.\nthought termite limousine=hustle; tweed=majorette.\nbatten swindler parkland=outsider; crawl=prevail.\nprovision fabric indict=amaze; weight=commando.\nextend cabal charge=admit; umlaut=steel.\nstrength councilor entity=address; encamp=slake.\ntrespass soapbox knoll=befriend; aggregate=allusion.\nsequel fingertip billfold=staunch; particle=combine.\nsediment intellect organizer=blurry; fatty=beard; revel=50μA.\ntoxin steak panacea=elite; scavenge=acoustic.\nfarmyard resign presage=peasant; jumble=regret.\nberry valet alchemist=greasy; clonk=eyesore.\ntreat temper antenatal=interlink; hurtle=catchy.\nobtain seaweed offender=cameo; jostle=reprove.\nrigidity radish braise=scoot; petty=marquee."
+                },
+                "menage, quail": {
+                    "outspread": "share pinion fruitcake portend",
+                    "reference": "appendix",
+                    "daily": "scrapbook=rejoin;\ndrier=agonize;\nsewer=\"dollop\";\nbistro=ratepayer.",
+                    "flabby": "pentagon rotor science=besiege.\nspider distance shaggy=mayor.\nstatement venture priory=seance.\nsextet riddle shabby=stationer."
+                },
+                "jelly, exude": {
+                    "naught": "misread sandbank speculate",
+                    "espresso": "dispel",
+                    "oilman": "amalgam=additive;\ntatty=unsettle;\nlousy=\"clamber\";\nradiator = \"paring, anatomist\";\nsidle=thatch.",
+                    "episode": "council whiplash muscle=carriage.\nbaseline nymph tantrum=spoof; prognosis=trundle; friend=plump.comedy.\ninduct tubby compost=crank.\nfamily stately expunge=echelon."
+                },
+                "holding, scruple": {
+                    "ramrod": "tableau beret",
+                    "flatten": "tributary",
+                    "cobra": "hunchback=bumpy;\nlorry=\"inkling\";\nholler = \"pedant, lifeboat\";\nbutchery=antique.",
+                    "decree": "embroil numskull stigma=explosion.\ngrand bonus accord=scarf.\namplifier prattle submerge=justice.\ngrace arrowhead athlete=shaver."
+                }
+            },
+            "load_err": {},
+            "types": {
+                "dict item": 146,
+                "blank": 27,
+                "key item": 3,
+                "string item": 102
+            }
+        },
+        "imbibe": {
+            "load_in": [
+                ": {http://www.kde.org/standards/kcfg/1.0}kcfgfile\n",
+                "    >\n",
+                ": {http://www.kde.org/standards/kcfg/1.0}group\n",
+                "    : {http://www.kde.org/standards/kcfg/1.0}entry\n",
+                "        -\n",
+                "            : {http://www.kde.org/standards/kcfg/1.0}default\n",
+                "                > 250\n",
+                "        -\n",
+                "            : {http://www.kde.org/standards/kcfg/1.0}default\n",
+                "                > krunner,yakuake"
+            ],
+            "load_out": {
+                "{http://www.kde.org/standards/kcfg/1.0}kcfgfile": "",
+                "{http://www.kde.org/standards/kcfg/1.0}group": {
+                    "{http://www.kde.org/standards/kcfg/1.0}entry": [
+                        {
+                            "{http://www.kde.org/standards/kcfg/1.0}default": "250"
+                        },
+                        {
+                            "{http://www.kde.org/standards/kcfg/1.0}default": "krunner,yakuake"
+                        }
+                    ]
+                }
+            },
+            "load_err": {},
+            "types": {
+                "key item": 5,
+                "string item": 3,
+                "list item": 2
+            }
+        },
+        "emollient": {
+            "load_in": [
+                "key: value 1\n",
+                "key: value 2\n",
+                "key: value 3"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "duplicate key: key.",
+                "line": "key: value 2",
+                "lineno": 1,
+                "colno": 0
+            },
+            "types": {
+                "dict item": 3
+            }
+        },
+        "modernize": {
+            "load_in": [
+                "-\n",
+                "    {}\n",
+                "-\n",
+                "    {:}\n",
+                "-\n",
+                "    {a:0}\n",
+                "-\n",
+                "    {a: k}\n",
+                "-\n",
+                "    {a:[]}\n",
+                "-\n",
+                "    {a: [b]}\n",
+                "-\n",
+                "    {a:{}}\n",
+                "-\n",
+                "    {a: {b:1}}\n",
+                "-\n",
+                "    {a:0, b:1}\n",
+                "-\n",
+                "    {a:{A:0}, b:{B:1}}\n",
+                "-\n",
+                "    { a : { A : 0 } , b : { B : 1 } }   \n",
+                "-\n",
+                "    {a:[1,2,3], b:[4,5,6]}\n",
+                "-\n",
+                "    {a:0,b:1}\n",
+                "-\n",
+                "    {a:[],b:[]}\n",
+                "-\n",
+                "    {a:[0,1],b:[2,3]}\n",
+                "-\n",
+                "    {a:{},b:{}}\n",
+                "-\n",
+                "    {a:{b:0,c:1},d:{e:2,f:3}}\n",
+                "-\n",
+                "    {a:0,b:[]}\n",
+                "-\n",
+                "    {a:[],b:{}}\n",
+                "-\n",
+                "    {a:{},b:0}\n",
+                "-\n",
+                "    { a:0}\n",
+                "-\n",
+                "    {a :0}\n",
+                "-\n",
+                "    {a: 0}\n",
+                "-\n",
+                "    {a:0 }\n",
+                "-\n",
+                "    { a : 0 }\n",
+                "-\n",
+                "    {a:0, b:1}\n",
+                "-\n",
+                "    {a:0 ,b:1}\n",
+                "-\n",
+                "    {a:0 , b:1}\n",
+                "-\n",
+                "    {key 1:value 1, key 2 : value 2 }"
+            ],
+            "load_out": [
+                {},
+                {
+                    "": ""
+                },
+                {
+                    "a": "0"
+                },
+                {
+                    "a": "k"
+                },
+                {
+                    "a": []
+                },
+                {
+                    "a": [
+                        "b"
+                    ]
+                },
+                {
+                    "a": {}
+                },
+                {
+                    "a": {
+                        "b": "1"
+                    }
+                },
+                {
+                    "a": "0",
+                    "b": "1"
+                },
+                {
+                    "a": {
+                        "A": "0"
+                    },
+                    "b": {
+                        "B": "1"
+                    }
+                },
+                {
+                    "a": {
+                        "A": "0"
+                    },
+                    "b": {
+                        "B": "1"
+                    }
+                },
+                {
+                    "a": [
+                        "1",
+                        "2",
+                        "3"
+                    ],
+                    "b": [
+                        "4",
+                        "5",
+                        "6"
+                    ]
+                },
+                {
+                    "a": "0",
+                    "b": "1"
+                },
+                {
+                    "a": [],
+                    "b": []
+                },
+                {
+                    "a": [
+                        "0",
+                        "1"
+                    ],
+                    "b": [
+                        "2",
+                        "3"
+                    ]
+                },
+                {
+                    "a": {},
+                    "b": {}
+                },
+                {
+                    "a": {
+                        "b": "0",
+                        "c": "1"
+                    },
+                    "d": {
+                        "e": "2",
+                        "f": "3"
+                    }
+                },
+                {
+                    "a": "0",
+                    "b": []
+                },
+                {
+                    "a": [],
+                    "b": {}
+                },
+                {
+                    "a": {},
+                    "b": "0"
+                },
+                {
+                    "a": "0"
+                },
+                {
+                    "a": "0"
+                },
+                {
+                    "a": "0"
+                },
+                {
+                    "a": "0"
+                },
+                {
+                    "a": "0"
+                },
+                {
+                    "a": "0",
+                    "b": "1"
+                },
+                {
+                    "a": "0",
+                    "b": "1"
+                },
+                {
+                    "a": "0",
+                    "b": "1"
+                },
+                {
+                    "key 1": "value 1",
+                    "key 2": "value 2"
+                }
+            ],
+            "load_err": {},
+            "types": {
+                "list item": 29,
+                "inline dict": 29
+            }
+        },
+        "baptism": {
+            "load_in": [
+                "-\n",
+                "    {a}"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "expected ‘:’, found ‘}’.",
+                "line": "    {a}",
+                "lineno": 1,
+                "colno": 6
+            },
+            "types": {
+                "list item": 1,
+                "inline dict": 1
+            }
+        },
+        "collate": {
+            "load_in": [
+                "-\n",
+                "    {"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "line ended without closing delimiter.",
+                "line": "    {",
+                "lineno": 1,
+                "colno": 5
+            },
+            "types": {
+                "list item": 1,
+                "inline dict": 1
+            }
+        },
+        "ballroom": {
+            "load_in": [
+                "-\n",
+                "    {{}"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "expected ‘:’, found ‘{’.",
+                "line": "    {{}",
+                "lineno": 1,
+                "colno": 5
+            },
+            "types": {
+                "list item": 1,
+                "inline dict": 1
+            }
+        },
+        "mercy": {
+            "load_in": [
+                "-\n",
+                "    {}}"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "extra character after closing delimiter: ‘}’.",
+                "line": "    {}}",
+                "lineno": 1,
+                "colno": 6
+            },
+            "types": {
+                "list item": 1,
+                "inline dict": 1
+            }
+        },
+        "canto": {
+            "load_in": [
+                "-\n",
+                "    {a,:b}"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "expected ‘:’, found ‘,’.",
+                "line": "    {a,:b}",
+                "lineno": 1,
+                "colno": 6
+            },
+            "types": {
+                "list item": 1,
+                "inline dict": 1
+            }
+        },
+        "stooge": {
+            "load_in": [
+                "-\n",
+                "    {a,:b}"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "expected ‘:’, found ‘,’.",
+                "line": "    {a,:b}",
+                "lineno": 1,
+                "colno": 6
+            },
+            "types": {
+                "list item": 1,
+                "inline dict": 1
+            }
+        },
+        "cowboy": {
+            "load_in": [
+                "-\n",
+                "    {a,:b}"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "expected ‘:’, found ‘,’.",
+                "line": "    {a,:b}",
+                "lineno": 1,
+                "colno": 6
+            },
+            "types": {
+                "list item": 1,
+                "inline dict": 1
+            }
+        },
+        "criterion": {
+            "load_in": [
+                "-\n",
+                "    {a}:b}"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "expected ‘:’, found ‘}’.",
+                "line": "    {a}:b}",
+                "lineno": 1,
+                "colno": 6
+            },
+            "types": {
+                "list item": 1,
+                "inline dict": 1
+            }
+        },
+        "protrude": {
+            "load_in": [
+                "-\n",
+                "    {a[:b}"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "expected ‘:’, found ‘[’.",
+                "line": "    {a[:b}",
+                "lineno": 1,
+                "colno": 6
+            },
+            "types": {
+                "list item": 1,
+                "inline dict": 1
+            }
+        },
+        "caftan": {
+            "load_in": [
+                "-\n",
+                "    {a]:b}"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "expected ‘:’, found ‘]’.",
+                "line": "    {a]:b}",
+                "lineno": 1,
+                "colno": 6
+            },
+            "types": {
+                "list item": 1,
+                "inline dict": 1
+            }
+        },
+        "siphon": {
+            "load_in": [
+                "-\n",
+                "    {a:b{}"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "expected ‘,’ or ‘}’, found ‘{’.",
+                "line": "    {a:b{}",
+                "lineno": 1,
+                "colno": 8
+            },
+            "types": {
+                "list item": 1,
+                "inline dict": 1
+            }
+        },
+        "unpick": {
+            "load_in": [
+                "-\n",
+                "    {a:b}}"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "extra character after closing delimiter: ‘}’.",
+                "line": "    {a:b}}",
+                "lineno": 1,
+                "colno": 9
+            },
+            "types": {
+                "list item": 1,
+                "inline dict": 1
+            }
+        },
+        "patchwork": {
+            "load_in": [
+                "-\n",
+                "    {a:b[}"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "expected ‘,’ or ‘}’, found ‘[’.",
+                "line": "    {a:b[}",
+                "lineno": 1,
+                "colno": 8
+            },
+            "types": {
+                "list item": 1,
+                "inline dict": 1
+            }
+        },
+        "frustrate": {
+            "load_in": [
+                "-\n",
+                "    {a:b]}"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "expected ‘,’ or ‘}’, found ‘]’.",
+                "line": "    {a:b]}",
+                "lineno": 1,
+                "colno": 8
+            },
+            "types": {
+                "list item": 1,
+                "inline dict": 1
+            }
+        },
+        "donation": {
+            "load_in": [
+                "-\n",
+                "    {a:0, , }"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "expected ‘:’, found ‘,’.",
+                "line": "    {a:0, , }",
+                "lineno": 1,
+                "colno": 10
+            },
+            "types": {
+                "list item": 1,
+                "inline dict": 1
+            }
+        },
+        "flaunt": {
+            "load_in": [
+                "-\n",
+                "    {a:{A:0}, b{B:1}}"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "expected ‘:’, found ‘{’.",
+                "line": "    {a:{A:0}, b{B:1}}",
+                "lineno": 1,
+                "colno": 15
+            },
+            "types": {
+                "list item": 1,
+                "inline dict": 1
+            }
+        },
+        "magnetize": {
+            "load_in": [
+                "{a: {b:0, c:1}, d: {e:2, f:3}}"
+            ],
+            "load_out": {
+                "a": {
+                    "b": "0",
+                    "c": "1"
+                },
+                "d": {
+                    "e": "2",
+                    "f": "3"
+                }
+            },
+            "load_err": {},
+            "types": {
+                "inline dict": 1
+            }
+        },
+        "succor": {
+            "load_in": [
+                "key 1:\n",
+                "        {k1.1:v1.1,\t  k1.2:v1.2,      \tk1.3:v1.3\t}\t\n",
+                "key 2:\n",
+                "        {k2.1\t:v2.1,\t  k2.2\t:v2.2,      \tk2.3\t:v2.3\t}\t\n",
+                "key 3:\n",
+                "        {k3.1:\tv3.1,\t  k3.2:\tv3.2,      \tk3.3:\tv3.3\t}\t\n",
+                "key 4:\n",
+                "        {k4.1\t:\tv4.1,\t  k4.2\t:\tv4.2,      \tk4.3\t:\tv4.3\t}\t"
+            ],
+            "load_out": {
+                "key 1": {
+                    "k1.1": "v1.1",
+                    "k1.2": "v1.2",
+                    "k1.3": "v1.3"
+                },
+                "key 2": {
+                    "k2.1": "v2.1",
+                    "k2.2": "v2.2",
+                    "k2.3": "v2.3"
+                },
+                "key 3": {
+                    "k3.1": "v3.1",
+                    "k3.2": "v3.2",
+                    "k3.3": "v3.3"
+                },
+                "key 4": {
+                    "k4.1": "v4.1",
+                    "k4.2": "v4.2",
+                    "k4.3": "v4.3"
+                }
+            },
+            "load_err": {},
+            "types": {
+                "dict item": 4,
+                "inline dict": 4
+            }
+        },
+        "raven": {
+            "load_in": [
+                "key 1:\n",
+                "       {k1.1:v1.1,\t  k1.2:v1.2,      \tk1.3:v1.3,\t}\t\n",
+                "key 2:\n",
+                "        {k2.1\t:v2.1,\t  k2.2\t:v2.2,      \tk2.3\t:v2.3,\t}\t\n",
+                "key 3:\n",
+                "        {k3.1:\tv3.1,\t  k3.2:\tv3.2,      \tk3.3:\tv3.3,\t}\t\n",
+                "key 4:\n",
+                "        {k4.1\t:\tv4.1,\t  k4.2\t:\tv4.2,      \tk4.3\t:\tv4.3,\t}\t"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "expected ‘:’, found ‘}’.",
+                "line": "       {k1.1:v1.1,\t  k1.2:v1.2,      \tk1.3:v1.3,\t}\t",
+                "lineno": 1,
+                "colno": 49
+            },
+            "types": {
+                "dict item": 4,
+                "inline dict": 4
+            }
+        },
+        "emanate": {
+            "load_in": [
+                "{a:0,}"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "expected value.",
+                "line": "{a:0,}",
+                "lineno": 0,
+                "colno": 5
+            },
+            "types": {
+                "inline dict": 1
+            }
+        },
+        "moonlight": {
+            "load_in": [
+                "{a:0, }"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "expected ‘:’, found ‘}’.",
+                "line": "{a:0, }",
+                "lineno": 0,
+                "colno": 6
+            },
+            "types": {
+                "inline dict": 1
+            }
+        },
+        "conclude": {
+            "load_in": [
+                "{a:0,:,}"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "expected value.",
+                "line": "{a:0,:,}",
+                "lineno": 0,
+                "colno": 7
+            },
+            "types": {
+                "inline dict": 1
+            }
+        },
+        "prairie": {
+            "load_in": [
+                "{cases: {*: {*: {*:*}}}}\n",
+                "checks: *.sv"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "extra content.",
+                "line": "checks: *.sv",
+                "lineno": 1
+            },
+            "types": {
+                "inline dict": 1,
+                "dict item": 1
+            }
+        },
+        "typhoon": {
+            "load_in": [
+                "{cases: {*: {*: {*:*}}}}\n",
+                "checks: *.sv"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "extra content.",
+                "line": "checks: *.sv",
+                "lineno": 1
+            },
+            "types": {
+                "inline dict": 1,
+                "dict item": 1
+            }
+        },
+        "revolver": {
+            "load_in": [
+                "-\n",
+                "-"
+            ],
+            "load_out": [
+                "",
+                ""
+            ],
+            "load_err": {},
+            "types": {
+                "list item": 2
+            }
+        },
+        "denigrate": {
+            "load_in": [
+                "- A\n",
+                "- B\n",
+                "- C\n",
+                "-\n",
+                "    - D1\n",
+                "    - D2\n",
+                "- E"
+            ],
+            "load_out": [
+                "A",
+                "B",
+                "C",
+                [
+                    "D1",
+                    "D2"
+                ],
+                "E"
+            ],
+            "load_err": {},
+            "types": {
+                "list item": 7
+            }
+        },
+        "isometric": {
+            "load_in": [
+                "[]"
+            ],
+            "load_out": [],
+            "load_err": {},
+            "types": {
+                "inline list": 1
+            }
+        },
+        "seller": {
+            "load_in": [
+                "ingredients:\n",
+                "  - green chilies\n",
+                "  cannot mix list with: dictionary\n",
+                ""
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "expected list item.",
+                "line": "  cannot mix list with: dictionary",
+                "lineno": 2,
+                "colno": 2
+            },
+            "types": {
+                "dict item": 2,
+                "list item": 1
+            }
+        },
+        "element": {
+            "load_in": [
+                "\n",
+                "    - green chilies\n\n",
+                "- red chilies\n",
+                ""
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "top-level content must start in column 1.",
+                "line": "    - green chilies",
+                "lineno": 1,
+                "colno": 0
+            },
+            "types": {
+                "blank": 2,
+                "list item": 2
+            }
+        },
+        "twelve": {
+            "load_in": [
+                "- green chilies\n",
+                "    - red chilies\n",
+                ""
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "invalid indentation.",
+                "line": "    - red chilies",
+                "lineno": 1,
+                "colno": 0
+            },
+            "types": {
+                "list item": 2
+            }
+        },
+        "derelict": {
+            "load_in": [
+                "# this is an error because indentation is a tab\n",
+                "- \n",
+                "\t- red chilies"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "invalid character in indentation: '\\t'.",
+                "line": "\t- red chilies",
+                "lineno": 2,
+                "colno": 0
+            },
+            "types": {
+                "comment": 1,
+                "list item": 1,
+                "unrecognized": 1
+            }
+        },
+        "handbook": {
+            "load_in": [
+                "- :\n",
+                "- ~!@#$%^&*()_+-1234567890{}[]|:;<>?,./\n",
+                "- - value 3\n",
+                "- ' : value 4:'\n",
+                "- > value 5\n",
+                "- #value 6\n",
+                "- key 7' : : value 7\n",
+                "- \" value 8 \"\n",
+                "- ' value 9 '\n",
+                "-\n",
+                "  > value '\" 10\n",
+                "- And Fred said 'yabba dabba doo!' to Barney."
+            ],
+            "load_out": [
+                ":",
+                "~!@#$%^&*()_+-1234567890{}[]|:;<>?,./",
+                "- value 3",
+                "' : value 4:'",
+                "> value 5",
+                "#value 6",
+                "key 7' : : value 7",
+                "\" value 8 \"",
+                "' value 9 '",
+                "value '\" 10",
+                "And Fred said 'yabba dabba doo!' to Barney."
+            ],
+            "load_err": {},
+            "types": {
+                "list item": 11,
+                "string item": 1
+            }
+        },
+        "epoch": {
+            "load_in": [
+                "-\n",
+                "    []\n",
+                "-\n",
+                "    [ ]\n",
+                "-\n",
+                "    [,]\n",
+                "-\n",
+                "    [a]\n",
+                "-\n",
+                "    [:]\n",
+                "-\n",
+                "    [[]]\n",
+                "-\n",
+                "    [[ ]]\n",
+                "-\n",
+                "    [[a]]\n",
+                "-\n",
+                "    [{}]\n",
+                "-\n",
+                "    [{a:0}]\n",
+                "-\n",
+                "    [a,b]\n",
+                "-\n",
+                "    [,,]\n",
+                "-\n",
+                "    [[],[]]\n",
+                "-\n",
+                "    [[],[ ]]\n",
+                "-\n",
+                "    [[a,b],[c,d]]\n",
+                "-\n",
+                "    [ [ a , b ] , [ c , d ] ]   \n",
+                "-\n",
+                "    [{},{}]\n",
+                "-\n",
+                "    [{a:0,b:1},{c:2,d:3}]\n",
+                "-\n",
+                "    [a,[]]\n",
+                "-\n",
+                "    [[],{}]\n",
+                "-\n",
+                "    [{},b]\n",
+                "-\n",
+                "    [a,]\n",
+                "-\n",
+                "    [a, b, ]\n",
+                "-\n",
+                "    [ a]\n",
+                "-\n",
+                "    [a ]\n",
+                "-\n",
+                "    [ a ]\n",
+                "-\n",
+                "    [a, b]\n",
+                "-\n",
+                "    [a ,b]\n",
+                "-\n",
+                "    [a , b]\n",
+                "-\n",
+                "    [ ,]\n",
+                "-\n",
+                "    [, ]\n",
+                "-\n",
+                "    [ , ]\n",
+                "-\n",
+                "    [a, b, , ]\n",
+                "-\n",
+                "    [[11,12,13],[21,22,23],[31,32,33]]\n",
+                "-\n",
+                "    [value 1, value 2 ,  value 3  , ]"
+            ],
+            "load_out": [
+                [],
+                [
+                    ""
+                ],
+                [
+                    "",
+                    ""
+                ],
+                [
+                    "a"
+                ],
+                [
+                    ":"
+                ],
+                [
+                    []
+                ],
+                [
+                    [
+                        ""
+                    ]
+                ],
+                [
+                    [
+                        "a"
+                    ]
+                ],
+                [
+                    {}
+                ],
+                [
+                    {
+                        "a": "0"
+                    }
+                ],
+                [
+                    "a",
+                    "b"
+                ],
+                [
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    [],
+                    []
+                ],
+                [
+                    [],
+                    [
+                        ""
+                    ]
+                ],
+                [
+                    [
+                        "a",
+                        "b"
+                    ],
+                    [
+                        "c",
+                        "d"
+                    ]
+                ],
+                [
+                    [
+                        "a",
+                        "b"
+                    ],
+                    [
+                        "c",
+                        "d"
+                    ]
+                ],
+                [
+                    {},
+                    {}
+                ],
+                [
+                    {
+                        "a": "0",
+                        "b": "1"
+                    },
+                    {
+                        "c": "2",
+                        "d": "3"
+                    }
+                ],
+                [
+                    "a",
+                    []
+                ],
+                [
+                    [],
+                    {}
+                ],
+                [
+                    {},
+                    "b"
+                ],
+                [
+                    "a",
+                    ""
+                ],
+                [
+                    "a",
+                    "b",
+                    ""
+                ],
+                [
+                    "a"
+                ],
+                [
+                    "a"
+                ],
+                [
+                    "a"
+                ],
+                [
+                    "a",
+                    "b"
+                ],
+                [
+                    "a",
+                    "b"
+                ],
+                [
+                    "a",
+                    "b"
+                ],
+                [
+                    "",
+                    ""
+                ],
+                [
+                    "",
+                    ""
+                ],
+                [
+                    "",
+                    ""
+                ],
+                [
+                    "a",
+                    "b",
+                    "",
+                    ""
+                ],
+                [
+                    [
+                        "11",
+                        "12",
+                        "13"
+                    ],
+                    [
+                        "21",
+                        "22",
+                        "23"
+                    ],
+                    [
+                        "31",
+                        "32",
+                        "33"
+                    ]
+                ],
+                [
+                    "value 1",
+                    "value 2",
+                    "value 3",
+                    ""
+                ]
+            ],
+            "load_err": {},
+            "types": {
+                "list item": 35,
+                "inline list": 35
+            }
+        },
+        "nobleman": {
+            "load_in": [
+                "-\n",
+                "    ["
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "line ended without closing delimiter.",
+                "line": "    [",
+                "lineno": 1,
+                "colno": 5
+            },
+            "types": {
+                "list item": 1,
+                "inline list": 1
+            }
+        },
+        "proverb": {
+            "load_in": [
+                "-\n",
+                "    [,"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "line ended without closing delimiter.",
+                "line": "    [,",
+                "lineno": 1,
+                "colno": 6
+            },
+            "types": {
+                "list item": 1,
+                "inline list": 1
+            }
+        },
+        "marina": {
+            "load_in": [
+                "-\n",
+                "    [[]"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "line ended without closing delimiter.",
+                "line": "    [[]",
+                "lineno": 1,
+                "colno": 7
+            },
+            "types": {
+                "list item": 1,
+                "inline list": 1
+            }
+        },
+        "blister": {
+            "load_in": [
+                "-\n",
+                "    []{a:0}"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "extra characters after closing delimiter: ‘{a:0}’.",
+                "line": "    []{a:0}",
+                "lineno": 1,
+                "colno": 6
+            },
+            "types": {
+                "list item": 1,
+                "inline list": 1
+            }
+        },
+        "mentor": {
+            "load_in": [
+                "-\n",
+                "    [a[b]"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "expected ‘,’ or ‘]’, found ‘[’.",
+                "line": "    [a[b]",
+                "lineno": 1,
+                "colno": 6
+            },
+            "types": {
+                "list item": 1,
+                "inline list": 1
+            }
+        },
+        "valance": {
+            "load_in": [
+                "-\n",
+                "    [a]b]"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "extra characters after closing delimiter: ‘b]’.",
+                "line": "    [a]b]",
+                "lineno": 1,
+                "colno": 7
+            },
+            "types": {
+                "list item": 1,
+                "inline list": 1
+            }
+        },
+        "eleven": {
+            "load_in": [
+                "-\n",
+                "    [{]"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "expected ‘:’, found ‘]’.",
+                "line": "    [{]",
+                "lineno": 1,
+                "colno": 6
+            },
+            "types": {
+                "list item": 1,
+                "inline list": 1
+            }
+        },
+        "casing": {
+            "load_in": [
+                "-\n",
+                "    [}]"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "expected value.",
+                "line": "    [}]",
+                "lineno": 1,
+                "colno": 5
+            },
+            "types": {
+                "list item": 1,
+                "inline list": 1
+            }
+        },
+        "promenade": {
+            "load_in": [
+                "-\n",
+                "    [a{b]"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "expected ‘,’ or ‘]’, found ‘{’.",
+                "line": "    [a{b]",
+                "lineno": 1,
+                "colno": 6
+            },
+            "types": {
+                "list item": 1,
+                "inline list": 1
+            }
+        },
+        "splurge": {
+            "load_in": [
+                "-\n",
+                "    [a}b]"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "expected ‘,’ or ‘]’, found ‘}’.",
+                "line": "    [a}b]",
+                "lineno": 1,
+                "colno": 6
+            },
+            "types": {
+                "list item": 1,
+                "inline list": 1
+            }
+        },
+        "delusion": {
+            "load_in": [
+                "[[11, 12, 13], [21, 22, 23], [31, 32, 33]]"
+            ],
+            "load_out": [
+                [
+                    "11",
+                    "12",
+                    "13"
+                ],
+                [
+                    "21",
+                    "22",
+                    "23"
+                ],
+                [
+                    "31",
+                    "32",
+                    "33"
+                ]
+            ],
+            "load_err": {},
+            "types": {
+                "inline list": 1
+            }
+        },
+        "itinerant": {
+            "load_in": [
+                "[7:0] gain:\n",
+                "    desc: the gain\n",
+                "    type: input signed"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "extra characters after closing delimiter: ‘gain:’.",
+                "line": "[7:0] gain:",
+                "lineno": 0,
+                "colno": 6
+            },
+            "types": {
+                "inline list": 1,
+                "dict item": 2
+            }
+        },
+        "geyser": {
+            "load_in": [
+                "key 1:\n",
+                "        [v1,\t  v2,      \tv3,\t]\t"
+            ],
+            "load_out": {
+                "key 1": [
+                    "v1",
+                    "v2",
+                    "v3",
+                    ""
+                ]
+            },
+            "load_err": {},
+            "types": {
+                "dict item": 1,
+                "inline list": 1
+            }
+        },
+        "muzzle": {
+            "load_in": [
+                "what makes it green\t: \tgreen\tchilies\t"
+            ],
+            "load_out": {
+                "what makes it green": "\tgreen\tchilies\t"
+            },
+            "load_err": {},
+            "types": {
+                "dict item": 1
+            }
+        },
+        "stylistic": {
+            "load_in": [
+                "key: value \" value"
+            ],
+            "load_out": {
+                "key": "value \" value"
+            },
+            "load_err": {},
+            "types": {
+                "dict item": 1
+            }
+        },
+        "hallway": {
+            "load_in": [
+                "key: value ' value"
+            ],
+            "load_out": {
+                "key": "value ' value"
+            },
+            "load_err": {},
+            "types": {
+                "dict item": 1
+            }
+        },
+        "acquire": {
+            "load_in": [
+                "key1: 'And Fred said \"yabba dabba doo!\" to Barney.'\n",
+                "key2: \"And Fred said 'yabba dabba doo!' to Barney.\"\n",
+                "key3: \"And Fred said \"yabba dabba doo!\" to Barney.\"\n",
+                "key4: 'And Fred said 'yabba dabba doo!' to Barney.'\n",
+                "key5: And Fred said \"yabba dabba doo!\" to Barney.\n",
+                "key6: And Fred said 'yabba dabba doo!' to Barney."
+            ],
+            "load_out": {
+                "key1": "'And Fred said \"yabba dabba doo!\" to Barney.'",
+                "key2": "\"And Fred said 'yabba dabba doo!' to Barney.\"",
+                "key3": "\"And Fred said \"yabba dabba doo!\" to Barney.\"",
+                "key4": "'And Fred said 'yabba dabba doo!' to Barney.'",
+                "key5": "And Fred said \"yabba dabba doo!\" to Barney.",
+                "key6": "And Fred said 'yabba dabba doo!' to Barney."
+            },
+            "load_err": {},
+            "types": {
+                "dict item": 6
+            }
+        },
+        "sexton": {
+            "load_in": [
+                ">"
+            ],
+            "load_out": "",
+            "load_err": {},
+            "types": {
+                "string item": 1
+            }
+        },
+        "roomy": {
+            "load_in": [
+                "ingredients:\n",
+                "    green chilies"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "unrecognized line.",
+                "line": "    green chilies",
+                "lineno": 1,
+                "colno": 4
+            },
+            "types": {
+                "dict item": 1,
+                "unrecognized": 1
+            }
+        },
+        "brainwash": {
+            "load_in": [
+                "> what makes it green?\n",
+                ">"
+            ],
+            "load_out": "what makes it green?\n",
+            "load_err": {},
+            "types": {
+                "string item": 2
+            }
+        },
+        "president": {
+            "load_in": [
+                "{:}"
+            ],
+            "load_out": {
+                "": ""
+            },
+            "load_err": {},
+            "types": {
+                "inline dict": 1
+            }
+        },
+        "propose": {
+            "load_in": [
+                ""
+            ],
+            "load_out": null,
+            "load_err": {},
+            "types": {}
+        },
+        "pillage": {
+            "load_in": [
+                "key 1: value 1\n",
+                " key 2: value 2"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "invalid character in indentation: '\\xa0' (NO-BREAK SPACE).",
+                "line": " key 2: value 2",
+                "lineno": 1,
+                "colno": 0
+            },
+            "types": {
+                "dict item": 2
+            }
+        },
+        "tombstone": {
+            "load_in": [
+                "key 1 : value 1\n",
+                "key 2\t : value 2\n",
+                "key 3  : value 3"
+            ],
+            "load_out": {
+                "key 1": "value 1",
+                "key 2": "value 2",
+                "key 3": "value 3"
+            },
+            "load_err": {},
+            "types": {
+                "dict item": 3
+            }
+        },
+        "cavern": {
+            "load_in": [
+                "key 1:\n",
+                "key 2: "
+            ],
+            "load_out": {
+                "key 1": "",
+                "key 2": ""
+            },
+            "load_err": {},
+            "types": {
+                "dict item": 1,
+                "unrecognized": 1
+            }
+        },
+        "vagrant": {
+            "load_in": [
+                "inline dict:\n",
+                "    {a:A, b: B,c :C, d : D }\n",
+                "inline list:\n",
+                "    [a, b,c , d ]"
+            ],
+            "load_out": {
+                "inline dict": {
+                    "a": "A",
+                    "b": "B",
+                    "c": "C",
+                    "d": "D"
+                },
+                "inline list": [
+                    "a",
+                    "b",
+                    "c",
+                    "d"
+                ]
+            },
+            "load_err": {},
+            "types": {
+                "dict item": 2,
+                "inline dict": 1,
+                "inline list": 1
+            }
+        }
+    }
+}

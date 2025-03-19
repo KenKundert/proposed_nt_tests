@@ -1,0 +1,184 @@
+#!/usr/bin/env python3
+
+# IMPORTS {{{1
+import nestedtext as nt
+from inform import (
+    Error, fatal, indent, is_str, is_mapping, is_collection, os_error, warn
+)
+try:
+    from nestedtext import Lines
+except ImportError:
+    # To include line types in generated json file we need a direct link to
+    # NestedText Python implementation.  Create a symbolic link from this 
+    # directory to the source directory:
+    #     ln -s .../nestedtext/nestedtext/nestedtext.py .
+    warn(
+        "could not import internal NestedText Lines class,",
+        "line types are not available."
+    )
+    Lines = None
+from collections import defaultdict
+from itertools import batched
+from voluptuous import (
+    Schema, Optional, Required, Any, Self, Invalid, MultipleInvalid
+)
+from voluptuous_errors import report_voluptuous_errors
+import re
+import json
+
+
+# SCHEMA {{{1
+def as_string_with_escapes(arg):
+    if not is_str(arg):
+        raise Invalid("expected string.")
+    return arg.encode('ascii', errors='backslashreplace').decode('unicode-escape')
+
+hierarchy_with_escapes = Schema(
+    Any(as_string_with_escapes, [Self], {as_string_with_escapes: Self})
+)
+
+def evaluate(arg):
+    # use Python to evaluate argument if it begins with !
+    if is_str(arg):
+        arg = arg.strip()
+        if arg == 'None':
+            return None
+        if arg[0:1].strip() == '!':
+            return eval(arg[1:])
+    raise Invalid("expected ‘None’ or string that starts with ‘!’.")
+
+def as_index(arg):
+    if arg == 'None':
+        return None
+    return int(arg)
+
+tests_validator = Schema({
+    str: dict(
+        description = str,
+        load_in = str,
+        load_out = Any(evaluate, hierarchy_with_escapes),
+        load_err = dict(
+            message = str,
+            line = as_string_with_escapes,
+            lineno = as_index,
+            colno = as_index,
+        ),
+    )
+})
+
+# process backslash escapes {{{1
+nl_ptn = re.compile(rb'((?:\\n|\\r){1,2})\n')
+
+def fix_eol(match):
+    # remove implicitly added LF
+    stripped_of_lf = match.group(0).replace(b'\n', b'')
+
+    # replace explicitly specified \r and \n with CR and LF
+    return stripped_of_lf.replace(rb'\r', b'\r').replace(rb'\n', b'\n')
+
+def escape_and_split(text):
+    # check text for characters that should be escaped
+    for i, line in enumerate(text.splitlines()):
+        # check text for control characters other than LF
+        for i, c in enumerate(line):
+            index = ord(c)
+            if (index < 32 and index != 10) or index == 127:
+                # 32 is first printable character, 10 is LF, 127 is DEL
+                raise Error(
+                    f"must escape ASCII control character {c!r} ({index}).",
+                    codicil=f"{line}\n{i*' '}^"
+                )
+
+        # check for unicode whitespace characters
+        segments = f"❬{line}❭".replace(' ', '_').split()
+        if len(segments) > 1:
+            index = len(segments[0])-1
+            char = line[index]
+            raise Error(
+                f"must escape unicode whitespace character {char!r}.",
+                cuplrit=i+1, codicil=f"{line}\n{index*' '}^"
+            )
+
+    # convert to bytes
+    bytes = text.encode('ascii', errors='backslashreplace')
+
+    # remove LF from any line that ends with \r or \n
+    bytes = nl_ptn.sub(fix_eol, bytes)
+
+    # process any remaining escaped characters
+    text = bytes.decode("unicode-escape")
+
+    # split into lines, leave line ending on each line
+    # this is done to make the json easier to read
+    return [''.join(each) for each in batched(re.split(r'([\r\n]{1,2})', text), n=2)]
+
+
+# extract line types {{{1
+if Lines:
+    def extract_line_types(text):
+        types = defaultdict(int)
+        lines = Lines(text.splitlines(), True)
+
+        for line in lines.read_lines():
+            types[line.kind] += 1
+
+        return types
+else:
+    def extract_line_types(text):
+        return {}
+
+
+# read tests.nt {{{1
+try:
+    keymap = {}
+    tests = nt.load("tests.nt", keymap=keymap)
+    tests = tests_validator(tests)
+except OSError as e:
+    fatal(os_error(e))
+except nt.NestedTextError as e:
+    e.terminate()
+except MultipleInvalid as e:
+    report_voluptuous_errors(e, keymap, source='tests.nt')
+
+
+# process tests {{{1
+processed = {}
+regenerated = {}
+accumulated_line_types = defaultdict(int)
+try:
+    for key, fields in tests.items():
+        regenerated[key] = fields
+        if 'load_in' not in fields:
+            warn("‘load_in’ is missing.", culprit=key)
+            continue
+
+        load_in = fields.get('load_in')
+        load_out = fields.get('load_out')
+        load_err = fields.get("load_err", {})
+        if load_out and load_err:
+            raise Error("must not specify both ‘load_out’ and ‘load_err’.")
+
+        processed_test = dict(
+            load_in = escape_and_split(load_in),
+            load_out = load_out,
+            load_err = load_err,
+            types = extract_line_types(load_in),
+        )
+        for line_type, count in processed_test['types'].items():
+            accumulated_line_types[line_type] += count
+
+        processed[key] = processed_test
+
+    # write tests.json {{{1
+    with open('tests.json', 'w') as f:
+        json.dump(dict(load_tests=processed), f, indent=4, ensure_ascii=False)
+    nt.dump(regenerated, 'regenerated.nt')
+
+except OSError as e:
+    fatal(os_error(e))
+except Error as e:
+    e.terminate(culprit=e.get_culprit(key))
+
+if accumulated_line_types:
+    print("Count of line types found:")
+    print(indent(nt.dumps(accumulated_line_types, sort_keys=True)))
