@@ -3,7 +3,8 @@
 # IMPORTS {{{1
 import nestedtext as nt
 from inform import (
-    Error, fatal, indent, is_str, is_mapping, is_collection, os_error, warn
+    Error, fatal, indent, is_str, is_mapping, is_collection, os_error, 
+    terminate, warn
 )
 try:
     from nestedtext import Lines
@@ -139,6 +140,7 @@ except nt.NestedTextError as e:
     e.terminate()
 except MultipleInvalid as e:
     report_voluptuous_errors(e, keymap, source='tests.nt')
+    terminate()
 
 
 # process tests {{{1

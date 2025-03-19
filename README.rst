@@ -144,8 +144,10 @@ modify the tests, you can simply use *tests.json* from the GitHub repository.
 
 *tests.json* is a file suitable for use with `parametrize_from_file 
 <https://parametrize-from-file.readthedocs.io/en/latest/api/parametrize_from_file.html>`_, 
-which is a *pytest* plugin suitable for testing Python projects.  However, you 
-can use *tests.json* to implement tests for any language.
+which is a *pytest* plugin suitable for testing Python projects (*test_nt.py* 
+uses *parametrize_from_file* to apply *tests.json* to the Python implementation 
+of *NestedText).  However, you can use *tests.json* directly to implement tests 
+for any for any *NestedText* implementation in any language.
 
 It contains dictionary with a single key, *load_tests*.  The value of this key 
 is a nested dictionary where each key-value pair is one test.  The key is the 
@@ -198,3 +200,9 @@ types:
         list item
         string item
         unrecognized
+
+Caveats
+-------
+
+Be aware that this is a trial version of the official *NestedText* tests, and so 
+is subject to change.

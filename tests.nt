@@ -276,12 +276,12 @@ insulate:
     load_in:
         > code   : input signed [7:0] level
         > regex  : [+-]?([0-9]*[.])?[0-9]+\\s*\\w*
-        > math   : $x = \frac{{-b \pm \sqrt {b^2 - 4ac}}}{2a}$
+        > math   : $x = \frac{{-b \\pm \\sqrt {b^2 - 4ac}}}{2a}$
         > unicode: José and François
     load_out:
         code   : input signed [7:0] level
         regex  : [+-]?([0-9]*[.])?[0-9]+\\s*\\w*
-        math   : $x = \frac{{-b \pm \sqrt {b^2 - 4ac}}}{2a}$
+        math   : $x = \frac{{-b \\pm \\sqrt {b^2 - 4ac}}}{2a}$
         unicode: José and François
 
 # scent  {{{1
@@ -370,6 +370,36 @@ unlearn:
             email: margaret.hodge@ku.edu
             kids:
                 [Arnie, Zach, Maggie]
+
+# amnesty  {{{1
+amnesty:
+    description: too many values error
+    load_in:
+        > treasurer:
+        >     name: Fumiko Purvis
+        >     address: Home
+        >         > 3636 Buffalo Ave
+        >         > Topeka, Kansas 20692
+    load_err:
+        message: invalid indentation.
+        line:         > 3636 Buffalo Ave
+        lineno: 3
+        colno: 4
+
+# subdue  {{{1
+subdue:
+    description: another too many values error
+    load_in:
+        > treasurer:
+        >     name: Fumiko Purvis
+        >     address: \x20
+        >         > 3636 Buffalo Ave
+        >         > Topeka, Kansas 20692
+    load_err:
+        message: invalid indentation.
+        line:         > 3636 Buffalo Ave
+        lineno: 3
+        colno: 4
 
 # cornea  {{{1
 cornea:

@@ -394,6 +394,46 @@
                 "inline list": 1
             }
         },
+        "amnesty": {
+            "load_in": [
+                "treasurer:\n",
+                "    name: Fumiko Purvis\n",
+                "    address: Home\n",
+                "        > 3636 Buffalo Ave\n",
+                "        > Topeka, Kansas 20692"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "invalid indentation.",
+                "line": "        > 3636 Buffalo Ave",
+                "lineno": 3,
+                "colno": 4
+            },
+            "types": {
+                "dict item": 3,
+                "string item": 2
+            }
+        },
+        "subdue": {
+            "load_in": [
+                "treasurer:\n",
+                "    name: Fumiko Purvis\n",
+                "    address:  \n",
+                "        > 3636 Buffalo Ave\n",
+                "        > Topeka, Kansas 20692"
+            ],
+            "load_out": null,
+            "load_err": {
+                "message": "invalid indentation.",
+                "line": "        > 3636 Buffalo Ave",
+                "lineno": 3,
+                "colno": 4
+            },
+            "types": {
+                "dict item": 3,
+                "string item": 2
+            }
+        },
         "cornea": {
             "load_in": [
                 "> Lorem Ipsum\n",
