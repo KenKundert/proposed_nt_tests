@@ -39,7 +39,7 @@ can be performed with these test cases.
 The test cases are contained in tests.nt.  The convert command converts these 
 test cases into JSON.  It may also add an additional field, types, which is 
 a dictionary that contains the count of each possible line type that may be 
-found in a NestedText document.  The line types are:
+found in a NestedText document.  The line types are::
 
     blank
     comment
