@@ -19,7 +19,7 @@ The previous test suite had the following issues.
 
 4. The tests were categorized and numbered.  Both the categorization and 
    numbering were problematic.  Each test often fit into many categories but was 
-   placed in one.  The numbering implied an order when no natural order existed.
+   placed in one.  The numbering implied an order when no natural order exists.
 
 
 The New Test Suite
@@ -33,14 +33,12 @@ generated.  In light of this flexibility the best way to test a NestedText
 generator is to couple it with a NestedText reader and perform a round trip 
 through both, which can be performed with these test cases.
 
-The test cases are contained in tests.nt.  The convert command converts these 
-test cases into JSON.
-
-It is expected that the JSON file (tests.json) will be used to test NestedText 
-implementations).  The NestedText file of test cases (tests.nt) is used to 
-generate tests.json, and it only needed if you plan to add or modify tests.  
-Do not modify the JSON file directly, as any changes will be overridden 
-whenever convert is run.
+The test cases are contained in *tests.nt*.  The convert command converts these 
+test cases into JSON (*tests.json*).  It is expected this JSON file is what is 
+used to test NestedText implementations.  The NestedText file of test cases 
+(tests.nt) is used to generate tests.json, and it only needed if you plan to add 
+or modify tests.  Do not modify the JSON file directly, as any changes will be 
+overridden whenever convert is run.
 
 Each test case in tests.nt is a dictionary entry.  The key is used as the name 
 of the test.  The keys must be unique and are largely chosen at random, but 
