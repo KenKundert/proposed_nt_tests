@@ -114,8 +114,8 @@ specific cases where backslash escapes should be used:
 
 **Line Terminations**  Newlines are replaced by line feed (LF) characters unless 
 the newline is preceded by either \\r or \\n or both.  The \\r is replaced by 
-a carriage return (CR) and the \\n is replaced by a line feed (LF).  In this the 
-line termination characters can be specified explicitly on a per line basis.  
+a carriage return (CR) and the \\n is replaced by a line feed (LF).  In this way 
+the line termination characters can be specified explicitly on a per line basis.  
 For example::
 
     key 1: this line ends with CR & LF\r\n
@@ -126,13 +126,13 @@ For example::
 
 **White Space**  All white space other than ASCII spaces and newlines should be 
 made explicit by using backslash escape sequences.  Specifically tabs should be 
-specified as \\t and the Unicode white spaces should be specified using there 
+specified as \\t and the Unicode white spaces should be specified using their 
 \\x or \\u code (ex. \\xa0 or \\u00a0 for the no-break space).  In addition, end 
 of line spaces are optionally made explicit by replacing them with \\x20 if they 
 are important and there is concern that they may be accidentally lost.
 
 **Other Special Characters**  Backslash escape codes should also be used for 
-control code (\\a for bell, \\b for backspace, \\x7f for delete, \\x1b for 
+control codes (\\a for bell, \\b for backspace, \\x7f for delete, \\x1b for 
 escape, etc) and for backslash itself (\\\\).
 
 
@@ -142,9 +142,10 @@ tests.json
 The *convert* command creates *tests.json*, but if you do not wish to add or 
 modify the tests, you can simply use *tests.json* from the GitHub repository.
 
-*tests.json* is a file suitable for use with *parametrize_from_file*, which is 
-a *pytest* plugin suitable for testing Python projects.  However, you can use 
-*tests.json* to implement tests for any language.
+*tests.json* is a file suitable for use with `parametrize_from_file 
+<https://parametrize-from-file.readthedocs.io/en/latest/api/parametrize_from_file.html>`_, 
+which is a *pytest* plugin suitable for testing Python projects.  However, you 
+can use *tests.json* to implement tests for any language.
 
 It contains dictionary with a single key, *load_tests*.  The value of this key 
 is a nested dictionary where each key-value pair is one test.  The key is the 
