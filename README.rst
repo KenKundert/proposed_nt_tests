@@ -35,15 +35,15 @@ through both, which can be performed with these test cases.
 
 The test cases are contained in *tests.nt*.  The convert command converts these 
 test cases into JSON (*tests.json*).  It is expected this JSON file is what is 
-used to test NestedText implementations.  The NestedText file of test cases 
-(tests.nt) is used to generate tests.json, and it only needed if you plan to add 
-or modify tests.  Do not modify the JSON file directly, as any changes will be 
-overridden whenever convert is run.
+used to test NestedText implementations.  The NestedText file of test cases, 
+*tests.nt*, is used to generate *tests.json*, and it only needed if you plan to 
+add or modify tests.  Do not modify the JSON file directly, as any changes will 
+be overridden whenever *convert* is run.
 
-Each test case in tests.nt is a dictionary entry.  The key is used as the name 
-of the test.  The keys must be unique and are largely chosen at random, but 
-any words that are expected to be found within the test cases are rejected.  
-This allows test cases to be quickly found by searching for their name.
+Each test case in *tests.nt* is a dictionary entry.  The key is used as the name 
+of the test.  The keys must be unique and are largely chosen at random, but any 
+words that are expected to be found within the test cases are rejected.  This 
+allows test cases to be quickly found by searching for their name.
 
 The fields that may be specified are:
 
