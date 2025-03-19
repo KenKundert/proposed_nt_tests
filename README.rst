@@ -17,24 +17,21 @@ The previous test suite had the following issues.
 3. The tests were too tailored to the specific behavior of the Python NestedText 
    implementation.
 
-4. The tests were categorized and numbers.  Both the categorization and 
+4. The tests were categorized and numbered.  Both the categorization and 
    numbering were problematic.  Each test often fit into many categories but was 
-   placed in one.  The numbering implied an order, but that ordering was 
-   arbitrary.
+   placed in one.  The numbering implied an order when no natural order existed.
 
 
 The New Test Suite
 ------------------
 
-These test cases are focused on assuring that valid NestedText input is 
-properly read and invalid NestedText is properly identified by an 
-implementation of NestedText.
-
-No attempt is made to assure that an implementation produces valid NestedText.  
-There is considerably flexibility in the way that NestedText may be generated.  
-In light of this flexibility the best way to test a NestedText generator is to 
-couple it with a NestedText reader and perform a round trip through both, which 
-can be performed with these test cases.
+These test cases are focused on assuring that valid NestedText input is properly 
+read and invalid NestedText is properly identified by an implementation of 
+NestedText.  No attempt is made to assure that an implementation produces valid 
+NestedText.  There is considerably flexibility in the way that NestedText may be 
+generated.  In light of this flexibility the best way to test a NestedText 
+generator is to couple it with a NestedText reader and perform a round trip 
+through both, which can be performed with these test cases.
 
 The test cases are contained in tests.nt.  The convert command converts these 
 test cases into JSON.
