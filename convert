@@ -8,7 +8,7 @@ from inform import (
 try:
     from nestedtext import Lines
 except ImportError:
-    # To include line types in generated json file we need a direct link to
+    # To include line types in the generated json file we need a direct link to
     # NestedText Python implementation.  Create a symbolic link from this 
     # directory to the source directory:
     #     ln -s .../nestedtext/nestedtext/nestedtext.py .
