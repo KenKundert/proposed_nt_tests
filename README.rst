@@ -104,7 +104,7 @@ For example::
 **White Space**  All white space other than ASCII spaces and newlines should be 
 made explicit by using backslash escape sequences.  Specifically tabs should be 
 specified as \\t and the Unicode white spaces should be specified using there 
-\\x or \\u code (ex. \\xa0 or \\u00a0for the no-break space).  In addition, end 
+\\x or \\u code (ex. \\xa0 or \\u00a0 for the no-break space).  In addition, end 
 of line spaces are optionally made explicit by replacing them with \\x20 if they 
 are important and there is concern that they may be accidentally lost.
 
