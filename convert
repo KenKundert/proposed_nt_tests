@@ -191,3 +191,6 @@ except Error as e:
 if accumulated_line_types:
     print("Count of line types found:")
     print(indent(nt.dumps(accumulated_line_types, sort_keys=True)))
+    print()
+print(f"Number of tests: {len(tests)}")
+

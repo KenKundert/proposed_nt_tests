@@ -118,6 +118,14 @@ perimeter:
         >                                                — Erik Jonsson
         >
 
+# precipice  {{{1
+precipice:
+    description: dictionary with one key-value pair, both are empty strings
+    load_in:
+        > :
+        >   >
+    load_out: !{'':''}
+
 # province  {{{1
 province:
     description: simple single-level dictionary with eof linefeed
@@ -171,9 +179,78 @@ theater:
             > first line of value 5
             > second line of value 5
 
+# crescent  {{{1
+crescent:
+    description: list with one empty string
+    load_in: -
+    load_out: !['']
+
+# automaton  {{{1
+automaton:
+    description: simple single-level list with eof linefeed
+    load_in:
+        > - value 1
+        > - value 2
+        > - value 3
+        >
+    load_out:
+        - value 1
+        - value 2
+        - value 3
+
+# wally  {{{1
+wally:
+    description: simple single-level list, no eof linefeed
+    load_in:
+        > - value 1
+        > - value 2
+        > - value 3
+    load_out:
+        - value 1
+        - value 2
+        - value 3
+
+# native  {{{1
+native:
+    description: top-level list with a second level of nesting
+    load_in:
+        > - value 1
+        > -
+        > -
+        >     - value 3a
+        >     - value 3b
+        > -
+        >     key 4a: value 4a
+        >     key 4b: value 4b
+        > -
+        >     > first line of value 5
+        >     > second line of value 5
+    load_out:
+        - value 1
+        -
+        -
+            - value 3a
+            - value 3b
+        -
+            key 4a: value 4a
+            key 4b: value 4b
+        -
+            > first line of value 5
+            > second line of value 5
+
+# answer  {{{1
+answer:
+    description: nested dictionaries with empty strings as keys and value
+    load_in:
+        > :
+        >     :
+        >         >
+    load_out:
+        > !{'':{'':''}}
+
 # screwy  {{{1
 screwy:
-    description: dictionary with key-items
+    description: dictionary with multiline keys
     load_in:
         > : key 1
         > :     the first key
@@ -188,6 +265,84 @@ screwy:
         : key 2: the second key
             - value 2a
             - value 2b
+
+# socialize  {{{1
+socialize:
+    description: empty inline dictionary
+    load_in: {}
+    load_out: !{}
+
+# abound  {{{1
+abound:
+    description: inline dictionary with one key-value pair, both empty strings
+    load_in: {:}
+    load_out: !{'':''}
+
+# washday  {{{1
+washday:
+    description: a simple top-level inline dictionary
+    load_in: {key 1: value 1, key 2: value 2, key 3: value 3}
+    load_out:
+        {key 1: value 1, key 2: value 2, key 3: value 3}
+
+# exhume  {{{1
+exhume:
+    description: a nested top-level inline dictionary
+    load_in: {key 1: value 1, key 2: [value 2a, value 2b], key 3: {key 3a: value 3a, key 3b: value 3b}}
+    load_out:
+        {key 1: value 1, key 2: [value 2a, value 2b], key 3: {key 3a: value 3a, key 3b: value 3b}}
+
+# ointment  {{{1
+ointment:
+    description: empty inline list
+    load_in: []
+    load_out: ![]
+
+# banquet  {{{1
+banquet:
+    description: inline list containing one empty string
+    load_in: [ ]
+    load_out: !['']
+
+# cliff  {{{1
+cliff:
+    description: another inline list containing one empty string
+    load_in: [  ]
+    load_out: !['']
+
+# stingray  {{{1
+stingray:
+    description: a simple top-level inline lies
+    load_in: [value 1, value 2, value 3]
+    load_out:
+        [value 1, value 2, value 3]
+
+# spastic  {{{1
+spastic:
+    description: a nested top-level inline list
+    load_in: [value 1, [value 2a, value 2b], {key 3a: value 3a, key 3b: value 3b}]
+    load_out:
+        [value 1, [value 2a, value 2b], {key 3a: value 3a, key 3b: value 3b}]
+
+# brother  {{{1
+brother:
+    description: empty document
+    load_in:
+    load_out: !None
+
+# cosmology  {{{1
+cosmology:
+    description: empty document with comment
+    load_in: #
+    load_out: !None
+
+# clone  {{{1
+clone:
+    description: empty document with blank line
+    load_in:
+        >
+        >
+    load_out: !None
 
 # spillage  {{{1
 spillage:
@@ -455,73 +610,6 @@ moccasin:
                                                           z:
                                                            -
 
-# washday  {{{1
-washday:
-    description: a simple top-level inline dictionary
-    load_in: {key 1: value 1, key 2: value 2, key 3: value 3}
-    load_out:
-        {key 1: value 1, key 2: value 2, key 3: value 3}
-
-# exhume  {{{1
-exhume:
-    description: a nested top-level inline dictionary
-    load_in: {key 1: value 1, key 2: [value 2a, value 2b], key 3: {key 3a: value 3a, key 3b: value 3b}}
-    load_out:
-        {key 1: value 1, key 2: [value 2a, value 2b], key 3: {key 3a: value 3a, key 3b: value 3b}}
-
-# automaton  {{{1
-automaton:
-    description: simple single-level list with eof linefeed
-    load_in:
-        > - value 1
-        > - value 2
-        > - value 3
-        >
-    load_out:
-        - value 1
-        - value 2
-        - value 3
-
-# wally  {{{1
-wally:
-    description: simple single-level list, no eof linefeed
-    load_in:
-        > - value 1
-        > - value 2
-        > - value 3
-    load_out:
-        - value 1
-        - value 2
-        - value 3
-
-# native  {{{1
-native:
-    description: top-level list with a second level of nesting
-    load_in:
-        > - value 1
-        > -
-        > -
-        >     - value 3a
-        >     - value 3b
-        > -
-        >     key 4a: value 4a
-        >     key 4b: value 4b
-        > -
-        >     > first line of value 5
-        >     > second line of value 5
-    load_out:
-        - value 1
-        -
-        -
-            - value 3a
-            - value 3b
-        -
-            key 4a: value 4a
-            key 4b: value 4b
-        -
-            > first line of value 5
-            > second line of value 5
-
 # insulate  {{{1
 insulate:
     description: dictionary with a variety of end-of-line strings
@@ -654,6 +742,26 @@ subdue:
         line:         > 3636 Buffalo Ave
         lineno: 3
         colno: 4
+
+# balloon  {{{1
+balloon:
+    description: multiline key without a value
+    load_in: :
+    load_err:
+        message: indented value must follow multi-line key.
+        line: :
+        lineno: 0
+
+# lolly  {{{1
+lolly:
+    description: nested multiline key without a value
+    load_in:
+        > :
+        >     :
+    load_err:
+        message: indented value must follow multi-line key.
+        line:     :
+        lineno: 1
 
 # cornea  {{{1
 cornea:
@@ -2110,20 +2218,6 @@ emollient:
         lineno: 1
         colno: 0
 
-# stingray  {{{1
-stingray:
-    description: a simple top-level inline lies
-    load_in: [value 1, value 2, value 3]
-    load_out:
-        [value 1, value 2, value 3]
-
-# spastic  {{{1
-spastic:
-    description: a nested top-level inline list
-    load_in: [value 1, [value 2a, value 2b], {key 3a: value 3a, key 3b: value 3b}]
-    load_out:
-        [value 1, [value 2a, value 2b], {key 3a: value 3a, key 3b: value 3b}]
-
 # modernize  {{{1
 modernize:
     description: Miscellaneous inline dictionaries
@@ -3147,4 +3241,15 @@ amendment:
         line: > \xc0
         lineno: 0
         colno: 2
+
+# academic  {{{1
+academic:
+    description: document with UTF-8 BOM
+        # BOM is short for byte-order-mark
+        # UTF-8 does not support different byte orders and so the BOM is not 
+        # needed, however it's presence is optional and can sometimes help to 
+        # recognize the encoding.
+    bytes_in: \xEF\xBB\xBF{}
+    encoding: bytes
+    load_out: !{}
 

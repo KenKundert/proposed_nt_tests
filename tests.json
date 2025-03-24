@@ -36,6 +36,18 @@
                 "string item": 5
             }
         },
+        "precipice": {
+            "load_in": "OgogID4=",
+            "load_out": {
+                "": ""
+            },
+            "load_err": {},
+            "encoding": "utf-8",
+            "types": {
+                "key item": 1,
+                "string item": 1
+            }
+        },
         "province": {
             "load_in": "a2V5IDE6IHZhbHVlIDEKa2V5IDI6IHZhbHVlIDIKa2V5IDM6IHZhbHVlIDMK",
             "load_out": {
@@ -85,6 +97,80 @@
                 "string item": 2
             }
         },
+        "crescent": {
+            "load_in": "LQ==",
+            "load_out": [
+                ""
+            ],
+            "load_err": {},
+            "encoding": "utf-8",
+            "types": {
+                "list item": 1
+            }
+        },
+        "automaton": {
+            "load_in": "LSB2YWx1ZSAxCi0gdmFsdWUgMgotIHZhbHVlIDMK",
+            "load_out": [
+                "value 1",
+                "value 2",
+                "value 3"
+            ],
+            "load_err": {},
+            "encoding": "utf-8",
+            "types": {
+                "list item": 3
+            }
+        },
+        "wally": {
+            "load_in": "LSB2YWx1ZSAxCi0gdmFsdWUgMgotIHZhbHVlIDM=",
+            "load_out": [
+                "value 1",
+                "value 2",
+                "value 3"
+            ],
+            "load_err": {},
+            "encoding": "utf-8",
+            "types": {
+                "list item": 3
+            }
+        },
+        "native": {
+            "load_in": "LSB2YWx1ZSAxCi0KLQogICAgLSB2YWx1ZSAzYQogICAgLSB2YWx1ZSAzYgotCiAgICBrZXkgNGE6IHZhbHVlIDRhCiAgICBrZXkgNGI6IHZhbHVlIDRiCi0KICAgID4gZmlyc3QgbGluZSBvZiB2YWx1ZSA1CiAgICA+IHNlY29uZCBsaW5lIG9mIHZhbHVlIDU=",
+            "load_out": [
+                "value 1",
+                "",
+                [
+                    "value 3a",
+                    "value 3b"
+                ],
+                {
+                    "key 4a": "value 4a",
+                    "key 4b": "value 4b"
+                },
+                "first line of value 5\nsecond line of value 5"
+            ],
+            "load_err": {},
+            "encoding": "utf-8",
+            "types": {
+                "list item": 7,
+                "dict item": 2,
+                "string item": 2
+            }
+        },
+        "answer": {
+            "load_in": "OgogICAgOgogICAgICAgID4=",
+            "load_out": {
+                "": {
+                    "": ""
+                }
+            },
+            "load_err": {},
+            "encoding": "utf-8",
+            "types": {
+                "key item": 2,
+                "string item": 1
+            }
+        },
         "screwy": {
             "load_in": "OiBrZXkgMQo6ICAgICB0aGUgZmlyc3Qga2V5CiAgICA+IHZhbHVlIDEKOiBrZXkgMjogdGhlIHNlY29uZCBrZXkKICAgIC0gdmFsdWUgMmEKICAgIC0gdmFsdWUgMmI=",
             "load_out": {
@@ -100,6 +186,146 @@
                 "key item": 3,
                 "string item": 1,
                 "list item": 2
+            }
+        },
+        "socialize": {
+            "load_in": "e30=",
+            "load_out": {},
+            "load_err": {},
+            "encoding": "utf-8",
+            "types": {
+                "inline dict": 1
+            }
+        },
+        "abound": {
+            "load_in": "ezp9",
+            "load_out": {
+                "": ""
+            },
+            "load_err": {},
+            "encoding": "utf-8",
+            "types": {
+                "inline dict": 1
+            }
+        },
+        "washday": {
+            "load_in": "e2tleSAxOiB2YWx1ZSAxLCBrZXkgMjogdmFsdWUgMiwga2V5IDM6IHZhbHVlIDN9",
+            "load_out": {
+                "key 1": "value 1",
+                "key 2": "value 2",
+                "key 3": "value 3"
+            },
+            "load_err": {},
+            "encoding": "utf-8",
+            "types": {
+                "inline dict": 1
+            }
+        },
+        "exhume": {
+            "load_in": "e2tleSAxOiB2YWx1ZSAxLCBrZXkgMjogW3ZhbHVlIDJhLCB2YWx1ZSAyYl0sIGtleSAzOiB7a2V5IDNhOiB2YWx1ZSAzYSwga2V5IDNiOiB2YWx1ZSAzYn19",
+            "load_out": {
+                "key 1": "value 1",
+                "key 2": [
+                    "value 2a",
+                    "value 2b"
+                ],
+                "key 3": {
+                    "key 3a": "value 3a",
+                    "key 3b": "value 3b"
+                }
+            },
+            "load_err": {},
+            "encoding": "utf-8",
+            "types": {
+                "inline dict": 1
+            }
+        },
+        "ointment": {
+            "load_in": "W10=",
+            "load_out": [],
+            "load_err": {},
+            "encoding": "utf-8",
+            "types": {
+                "inline list": 1
+            }
+        },
+        "banquet": {
+            "load_in": "WyBd",
+            "load_out": [
+                ""
+            ],
+            "load_err": {},
+            "encoding": "utf-8",
+            "types": {
+                "inline list": 1
+            }
+        },
+        "cliff": {
+            "load_in": "WyAgXQ==",
+            "load_out": [
+                ""
+            ],
+            "load_err": {},
+            "encoding": "utf-8",
+            "types": {
+                "inline list": 1
+            }
+        },
+        "stingray": {
+            "load_in": "W3ZhbHVlIDEsIHZhbHVlIDIsIHZhbHVlIDNd",
+            "load_out": [
+                "value 1",
+                "value 2",
+                "value 3"
+            ],
+            "load_err": {},
+            "encoding": "utf-8",
+            "types": {
+                "inline list": 1
+            }
+        },
+        "spastic": {
+            "load_in": "W3ZhbHVlIDEsIFt2YWx1ZSAyYSwgdmFsdWUgMmJdLCB7a2V5IDNhOiB2YWx1ZSAzYSwga2V5IDNiOiB2YWx1ZSAzYn1d",
+            "load_out": [
+                "value 1",
+                [
+                    "value 2a",
+                    "value 2b"
+                ],
+                {
+                    "key 3a": "value 3a",
+                    "key 3b": "value 3b"
+                }
+            ],
+            "load_err": {},
+            "encoding": "utf-8",
+            "types": {
+                "inline list": 1
+            }
+        },
+        "brother": {
+            "load_in": "",
+            "load_out": null,
+            "load_err": {},
+            "encoding": "utf-8",
+            "types": {}
+        },
+        "cosmology": {
+            "load_in": "Iw==",
+            "load_out": null,
+            "load_err": {},
+            "encoding": "utf-8",
+            "types": {
+                "comment": 1
+            }
+        },
+        "clone": {
+            "load_in": "Cg==",
+            "load_out": null,
+            "load_err": {},
+            "encoding": "utf-8",
+            "types": {
+                "blank": 1
             }
         },
         "spillage": {
@@ -425,87 +651,6 @@
                 "inline dict": 1
             }
         },
-        "washday": {
-            "load_in": "e2tleSAxOiB2YWx1ZSAxLCBrZXkgMjogdmFsdWUgMiwga2V5IDM6IHZhbHVlIDN9",
-            "load_out": {
-                "key 1": "value 1",
-                "key 2": "value 2",
-                "key 3": "value 3"
-            },
-            "load_err": {},
-            "encoding": "utf-8",
-            "types": {
-                "inline dict": 1
-            }
-        },
-        "exhume": {
-            "load_in": "e2tleSAxOiB2YWx1ZSAxLCBrZXkgMjogW3ZhbHVlIDJhLCB2YWx1ZSAyYl0sIGtleSAzOiB7a2V5IDNhOiB2YWx1ZSAzYSwga2V5IDNiOiB2YWx1ZSAzYn19",
-            "load_out": {
-                "key 1": "value 1",
-                "key 2": [
-                    "value 2a",
-                    "value 2b"
-                ],
-                "key 3": {
-                    "key 3a": "value 3a",
-                    "key 3b": "value 3b"
-                }
-            },
-            "load_err": {},
-            "encoding": "utf-8",
-            "types": {
-                "inline dict": 1
-            }
-        },
-        "automaton": {
-            "load_in": "LSB2YWx1ZSAxCi0gdmFsdWUgMgotIHZhbHVlIDMK",
-            "load_out": [
-                "value 1",
-                "value 2",
-                "value 3"
-            ],
-            "load_err": {},
-            "encoding": "utf-8",
-            "types": {
-                "list item": 3
-            }
-        },
-        "wally": {
-            "load_in": "LSB2YWx1ZSAxCi0gdmFsdWUgMgotIHZhbHVlIDM=",
-            "load_out": [
-                "value 1",
-                "value 2",
-                "value 3"
-            ],
-            "load_err": {},
-            "encoding": "utf-8",
-            "types": {
-                "list item": 3
-            }
-        },
-        "native": {
-            "load_in": "LSB2YWx1ZSAxCi0KLQogICAgLSB2YWx1ZSAzYQogICAgLSB2YWx1ZSAzYgotCiAgICBrZXkgNGE6IHZhbHVlIDRhCiAgICBrZXkgNGI6IHZhbHVlIDRiCi0KICAgID4gZmlyc3QgbGluZSBvZiB2YWx1ZSA1CiAgICA+IHNlY29uZCBsaW5lIG9mIHZhbHVlIDU=",
-            "load_out": [
-                "value 1",
-                "",
-                [
-                    "value 3a",
-                    "value 3b"
-                ],
-                {
-                    "key 4a": "value 4a",
-                    "key 4b": "value 4b"
-                },
-                "first line of value 5\nsecond line of value 5"
-            ],
-            "load_err": {},
-            "encoding": "utf-8",
-            "types": {
-                "list item": 7,
-                "dict item": 2,
-                "string item": 2
-            }
-        },
         "insulate": {
             "load_in": "Y29kZSAgIDogaW5wdXQgc2lnbmVkIFs3OjBdIGxldmVsCnJlZ2V4ICA6IFsrLV0/KFswLTldKlsuXSk/WzAtOV0rXHMqXHcqCm1hdGggICA6ICR4ID0gXGZyYWN7ey1iIFxwbSBcc3FydCB7Yl4yIC0gNGFjfX19ezJhfSQKdW5pY29kZTogSm9zw6kgYW5kIEZyYW7Dp29pcw==",
             "load_out": {
@@ -621,6 +766,32 @@
             "types": {
                 "dict item": 3,
                 "string item": 2
+            }
+        },
+        "balloon": {
+            "load_in": "Og==",
+            "load_out": null,
+            "load_err": {
+                "message": "indented value must follow multi-line key.",
+                "line": ":",
+                "lineno": 0
+            },
+            "encoding": "utf-8",
+            "types": {
+                "key item": 1
+            }
+        },
+        "lolly": {
+            "load_in": "OgogICAgOg==",
+            "load_out": null,
+            "load_err": {
+                "message": "indented value must follow multi-line key.",
+                "line": "    :",
+                "lineno": 1
+            },
+            "encoding": "utf-8",
+            "types": {
+                "key item": 2
             }
         },
         "cornea": {
@@ -1444,38 +1615,6 @@
             "encoding": "utf-8",
             "types": {
                 "dict item": 3
-            }
-        },
-        "stingray": {
-            "load_in": "W3ZhbHVlIDEsIHZhbHVlIDIsIHZhbHVlIDNd",
-            "load_out": [
-                "value 1",
-                "value 2",
-                "value 3"
-            ],
-            "load_err": {},
-            "encoding": "utf-8",
-            "types": {
-                "inline list": 1
-            }
-        },
-        "spastic": {
-            "load_in": "W3ZhbHVlIDEsIFt2YWx1ZSAyYSwgdmFsdWUgMmJdLCB7a2V5IDNhOiB2YWx1ZSAzYSwga2V5IDNiOiB2YWx1ZSAzYn1d",
-            "load_out": [
-                "value 1",
-                [
-                    "value 2a",
-                    "value 2b"
-                ],
-                {
-                    "key 3a": "value 3a",
-                    "key 3b": "value 3b"
-                }
-            ],
-            "load_err": {},
-            "encoding": "utf-8",
-            "types": {
-                "inline list": 1
             }
         },
         "modernize": {
@@ -2751,6 +2890,15 @@
             "encoding": "bytes",
             "types": {
                 "string item": 3
+            }
+        },
+        "academic": {
+            "load_in": "77u/e30=",
+            "load_out": {},
+            "load_err": {},
+            "encoding": "bytes",
+            "types": {
+                "unrecognized": 1
             }
         }
     }

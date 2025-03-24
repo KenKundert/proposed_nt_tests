@@ -221,4 +221,7 @@ Be aware that this is a trial version of the official *NestedText* tests, and so
 is subject to change.
 
 This is the second trial version of this new test suite.  It was uploaded on 23 
-March 2025.
+March 2025 and again on 24 March with more tests (there are now 143 tests).
+
+Version 3.7 of the Python implementation of *NestedText* does not yet pass all 
+of these tests.
