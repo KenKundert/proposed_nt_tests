@@ -58,7 +58,7 @@ def as_index(arg):
 tests_validator = Schema({
     str: dict(
         description = str,
-        load_in = str,
+        string_in = str,
         bytes_in = str,
         encoding = str,
         load_out = Any(evaluate, hierarchy_with_escapes),
@@ -140,19 +140,19 @@ accumulated_line_types = defaultdict(int)
 try:
     for key, fields in tests.items():
         regenerated[key] = fields
-        if 'load_in' not in fields and 'bytes_in' not in fields:
-            warn("‘load_in’ is missing.", culprit=key)
+        if 'string_in' not in fields and 'bytes_in' not in fields:
+            warn("‘string_in’ is missing.", culprit=key)
             continue
 
-        if 'load_in' in fields and 'bytes_in' in fields:
-            warn("must not have both ‘load_in’ and ‘bytes_in’ fields.", culprit=key)
+        if 'string_in' in fields and 'bytes_in' in fields:
+            warn("must not have both ‘string_in’ and ‘bytes_in’ fields.", culprit=key)
             continue
 
-        # process load_in or bytes_in
+        # process string_in or bytes_in
         encoding = fields.get('encoding', 'utf-8')
         try:
-            if 'load_in' in fields:
-                load_in = fields.get('load_in')
+            if 'string_in' in fields:
+                load_in = fields.get('string_in')
                 load_in_encoded = utf8_encode(load_in, encoding)
             else:
                 load_in = fields.get('bytes_in')

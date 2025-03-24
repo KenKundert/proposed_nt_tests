@@ -42,7 +42,7 @@
 # description (str):
 #     Simply describes the test.  Is optional and unused.
 #
-# load_in (str):
+# string_in (str):
 #     This is a string that will be fed into a NestedText load function.  This 
 #     string should be NestedText, though it may contain errors.
 #
@@ -61,7 +61,7 @@
 #         NestedText.
 #
 #     line (str):
-#         The text of the line in the NestedText input from load_in that 
+#         The text of the line in the NestedText input from string_in that 
 #         contains the error.
 #
 #     lineno (None, int):
@@ -73,13 +73,13 @@
 #         column is column 0.
 #
 # Control characters and Unicode white space characters are expected to be 
-# backslash escaped in load_in, load_out, and load_err.lines.
+# backslash escaped in string_in, load_out, and load_err.lines.
 
 
 # alpine  {{{1
 alpine:
     description: empty single line multiline string
-    load_in:
+    string_in:
         > >
     load_out:
         >
@@ -87,7 +87,7 @@ alpine:
 # medical  {{{1
 medical:
     description: empty multiple line multiline string
-    load_in:
+    string_in:
         > >
         > >
     load_out:
@@ -97,7 +97,7 @@ medical:
 # terrier  {{{1
 terrier:
     description: single line multiline string
-    load_in:
+    string_in:
         > > Those who can make you believe absurdities can make you commit atrocities.  — Voltaire
     load_out:
         > Those who can make you believe absurdities can make you commit atrocities.  — Voltaire
@@ -105,7 +105,7 @@ terrier:
 # perimeter  {{{1
 perimeter:
     description: multiple line multiline string
-    load_in:
+    string_in:
         > > “The worth of a man to his society can be measured by the contribution he
         > >  makes to it — less the cost of sustaining himself and his mistakes in it.”
         > >
@@ -121,7 +121,7 @@ perimeter:
 # precipice  {{{1
 precipice:
     description: dictionary with one key-value pair, both are empty strings
-    load_in:
+    string_in:
         > :
         >   >
     load_out: !{'':''}
@@ -129,7 +129,7 @@ precipice:
 # province  {{{1
 province:
     description: simple single-level dictionary with eof linefeed
-    load_in:
+    string_in:
         > key 1: value 1
         > key 2: value 2
         > key 3: value 3
@@ -142,7 +142,7 @@ province:
 # detonator  {{{1
 detonator:
     description: simple single-level dictionary, no eof linefeed
-    load_in:
+    string_in:
         > key 1: value 1
         > key 2: value 2
         > key 3: value 3
@@ -154,7 +154,7 @@ detonator:
 # theater  {{{1
 theater:
     description: top-level dictionary with a second level of nesting
-    load_in:
+    string_in:
         > key 1: value 1
         > key 2:
         > key 3:
@@ -182,13 +182,13 @@ theater:
 # crescent  {{{1
 crescent:
     description: list with one empty string
-    load_in: -
+    string_in: -
     load_out: !['']
 
 # automaton  {{{1
 automaton:
     description: simple single-level list with eof linefeed
-    load_in:
+    string_in:
         > - value 1
         > - value 2
         > - value 3
@@ -201,7 +201,7 @@ automaton:
 # wally  {{{1
 wally:
     description: simple single-level list, no eof linefeed
-    load_in:
+    string_in:
         > - value 1
         > - value 2
         > - value 3
@@ -213,7 +213,7 @@ wally:
 # native  {{{1
 native:
     description: top-level list with a second level of nesting
-    load_in:
+    string_in:
         > - value 1
         > -
         > -
@@ -241,7 +241,7 @@ native:
 # answer  {{{1
 answer:
     description: nested dictionaries with empty strings as keys and value
-    load_in:
+    string_in:
         > :
         >     :
         >         >
@@ -251,7 +251,7 @@ answer:
 # screwy  {{{1
 screwy:
     description: dictionary with multiline keys
-    load_in:
+    string_in:
         > : key 1
         > :     the first key
         >     > value 1
@@ -269,77 +269,77 @@ screwy:
 # socialize  {{{1
 socialize:
     description: empty inline dictionary
-    load_in: {}
+    string_in: {}
     load_out: !{}
 
 # abound  {{{1
 abound:
     description: inline dictionary with one key-value pair, both empty strings
-    load_in: {:}
+    string_in: {:}
     load_out: !{'':''}
 
 # washday  {{{1
 washday:
     description: a simple top-level inline dictionary
-    load_in: {key 1: value 1, key 2: value 2, key 3: value 3}
+    string_in: {key 1: value 1, key 2: value 2, key 3: value 3}
     load_out:
         {key 1: value 1, key 2: value 2, key 3: value 3}
 
 # exhume  {{{1
 exhume:
     description: a nested top-level inline dictionary
-    load_in: {key 1: value 1, key 2: [value 2a, value 2b], key 3: {key 3a: value 3a, key 3b: value 3b}}
+    string_in: {key 1: value 1, key 2: [value 2a, value 2b], key 3: {key 3a: value 3a, key 3b: value 3b}}
     load_out:
         {key 1: value 1, key 2: [value 2a, value 2b], key 3: {key 3a: value 3a, key 3b: value 3b}}
 
 # ointment  {{{1
 ointment:
     description: empty inline list
-    load_in: []
+    string_in: []
     load_out: ![]
 
 # banquet  {{{1
 banquet:
     description: inline list containing one empty string
-    load_in: [ ]
+    string_in: [ ]
     load_out: !['']
 
 # cliff  {{{1
 cliff:
     description: another inline list containing one empty string
-    load_in: [  ]
+    string_in: [  ]
     load_out: !['']
 
 # stingray  {{{1
 stingray:
     description: a simple top-level inline lies
-    load_in: [value 1, value 2, value 3]
+    string_in: [value 1, value 2, value 3]
     load_out:
         [value 1, value 2, value 3]
 
 # spastic  {{{1
 spastic:
     description: a nested top-level inline list
-    load_in: [value 1, [value 2a, value 2b], {key 3a: value 3a, key 3b: value 3b}]
+    string_in: [value 1, [value 2a, value 2b], {key 3a: value 3a, key 3b: value 3b}]
     load_out:
         [value 1, [value 2a, value 2b], {key 3a: value 3a, key 3b: value 3b}]
 
 # brother  {{{1
 brother:
     description: empty document
-    load_in:
+    string_in:
     load_out: !None
 
 # cosmology  {{{1
 cosmology:
     description: empty document with comment
-    load_in: #
+    string_in: #
     load_out: !None
 
 # clone  {{{1
 clone:
     description: empty document with blank line
-    load_in:
+    string_in:
         >
         >
     load_out: !None
@@ -347,7 +347,7 @@ clone:
 # spillage  {{{1
 spillage:
     description: dictionaries and lists with deep nesting
-    load_in:
+    string_in:
         > a:
         >  -
         >   b:
@@ -554,7 +554,7 @@ spillage:
 # moccasin  {{{1
 moccasin:
     description: inline dictionaries and lists with deep nesting
-    load_in:
+    string_in:
         > {a:[{b:[{c:[{d:[{e:[{f:[{g:[{h:[{i:[{j:[{k:[{l:[{m:[{n:[{o:[{p:[{q:[{r:[{s:[{t:[{u:[{v:[{w:[{x:[{y:[{z:[ ]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}
     load_out:
         a:
@@ -613,7 +613,7 @@ moccasin:
 # insulate  {{{1
 insulate:
     description: dictionary with a variety of end-of-line strings
-    load_in:
+    string_in:
         > code   : input signed [7:0] level
         > regex  : [+-]?([0-9]*[.])?[0-9]+\\s*\\w*
         > math   : $x = \\frac{{-b \\pm \\sqrt {b^2 - 4ac}}}{2a}$
@@ -627,7 +627,7 @@ insulate:
 # scent  {{{1
 scent:
     description: simple multiline string
-    load_in:
+    string_in:
         > >     This is the first line of a multiline string, it is indented.
         > > This is the second line, it is not indented.
     load_out:
@@ -637,7 +637,7 @@ scent:
 # smithy  {{{1
 smithy:
     description: empty document
-    load_in:
+    string_in:
         > # this line is ignored
         >
         > # this line is also ignored, as is the blank line above.
@@ -649,7 +649,7 @@ smithy:
 # import  {{{1
 import:
     description: multiline string interrupted with a comment
-    load_in:
+    string_in:
         > > this is the first line of a multiline string
         > # this line is ignored
         > > this is the second line of the multiline string
@@ -660,7 +660,7 @@ import:
 # unlearn  {{{1
 unlearn:
     description: address book example
-    load_in:
+    string_in:
         > # Contact information for our officers
         >
         > Katheryn McDaniel:
@@ -716,7 +716,7 @@ unlearn:
 # amnesty  {{{1
 amnesty:
     description: too many values error
-    load_in:
+    string_in:
         > treasurer:
         >     name: Fumiko Purvis
         >     address: Home
@@ -746,7 +746,7 @@ subdue:
 # balloon  {{{1
 balloon:
     description: multiline key without a value
-    load_in: :
+    string_in: :
     load_err:
         message: indented value must follow multi-line key.
         line: :
@@ -755,7 +755,7 @@ balloon:
 # lolly  {{{1
 lolly:
     description: nested multiline key without a value
-    load_in:
+    string_in:
         > :
         >     :
     load_err:
@@ -766,7 +766,7 @@ lolly:
 # cornea  {{{1
 cornea:
     description: multiple line multiline string with and embedded whitespace
-    load_in:
+    string_in:
         > > Lorem Ipsum
         > >
         > >     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -792,7 +792,7 @@ tacky:
     description:
         > multiple line multiline string with leading, trailing and embedded 
         > whitespace
-    load_in:
+    string_in:
         > >
         > > Lorem Ipsum
         > >
@@ -822,7 +822,7 @@ mailbox:
     description:
         > multiple line multiline string with leading, trailing and embedded 
         > comments
-    load_in:
+    string_in:
         > >
         > > Lorem Ipsum
         > >
@@ -1019,7 +1019,7 @@ beset:
     description:
         > various multiline strings with leading, trailing, and internal 
         > newlines and comments
-    load_in:
+    string_in:
         > no newlines:
         >     > line 1
         >     > line 2
@@ -1161,7 +1161,7 @@ beset:
 # gendarme  {{{1
 gendarme:
     description: error due to inconsistent indent level
-    load_in:
+    string_in:
         > ingredients:
         >   > green chilies
         >     > red chilies
@@ -1174,7 +1174,7 @@ gendarme:
 # sketchy  {{{1
 sketchy:
     description: error because content does not start in column 1
-    load_in:
+    string_in:
         >      > green chilies
         >      > red chilies
     load_err:
@@ -1186,7 +1186,7 @@ sketchy:
 # prankster  {{{1
 prankster:
     description: error because the indents are tabs
-    load_in:
+    string_in:
         > ingredients:
         > \t> green chilies
         > \t> red chilies
@@ -1199,7 +1199,7 @@ prankster:
 # streamer  {{{1
 streamer:
     description: error because indentation contains a unicode space
-    load_in:
+    string_in:
         > ingredients:
         >         > green chilies
         >     \xa0   > red chilies
@@ -1213,7 +1213,7 @@ streamer:
 # guinea  {{{1
 guinea:
     description: dictionary with empty values
-    load_in:
+    string_in:
         > key1:
         > key2:
     load_out:
@@ -1222,7 +1222,7 @@ guinea:
 # dusty  {{{1
 dusty:
     description: dictionary with empty values
-    load_in:
+    string_in:
         > key1: 
         > key2: 
     load_out:
@@ -1231,7 +1231,7 @@ dusty:
 # jaunt  {{{1
 jaunt:
     description: dictionary with multiline key
-    load_in:
+    string_in:
         > : apricot
         > :
         >     > 8
@@ -1243,7 +1243,7 @@ jaunt:
 # abide  {{{1
 abide:
     description: dictionary with multiline key
-    load_in:
+    string_in:
         > :  key-a" : key-b' : key-c 
         >     > value
     load_out:
@@ -1252,7 +1252,7 @@ abide:
 # benchmark  {{{1
 benchmark:
     description: empty dictionary
-    load_in:
+    string_in:
         > {}
     load_out:
         > !{}
@@ -1260,7 +1260,7 @@ benchmark:
 # milligram  {{{1
 milligram:
     description: error because top dictionary is indented
-    load_in:
+    string_in:
         >     key: value
     load_err:
         message: top-level content must start in column 1.
@@ -1274,7 +1274,7 @@ fifth:
         > error because value is specified twice for the same dictionary key
         > first as an end-of-line string that contains only a single space
         > second as an indented dictionary
-    load_in:
+    string_in:
         > key 1:  
         >         # notice the extra space at the end of the above line
         >
@@ -1289,7 +1289,7 @@ fifth:
 # chatterer  {{{1
 chatterer:
     description: error because there is a tab in the indentation
-    load_in:
+    string_in:
         > # invalid indentation, tab in indentation
         > key 1:
         >     \t    key 1.1: value 1.1
@@ -1303,7 +1303,7 @@ chatterer:
 # concuss  {{{1
 concuss:
     description: error because the sublist is not indented
-    load_in:
+    string_in:
         > ingredients:
         > - green chilies
     load_err:
@@ -1315,7 +1315,7 @@ concuss:
 # marinade  {{{1
 marinade:
     description: error because the two list items do not have the same indent
-    load_in:
+    string_in:
         > ingredients:
         >   - green chilies
         >     - red chilies
@@ -1328,7 +1328,7 @@ marinade:
 # detract  {{{1
 detract:
     description: error because the two dict items do not have the same indent
-    load_in:
+    string_in:
         > candidates:
         >     name:
         >   phone:
@@ -1341,7 +1341,7 @@ detract:
 # silky  {{{1
 silky:
     description: error because the two list items do not have the same indent
-    load_in:
+    string_in:
         > ingredients:
         >     - green chilies
         >   - red chilies
@@ -1354,7 +1354,7 @@ silky:
 # matinee  {{{1
 matinee:
     description: error because differing types at same level of indentation
-    load_in:
+    string_in:
         > ingredients: red chilies
         > - green chilies
     load_err:
@@ -1366,7 +1366,7 @@ matinee:
 # slipknot  {{{1
 slipknot:
     description: error because there is no tag on line 2
-    load_in:
+    string_in:
         > ingredients:
         >     green chilies
     load_err:
@@ -1378,7 +1378,7 @@ slipknot:
 # facet  {{{1
 facet:
     description: error because there are duplicate keys
-    load_in:
+    string_in:
         > key: value 1
         > key: value 2
     load_err:
@@ -1390,7 +1390,7 @@ facet:
 # smudge  {{{1
 smudge:
     description: error because of tab in indentation
-    load_in:
+    string_in:
         > key:
         >     \t    > first line
         >     \t    > second line
@@ -1403,7 +1403,7 @@ smudge:
 # spindly  {{{1
 spindly:
     description: checks for support of : in key
-    load_in:
+    string_in:
         > key::
     load_out:
         > !{"key:": ""}
@@ -1411,7 +1411,7 @@ spindly:
 # charter  {{{1
 charter:
     description: dictionary with a mix of multiline keys and unicode nonsense
-    load_in:
+    string_in:
         > :
         >     >
         > ~!@#$%^&*()_+-1234567890{}[]|;<>?,./: ~!@#$%^&*()_+-1234567890{}[]|:;<>?,./
@@ -1455,7 +1455,7 @@ charter:
 # patchy  {{{1
 patchy:
     description: dictionary with key that contains quote characters
-    load_in:
+    string_in:
         > key 1: value 1
         > key'"2: value 2
     load_out:
@@ -1467,7 +1467,7 @@ patchy:
 # excuse  {{{1
 excuse:
     description: dictionary with white space after keys
-    load_in:
+    string_in:
         > k1: v1
         > k2 : v2
         > k3  : v3
@@ -1478,7 +1478,7 @@ excuse:
 # sandstorm  {{{1
 sandstorm:
     description: various valid dictionary items with unusual unquoted keys
-    load_in:
+    string_in:
         > -#:'>: -#:">:
         > -#:">: -#:'>:
         > -#'\'>:: -#"\">::
@@ -1512,7 +1512,7 @@ sandstorm:
 # shard  {{{1
 shard:
     description: keys contain quote character and value contains dict item key.
-    load_in:
+    string_in:
         > 'a: ': a:
         > : 'b: 
         >     > ': b:
@@ -1522,7 +1522,7 @@ shard:
 # beach  {{{1
 beach:
     description: long multiline keys
-    load_in:
+    string_in:
         > : This is a key that is
         > : spread over multiple lines.
         > : Like normal multiline strings,
@@ -1605,7 +1605,7 @@ beach:
 # crumbly  {{{1
 crumbly:
     description: multiline keys
-    load_in:
+    string_in:
         > A :
         >  : B:
         >   >
@@ -1633,7 +1633,7 @@ crumbly:
 # despair  {{{1
 despair:
     description: error with multiline keys due to multiline key missing value
-    load_in:
+    string_in:
         > A :
         >  : B:
         > : C :
@@ -1648,7 +1648,7 @@ despair:
 # doodle  {{{1
 doodle:
     description: rather large real world example with all word replaced by random words
-    load_in:
+    string_in:
         > tether:
         >     disclose: paranoid clunk gaggle
         >     prolong: stove banish
@@ -2183,7 +2183,7 @@ doodle:
 # imbibe  {{{1
 imbibe:
     description: multiline keys holding urls (multiline key require because of leading braces)
-    load_in:
+    string_in:
         > : {http://www.kde.org/standards/kcfg/1.0}kcfgfile
         >     >
         > : {http://www.kde.org/standards/kcfg/1.0}group
@@ -2208,7 +2208,7 @@ imbibe:
 # emollient  {{{1
 emollient:
     description: reject duplicate keys
-    load_in:
+    string_in:
         > key: value 1
         > key: value 2
         > key: value 3
@@ -2221,7 +2221,7 @@ emollient:
 # modernize  {{{1
 modernize:
     description: Miscellaneous inline dictionaries
-    load_in:
+    string_in:
         > -
         >     {}
         > -
@@ -2316,7 +2316,7 @@ modernize:
 # baptism  {{{1
 baptism:
     description: error due to malformed inline dictionary
-    load_in:
+    string_in:
         > -
         >     {a}
     load_err:
@@ -2328,7 +2328,7 @@ baptism:
 # collate  {{{1
 collate:
     description: error due to malformed inline dictionary
-    load_in:
+    string_in:
         > -
         >     {
     load_err:
@@ -2340,7 +2340,7 @@ collate:
 # ballroom  {{{1
 ballroom:
     description: error due to malformed inline dictionary
-    load_in:
+    string_in:
         > -
         >     {{}
     load_err:
@@ -2352,7 +2352,7 @@ ballroom:
 # mercy  {{{1
 mercy:
     description: error due to malformed inline dictionary
-    load_in:
+    string_in:
         > -
         >     {}}
     load_err:
@@ -2364,7 +2364,7 @@ mercy:
 # canto  {{{1
 canto:
     description: error due to malformed inline dictionary
-    load_in:
+    string_in:
         > -
         >     {a,:b}
     load_err:
@@ -2376,7 +2376,7 @@ canto:
 # stooge  {{{1
 stooge:
     description: error due to malformed inline dictionary
-    load_in:
+    string_in:
         > -
         >     {a,:b}
     load_err:
@@ -2388,7 +2388,7 @@ stooge:
 # cowboy  {{{1
 cowboy:
     description: error due to malformed inline dictionary
-    load_in:
+    string_in:
         > -
         >     {a,:b}
     load_err:
@@ -2400,7 +2400,7 @@ cowboy:
 # criterion  {{{1
 criterion:
     description: error due to malformed inline dictionary
-    load_in:
+    string_in:
         > -
         >     {a}:b}
     load_err:
@@ -2412,7 +2412,7 @@ criterion:
 # protrude  {{{1
 protrude:
     description: error due to malformed inline dictionary
-    load_in:
+    string_in:
         > -
         >     {a[:b}
     load_err:
@@ -2424,7 +2424,7 @@ protrude:
 # caftan  {{{1
 caftan:
     description: error due to malformed inline dictionary
-    load_in:
+    string_in:
         > -
         >     {a]:b}
     load_err:
@@ -2436,7 +2436,7 @@ caftan:
 # siphon  {{{1
 siphon:
     description: error due to malformed inline dictionary
-    load_in:
+    string_in:
         > -
         >     {a:b{}
     load_err:
@@ -2448,7 +2448,7 @@ siphon:
 # unpick  {{{1
 unpick:
     description: error due to malformed inline dictionary
-    load_in:
+    string_in:
         > -
         >     {a:b}}
     load_err:
@@ -2460,7 +2460,7 @@ unpick:
 # patchwork  {{{1
 patchwork:
     description: error due to malformed inline dictionary
-    load_in:
+    string_in:
         > -
         >     {a:b[}
     load_err:
@@ -2472,7 +2472,7 @@ patchwork:
 # frustrate  {{{1
 frustrate:
     description: error due to malformed inline dictionary
-    load_in:
+    string_in:
         > -
         >     {a:b]}
     load_err:
@@ -2484,7 +2484,7 @@ frustrate:
 # donation  {{{1
 donation:
     description: error due to malformed inline dictionary
-    load_in:
+    string_in:
         > -
         >     {a:0, , }
     load_err:
@@ -2496,7 +2496,7 @@ donation:
 # flaunt  {{{1
 flaunt:
     description: error due to malformed inline dictionary
-    load_in:
+    string_in:
         > -
         >     {a:{A:0}, b{B:1}}
     load_err:
@@ -2508,7 +2508,7 @@ flaunt:
 # magnetize  {{{1
 magnetize:
     description: multilevel inline dictionaries
-    load_in:
+    string_in:
         > {a: {b:0, c:1}, d: {e:2, f:3}}
     load_out:
         > !{"a": {"b": "0", "c": "1"}, "d": {"e": "2", "f": "3"}}
@@ -2516,7 +2516,7 @@ magnetize:
 # succor  {{{1
 succor:
     description: multilevel inline dictionaries
-    load_in:
+    string_in:
         > key 1:
         >         {k1.1:v1.1,\t  k1.2:v1.2,      \tk1.3:v1.3\t}\t
         > key 2:
@@ -2552,7 +2552,7 @@ succor:
 # raven  {{{1
 raven:
     description: malformed inline dictionary (comma after last item)
-    load_in:
+    string_in:
         > key 1:
         >        {k1.1:v1.1,\t  k1.2:v1.2,      \tk1.3:v1.3,\t}\t
         > key 2:
@@ -2570,7 +2570,7 @@ raven:
 # emanate  {{{1
 emanate:
     description: malformed inline dictionary (comma after last item)
-    load_in:
+    string_in:
         > {a:0,}
     load_err:
         message: expected value.
@@ -2581,7 +2581,7 @@ emanate:
 # moonlight  {{{1
 moonlight:
     description: malformed inline dictionary (comma after last item)
-    load_in:
+    string_in:
         > {a:0, }
     load_err:
         message: expected ‘:’, found ‘}’.
@@ -2592,7 +2592,7 @@ moonlight:
 # conclude  {{{1
 conclude:
     description: malformed inline dictionary (comma after last item)
-    load_in:
+    string_in:
         > {a:0,:,}
     load_err:
         message: expected value.
@@ -2603,7 +2603,7 @@ conclude:
 # prairie  {{{1
 prairie:
     description: error due to dict item following an inline dictionary
-    load_in:
+    string_in:
         > {cases: {*: {*: {*:*}}}}
         > checks: *.sv
     load_err:
@@ -2614,7 +2614,7 @@ prairie:
 # typhoon  {{{1
 typhoon:
     description: error due to dict item following an inline dictionary
-    load_in:
+    string_in:
         > {cases: {*: {*: {*:*}}}}
         > checks: *.sv
     load_err:
@@ -2625,7 +2625,7 @@ typhoon:
 # revolver  {{{1
 revolver:
     description: simple list with empty values
-    load_in:
+    string_in:
         > -
         > -
     load_out:
@@ -2634,7 +2634,7 @@ revolver:
 # denigrate  {{{1
 denigrate:
     description: typical list
-    load_in:
+    string_in:
         > - A
         > - B
         > - C
@@ -2648,7 +2648,7 @@ denigrate:
 # isometric  {{{1
 isometric:
     description: empty list
-    load_in:
+    string_in:
         > []
     load_out:
         > ![]
@@ -2658,7 +2658,7 @@ seller:
     description:
         > error because data switches between list items to dict item in same 
         > level of hierarchy
-    load_in:
+    string_in:
         > ingredients:
         >   - green chilies
         >   cannot mix list with: dictionary
@@ -2672,7 +2672,7 @@ seller:
 # element  {{{1
 element:
     description: error because first item does not start in column 1
-    load_in:
+    string_in:
         >
         >     - green chilies
         >
@@ -2687,7 +2687,7 @@ element:
 # twelve  {{{1
 twelve:
     description: error because first item does not start in column 1
-    load_in:
+    string_in:
         > - green chilies
         >     - red chilies
         >
@@ -2700,7 +2700,7 @@ twelve:
 # derelict  {{{1
 derelict:
     description: error because indentation includes a tab
-    load_in:
+    string_in:
         > # this is an error because indentation is a tab
         > - 
         > \t- red chilies
@@ -2713,7 +2713,7 @@ derelict:
 # handbook  {{{1
 handbook:
     description: list with variety of odd values
-    load_in:
+    string_in:
         > - :
         > - ~!@#$%^&*()_+-1234567890{}[]|:;<>?,./
         > - - value 3
@@ -2744,7 +2744,7 @@ handbook:
 # epoch  {{{1
 epoch:
     description: list with variety of inline lists
-    load_in:
+    string_in:
         > -
         >     []
         > -
@@ -2857,7 +2857,7 @@ epoch:
 # nobleman  {{{1
 nobleman:
     description: malformed inline list
-    load_in:
+    string_in:
         > -
         >     [
     load_err:
@@ -2869,7 +2869,7 @@ nobleman:
 # proverb  {{{1
 proverb:
     description: malformed inline list
-    load_in:
+    string_in:
         > -
         >     [,
     load_err:
@@ -2881,7 +2881,7 @@ proverb:
 # marina  {{{1
 marina:
     description: malformed inline list
-    load_in:
+    string_in:
         > -
         >     [[]
     load_err:
@@ -2893,7 +2893,7 @@ marina:
 # blister  {{{1
 blister:
     description: malformed inlines
-    load_in:
+    string_in:
         > -
         >     []{a:0}
     load_err:
@@ -2905,7 +2905,7 @@ blister:
 # mentor  {{{1
 mentor:
     description: malformed inline list
-    load_in:
+    string_in:
         > -
         >     [a[b]
     load_err:
@@ -2917,7 +2917,7 @@ mentor:
 # valance  {{{1
 valance:
     description: malformed inline list
-    load_in:
+    string_in:
         > -
         >     [a]b]
     load_err:
@@ -2929,7 +2929,7 @@ valance:
 # eleven  {{{1
 eleven:
     description: malformed inlines
-    load_in:
+    string_in:
         > -
         >     [{]
     load_err:
@@ -2941,7 +2941,7 @@ eleven:
 # casing  {{{1
 casing:
     description: malformed inlines
-    load_in:
+    string_in:
         > -
         >     [}]
     load_err:
@@ -2953,7 +2953,7 @@ casing:
 # promenade  {{{1
 promenade:
     description: malformed inlines
-    load_in:
+    string_in:
         > -
         >     [a{b]
     load_err:
@@ -2965,7 +2965,7 @@ promenade:
 # splurge  {{{1
 splurge:
     description: malformed inlines
-    load_in:
+    string_in:
         > -
         >     [a}b]
     load_err:
@@ -2977,7 +2977,7 @@ splurge:
 # delusion  {{{1
 delusion:
     description: 3x3 array
-    load_in:
+    string_in:
         > [[11, 12, 13], [21, 22, 23], [31, 32, 33]]
     load_out:
         [[11, 12, 13], [21, 22, 23], [31, 32, 33]]
@@ -2985,7 +2985,7 @@ delusion:
 # itinerant  {{{1
 itinerant:
     description: regular dict item with key that begins with brackets
-    load_in:
+    string_in:
         > [7:0] gain:
         >     desc: the gain
         >     type: input signed
@@ -2998,7 +2998,7 @@ itinerant:
 # geyser  {{{1
 geyser:
     description: inline list with embedded tabs
-    load_in:
+    string_in:
         > key 1:
         >         [v1,\t  v2,      \tv3,\t]\t
     load_out:
@@ -3007,7 +3007,7 @@ geyser:
 # muzzle  {{{1
 muzzle:
     description: strings with embedded tabs
-    load_in:
+    string_in:
         > what makes it green\t: \tgreen\tchilies\t
     load_out:
         > !{"what makes it green": "\tgreen\tchilies\t"}
@@ -3015,7 +3015,7 @@ muzzle:
 # stylistic  {{{1
 stylistic:
     description: strings with embedded quote character
-    load_in:
+    string_in:
         > key: value " value
     load_out:
         > !{"key": 'value " value'}
@@ -3023,7 +3023,7 @@ stylistic:
 # hallway  {{{1
 hallway:
     description: strings with embedded quote character
-    load_in:
+    string_in:
         > key: value ' value
     load_out:
         > !{"key": "value ' value"}
@@ -3031,7 +3031,7 @@ hallway:
 # acquire  {{{1
 acquire:
     description: strings with embedded quote characters
-    load_in:
+    string_in:
         > key1: 'And Fred said "yabba dabba doo!" to Barney.'
         > key2: "And Fred said 'yabba dabba doo!' to Barney."
         > key3: "And Fred said "yabba dabba doo!" to Barney."
@@ -3051,13 +3051,13 @@ acquire:
 # sexton  {{{1
 sexton:
     description: empty string
-    load_in: >
+    string_in: >
     load_out:
 
 # roomy  {{{1
 roomy:
     description: error, expected multiline string
-    load_in:
+    string_in:
         > ingredients:
         >     green chilies
     load_err:
@@ -3069,7 +3069,7 @@ roomy:
 # brainwash  {{{1
 brainwash:
     description: top-level single line string
-    load_in:
+    string_in:
         > > what makes it green?
         > >
     load_out:
@@ -3079,19 +3079,19 @@ brainwash:
 # president  {{{1
 president:
     description: minimal inline dictionary
-    load_in: {:}
+    string_in: {:}
     load_out: !{"":""}
 
 # propose  {{{1
 propose:
     description: empty content
-    load_in:
+    string_in:
     load_out: !None
 
 # pillage  {{{1
 pillage:
     description: dictionary keys cannot start with unicode white-space
-    load_in:
+    string_in:
         > key 1: value 1
         > \xa0key 2: value 2
     load_err:
@@ -3103,7 +3103,7 @@ pillage:
 # tombstone  {{{1
 tombstone:
     description: dictionary item keys must have whitespace trimmed from the tail
-    load_in:
+    string_in:
         > key 1 : value 1
         > key 2\t : value 2
         > key 3\xa0 : value 3
@@ -3116,7 +3116,7 @@ tombstone:
 cavern:
     description:
         > inline dictionary items must ignore whitespace following the colon
-    load_in:
+    string_in:
         > key 1:
         > key 2:\x20
     load_out:
@@ -3127,7 +3127,7 @@ cavern:
 rascal:
     description:
         > a dictionary item with two values
-    load_in:
+    string_in:
         > key 1:
         >    > value 1
         > key 2:\x20
@@ -3143,7 +3143,7 @@ rascal:
 truncheon:
     description:
         > a list item with two values
-    load_in:
+    string_in:
         > -
         >    > value 1
         > -\x20
@@ -3160,7 +3160,7 @@ vagrant:
     description:
         > inline strings (and inline dictionary-friendly strings)
         > must trim whitespace from both sides of values
-    load_in:
+    string_in:
         > inline dict:
         >     {a:A, b: B,c :C, d : D }
         > inline list:
@@ -3180,7 +3180,7 @@ vagrant:
 # frump  {{{1
 frump:
     description: top-level dictionary with a second level of nesting, latin1 encoding
-    load_in:
+    string_in:
         > key 1: value 1
         > key 2:
         > key 3:
@@ -3209,7 +3209,7 @@ frump:
 # asylum  {{{1
 asylum:
     description: top-level dictionary with a second level of nesting, utf-16
-    load_in:
+    string_in:
         > key 1: value 1
         > key 2:
         > key 3:
