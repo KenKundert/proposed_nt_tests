@@ -22,6 +22,8 @@ The previous test suite had the following issues.
    could only be placed in one.  The numbering implied an order when no natural 
    order exists.
 
+5. Important tests were missing from the test suite.
+
 
 The New Test Suite
 ------------------
