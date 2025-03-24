@@ -2,8 +2,8 @@ Proposed Replacement Official NestedText Test Suite
 ===================================================
 
 
-Issue with Previous Test Suite
-------------------------------
+Issues with Previous Test Suite
+-------------------------------
 
 The previous test suite had the following issues.
 
