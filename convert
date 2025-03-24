@@ -6,6 +6,8 @@ from inform import (
     Error, fatal, indent, is_str, is_mapping, is_collection, os_error, 
     terminate, warn
 )
+from base64 import b64encode
+import codecs
 try:
     from nestedtext import Lines
 except ImportError:
@@ -57,6 +59,8 @@ tests_validator = Schema({
     str: dict(
         description = str,
         load_in = str,
+        bytes_in = str,
+        encoding = str,
         load_out = Any(evaluate, hierarchy_with_escapes),
         load_err = dict(
             message = str,
@@ -67,7 +71,8 @@ tests_validator = Schema({
     )
 })
 
-# process backslash escapes {{{1
+# UTILITIES {{{1
+# process backslash escapes {{{2
 nl_ptn = re.compile(rb'((?:\\n|\\r){1,2})\n')
 
 def fix_eol(match):
@@ -76,43 +81,6 @@ def fix_eol(match):
 
     # replace explicitly specified \r and \n with CR and LF
     return stripped_of_lf.replace(rb'\r', b'\r').replace(rb'\n', b'\n')
-
-def escape_and_split(text):
-    # check text for characters that should be escaped
-    for i, line in enumerate(text.splitlines()):
-        # check text for control characters other than LF
-        for i, c in enumerate(line):
-            index = ord(c)
-            if (index < 32 and index != 10) or index == 127:
-                # 32 is first printable character, 10 is LF, 127 is DEL
-                raise Error(
-                    f"must escape ASCII control character {c!r} ({index}).",
-                    codicil=f"{line}\n{i*' '}^"
-                )
-
-        # check for unicode whitespace characters
-        segments = f"❬{line}❭".replace(' ', '_').split()
-        if len(segments) > 1:
-            index = len(segments[0])-1
-            char = line[index]
-            raise Error(
-                f"must escape unicode whitespace character {char!r}.",
-                cuplrit=i+1, codicil=f"{line}\n{index*' '}^"
-            )
-
-    # convert to bytes
-    bytes = text.encode('ascii', errors='backslashreplace')
-
-    # remove LF from any line that ends with \r or \n
-    bytes = nl_ptn.sub(fix_eol, bytes)
-
-    # process any remaining escaped characters
-    text = bytes.decode("unicode-escape")
-
-    # split into lines, leave line ending on each line
-    # this is done to make the json easier to read
-    return [''.join(each) for each in batched(re.split(r'([\r\n]{1,2})', text), n=2)]
-
 
 # extract line types {{{1
 if Lines:
@@ -128,7 +96,29 @@ else:
     def extract_line_types(text):
         return {}
 
+# encode() {{{2
+def utf8_encode(given, encoding):
+    # interpret escape sequences, convert to base64
 
+    # oddly, unicode-escape cannot handle unicode, so convert to ascii
+    bytes = given.encode('ascii', errors='backslashreplace')  # convert to bytes
+    bytes = nl_ptn.sub(fix_eol, bytes)  # remove excess newlines
+    text = bytes.decode('unicode-escape')  # expand escape sequences
+    bytes = text.encode(encoding)  # encode with desired encoding
+    return b64encode(bytes).decode('ascii')  # encode in base64
+
+def bytes_encode(given, encoding):
+    bytes = given.encode('ascii', errors='strict')  # convert to bytes
+    bytes = nl_ptn.sub(fix_eol, bytes)  # remove excess newlines
+    bytes, _ = codecs.escape_decode(bytes)
+        # unfortunately, escape_decode is an undocumented private function
+        # if this becomes a problem this line should probably be replaced with a
+        # regular expression substitution that matches and maps the normal ASCII 
+        # escape sequences and the binary escape sequences (\x00 to \xFF).
+    return b64encode(bytes).decode('ascii')  # encode in base64
+
+
+# CONVERT {{{1
 # read tests.nt {{{1
 try:
     keymap = {}
@@ -150,20 +140,36 @@ accumulated_line_types = defaultdict(int)
 try:
     for key, fields in tests.items():
         regenerated[key] = fields
-        if 'load_in' not in fields:
+        if 'load_in' not in fields and 'bytes_in' not in fields:
             warn("‘load_in’ is missing.", culprit=key)
             continue
 
-        load_in = fields.get('load_in')
+        if 'load_in' in fields and 'bytes_in' in fields:
+            warn("must not have both ‘load_in’ and ‘bytes_in’ fields.", culprit=key)
+            continue
+
+        # process load_in or bytes_in
+        encoding = fields.get('encoding', 'utf-8')
+        try:
+            if 'load_in' in fields:
+                load_in = fields.get('load_in')
+                load_in_encoded = utf8_encode(load_in, encoding)
+            else:
+                load_in = fields.get('bytes_in')
+                load_in_encoded = bytes_encode(load_in, encoding)
+        except (UnicodeEncodeError, UnicodeDecodeError) as e:
+            raise Error(e, culprit=key)
+
         load_out = fields.get('load_out')
         load_err = fields.get("load_err", {})
         if load_out and load_err:
             raise Error("must not specify both ‘load_out’ and ‘load_err’.")
 
         processed_test = dict(
-            load_in = escape_and_split(load_in),
+            load_in = load_in_encoded,
             load_out = load_out,
             load_err = load_err,
+            encoding = encoding,
             types = extract_line_types(load_in),
         )
         for line_type, count in processed_test['types'].items():
@@ -174,6 +180,7 @@ try:
     # write tests.json {{{1
     with open('tests.json', 'w') as f:
         json.dump(dict(load_tests=processed), f, indent=4, ensure_ascii=False)
+        f.write('\n')
     nt.dump(regenerated, 'regenerated.nt')
 
 except OSError as e:

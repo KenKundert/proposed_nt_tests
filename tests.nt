@@ -189,6 +189,272 @@ screwy:
             - value 2a
             - value 2b
 
+# spillage  {{{1
+spillage:
+    description: dictionaries and lists with deep nesting
+    load_in:
+        > a:
+        >  -
+        >   b:
+        >    -
+        >     c:
+        >      -
+        >       d:
+        >        -
+        >         e:
+        >          -
+        >           f:
+        >            -
+        >             g:
+        >              -
+        >               h:
+        >                -
+        >                 i:
+        >                  -
+        >                   j:
+        >                    -
+        >                     k:
+        >                      -
+        >                       l:
+        >                        -
+        >                         m:
+        >                          -
+        >                           n:
+        >                            -
+        >                             o:
+        >                              -
+        >                               p:
+        >                                -
+        >                                 q:
+        >                                  -
+        >                                   r:
+        >                                    -
+        >                                     s:
+        >                                      -
+        >                                       t:
+        >                                        -
+        >                                         u:
+        >                                          -
+        >                                           v:
+        >                                            -
+        >                                             w:
+        >                                              -
+        >                                               x:
+        >                                                -
+        >                                                 y:
+        >                                                  -
+        >                                                   z:
+        >                                                    -
+        >                                                     α:
+        >                                                      -
+        >                                                       β:
+        >                                                        -
+        >                                                         γ:
+        >                                                          -
+        >                                                           δ:
+        >                                                            -
+        >                                                             ε:
+        >                                                              -
+        >                                                               ζ:
+        >                                                                -
+        >                                                                 η:
+        >                                                                  -
+        >                                                                   θ:
+        >                                                                    -
+        >                                                                     ι:
+        >                                                                      -
+        >                                                                       κ:
+        >                                                                        -
+        >                                                                         λ:
+        >                                                                          -
+        >                                                                           μ:
+        >                                                                            -
+        >                                                                             ν:
+        >                                                                              -
+        >                                                                               ξ:
+        >                                                                                -
+        >                                                                                 ο:
+        >                                                                                  -
+        >                                                                                   π:
+        >                                                                                    -
+        >                                                                                     ρ:
+        >                                                                                      -
+        >                                                                                       σ:
+        >                                                                                        -
+        >                                                                                         τ:
+        >                                                                                          -
+        >                                                                                           υ:
+        >                                                                                            -
+        >                                                                                             φ:
+        >                                                                                              -
+        >                                                                                               χ:
+        >                                                                                                -
+        >                                                                                                 ψ:
+        >                                                                                                  -
+        >                                                                                                   ω:
+        >                                                                                                    -
+        >
+    load_out:
+        a:
+         -
+          b:
+           -
+            c:
+             -
+              d:
+               -
+                e:
+                 -
+                  f:
+                   -
+                    g:
+                     -
+                      h:
+                       -
+                        i:
+                         -
+                          j:
+                           -
+                            k:
+                             -
+                              l:
+                               -
+                                m:
+                                 -
+                                  n:
+                                   -
+                                    o:
+                                     -
+                                      p:
+                                       -
+                                        q:
+                                         -
+                                          r:
+                                           -
+                                            s:
+                                             -
+                                              t:
+                                               -
+                                                u:
+                                                 -
+                                                  v:
+                                                   -
+                                                    w:
+                                                     -
+                                                      x:
+                                                       -
+                                                        y:
+                                                         -
+                                                          z:
+                                                           -
+                                                            α:
+                                                             -
+                                                              β:
+                                                               -
+                                                                γ:
+                                                                 -
+                                                                  δ:
+                                                                   -
+                                                                    ε:
+                                                                     -
+                                                                      ζ:
+                                                                       -
+                                                                        η:
+                                                                         -
+                                                                          θ:
+                                                                           -
+                                                                            ι:
+                                                                             -
+                                                                              κ:
+                                                                               -
+                                                                                λ:
+                                                                                 -
+                                                                                  μ:
+                                                                                   -
+                                                                                    ν:
+                                                                                     -
+                                                                                      ξ:
+                                                                                       -
+                                                                                        ο:
+                                                                                         -
+                                                                                          π:
+                                                                                           -
+                                                                                            ρ:
+                                                                                             -
+                                                                                              σ:
+                                                                                               -
+                                                                                                τ:
+                                                                                                 -
+                                                                                                  υ:
+                                                                                                   -
+                                                                                                    φ:
+                                                                                                     -
+                                                                                                      χ:
+                                                                                                       -
+                                                                                                        ψ:
+                                                                                                         -
+                                                                                                          ω:
+                                                                                                           -
+
+# moccasin  {{{1
+moccasin:
+    description: inline dictionaries and lists with deep nesting
+    load_in:
+        > {a:[{b:[{c:[{d:[{e:[{f:[{g:[{h:[{i:[{j:[{k:[{l:[{m:[{n:[{o:[{p:[{q:[{r:[{s:[{t:[{u:[{v:[{w:[{x:[{y:[{z:[ ]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}]}
+    load_out:
+        a:
+         -
+          b:
+           -
+            c:
+             -
+              d:
+               -
+                e:
+                 -
+                  f:
+                   -
+                    g:
+                     -
+                      h:
+                       -
+                        i:
+                         -
+                          j:
+                           -
+                            k:
+                             -
+                              l:
+                               -
+                                m:
+                                 -
+                                  n:
+                                   -
+                                    o:
+                                     -
+                                      p:
+                                       -
+                                        q:
+                                         -
+                                          r:
+                                           -
+                                            s:
+                                             -
+                                              t:
+                                               -
+                                                u:
+                                                 -
+                                                  v:
+                                                   -
+                                                    w:
+                                                     -
+                                                      x:
+                                                       -
+                                                        y:
+                                                         -
+                                                          z:
+                                                           -
+
 # washday  {{{1
 washday:
     description: a simple top-level inline dictionary
@@ -256,32 +522,18 @@ native:
             > first line of value 5
             > second line of value 5
 
-# stingray  {{{1
-stingray:
-    description: a simple top-level inline lies
-    load_in: [value 1, value 2, value 3]
-    load_out:
-        [value 1, value 2, value 3]
-
-# spastic  {{{1
-spastic:
-    description: a nested top-level inline list
-    load_in: [value 1, [value 2a, value 2b], {key 3a: value 3a, key 3b: value 3b}]
-    load_out:
-        [value 1, [value 2a, value 2b], {key 3a: value 3a, key 3b: value 3b}]
-
 # insulate  {{{1
 insulate:
     description: dictionary with a variety of end-of-line strings
     load_in:
         > code   : input signed [7:0] level
         > regex  : [+-]?([0-9]*[.])?[0-9]+\\s*\\w*
-        > math   : $x = \frac{{-b \\pm \\sqrt {b^2 - 4ac}}}{2a}$
+        > math   : $x = \\frac{{-b \\pm \\sqrt {b^2 - 4ac}}}{2a}$
         > unicode: José and François
     load_out:
         code   : input signed [7:0] level
         regex  : [+-]?([0-9]*[.])?[0-9]+\\s*\\w*
-        math   : $x = \frac{{-b \\pm \\sqrt {b^2 - 4ac}}}{2a}$
+        math   : $x = \\frac{{-b \\pm \\sqrt {b^2 - 4ac}}}{2a}$
         unicode: José and François
 
 # scent  {{{1
@@ -301,6 +553,8 @@ smithy:
         > # this line is ignored
         >
         > # this line is also ignored, as is the blank line above.
+        >
+        > # this is a comment that contains unicode: “αβγ ΩƱ 𝄞🁒 🌀”
         >
     load_out: !None
 
@@ -389,7 +643,7 @@ amnesty:
 # subdue  {{{1
 subdue:
     description: another too many values error
-    load_in:
+    bytes_in:
         > treasurer:
         >     name: Fumiko Purvis
         >     address: \x20
@@ -522,7 +776,7 @@ reprobate:
     description:
         > Check ability of NestedText to hold some special characters.
         > The CR and LF characters will be lost in the conversion to NT.
-    load_in:
+    bytes_in:
         > the backslash character: \\
         > the single quote character: '
         > the double quote character: "
@@ -556,7 +810,7 @@ incision:
         > Check ability of NestedText to hold some special characters.
         > The CR and LF characters will be lost in the conversion to NT.
         > Window line terminators (CR-LF) are used.
-    load_in:
+    bytes_in:
         > the backslash character: \\\r\n
         > the single quote character: '\r\n
         > the double quote character: "\r\n
@@ -590,7 +844,7 @@ pelvis:
         > Check ability of NestedText to hold some special characters.
         > The CR and LF characters will be lost in the conversion to NT.
         > Mac line terminators (CR) are used.
-    load_in:
+    bytes_in:
         > the backslash character: \\\r
         > the single quote character: '\r
         > the double quote character: "\r
@@ -624,7 +878,7 @@ pursuit:
         > Check ability of NestedText to hold some special characters.
         > The CR and LF characters will be lost in the conversion to NT.
         > Mixed line terminators (LF, CR, CR-LF) are used.
-    load_in:
+    bytes_in:
         > the backslash character: \\\r\n
         > the single quote character: '\r
         > the double quote character: "\n
@@ -731,24 +985,6 @@ beset:
         >             # ignore me
         >
         >                        
-    # load_out:
-    #     > !{
-    #     >     'no newlines': 'line 1\nline 2',
-    #     >     'leading newline': '\nline 1\nline 2',
-    #     >     'internal newline': 'line 1\n\nline 2',
-    #     >     'trailing newline': 'line 1\nline 2\n',
-    #     >     'leading, internal, and trailing newline': '\nline 1\n\nline 2\n',
-    #     >     'leading newlines': '\n\nline 1\nline 2',
-    #     >     'internal newlines': 'line 1\n\n\nline 2',
-    #     >     'trailing newlines': 'line 1\nline 2\n\n',
-    #     >     'leading, internal, and trailing newlines': '\n\nline 1\n\n\nline 2\n\n',
-    #     >     'leading blank line': 'line 1\nline 2',
-    #     >     'internal blank line': 'line 1\nline 2',
-    #     >     'trailing blank line': 'line 1\nline 2',
-    #     >     'leading comment': 'line 1\nline 2',
-    #     >     'internal comment': 'line 1\nline 2',
-    #     >     'trailing comment': 'line 1\nline 2',
-    #     > }
     load_out:
         no newlines:
             > line 1
@@ -1129,7 +1365,7 @@ excuse:
         > k3  : v3
         > k4\t: v4
     load_out:
-        > !{"k1": "v1", "k2": "v2", "k3": "v3", "k4": "v4"}
+        {k1: v1, k2: v2, k3: v3, k4: v4}
 
 # sandstorm  {{{1
 sandstorm:
@@ -1223,26 +1459,40 @@ beach:
         > :
         >     > yabba dabba doo
     load_out:
-        > !{
-        >     "This is a key that is\nspread over multiple lines.\nLike normal multiline strings,\nit can contain any character\nwithout restriction.": "This is its value",
-        >     "Here is another multiline key.\nBut in this case it has an empty value.": "",
-        >     "This is another multiline key,\nthis one with a multiline value.": "Here is the multiline value.\nIt is paired with a multiline key.",
-        >     "here is a simple key": "with a simple value",
-        >     "Here is a multiline key\nwith a list value.": [
-        >         "0",
-        >         "1"
-        >     ],
-        >     "Here is a multiline key\nwith a dictionary value.": {
-        >         "a": "a",
-        >         "b": "b"
-        >     },
-        >     "here is another simple key": "with another simple value",
-        >     "here is a multiline key: that kind of looks a dict item": "a multiline value",
-        >     "This is another multiline key,\nthis one with a dictionary as a value that has a multiline key.": {
-        >         "This is another multiline key,\nthis one with a multiline value.": "Here is the multiline value.\nIt is paired with a multiline key."
-        >     },
-        >     "This a multiline key with a blank second line.\n": "yabba dabba doo"
-        > }
+        : This is a key that is
+        : spread over multiple lines.
+        : Like normal multiline strings,
+        : it can contain any character
+        : without restriction.
+            > This is its value
+        : Here is another multiline key.
+        : But in this case it has an empty value.
+            >
+        : This is another multiline key,
+        : this one with a multiline value.
+            > Here is the multiline value.
+            > It is paired with a multiline key.
+        here is a simple key: with a simple value
+        : Here is a multiline key
+        : with a list value.
+            - 0
+            - 1
+        : Here is a multiline key
+        : with a dictionary value.
+            a: a
+            b: b
+        here is another simple key: with another simple value
+        : here is a multiline key: that kind of looks a dict item
+            > a multiline value
+        : This is another multiline key,
+        : this one with a dictionary as a value that has a multiline key.
+            : This is another multiline key,
+            : this one with a multiline value.
+                > Here is the multiline value.
+                > It is paired with a multiline key.
+        : This a multiline key with a blank second line.
+        :
+            > yabba dabba doo
 
 # crumbly  {{{1
 crumbly:
@@ -1259,16 +1509,6 @@ crumbly:
         > : F1
         > : F2
         >  >
-    #KSK load_out:
-    #KSK     > !{
-    #KSK     >     "A": {
-    #KSK     >         "B:": ""
-    #KSK     >     },
-    #KSK     >     "C :": "",
-    #KSK     >     "D": "",
-    #KSK     >     "E": "",
-    #KSK     >     "F1\nF2": ""
-    #KSK     > }
     load_out:
         A :
          : B:
@@ -1579,186 +1819,6 @@ doodle:
         >         > grand bonus accord=scarf.
         >         > amplifier prattle submerge=justice.
         >         > grace arrowhead athlete=shaver.
-    #KSK load_out:
-    #KSK     > !{
-    #KSK     >     "tether": {
-    #KSK     >         "disclose": "paranoid clunk gaggle",
-    #KSK     >         "prolong": "stove banish",
-    #KSK     >         "navel": "-clipboard organist signify",
-    #KSK     >         "crane": "-washout honey guarantor=aircrew",
-    #KSK     >         "inure": "fondle = 10kΩ*dissect"
-    #KSK     >     },
-    #KSK     >     "majesty": {
-    #KSK     >         "fatten": "washbowl flagon gentile hairstyle",
-    #KSK     >         "static": "lender busby",
-    #KSK     >         "niece": "-humpback adduce ferryboat",
-    #KSK     >         "reservoir": "-dally idiot enlarge=avalanche",
-    #KSK     >         "wally": "divorcee = 10kΩ*fugue"
-    #KSK     >     },
-    #KSK     >     "banner": {
-    #KSK     >         "scepter": "trollop living giddy",
-    #KSK     >         "lager": "piper glacier",
-    #KSK     >         "debunk": "-trapeze person matron",
-    #KSK     >         "pecan": "-uncanny perform megaton=profiteer",
-    #KSK     >         "register": "answer = 10kΩ*trend"
-    #KSK     >     },
-    #KSK     >     "monolith": {
-    #KSK     >         "partitive": "bookie outcome buckskin",
-    #KSK     >         "roller": "pixie fraud",
-    #KSK     >         "change": "scullery-roach rubber reveal+payoff",
-    #KSK     >         "simulator": "smock fritter consign=chateau",
-    #KSK     >         "narrow": "betrothal = 10kΩ*trooper - landau"
-    #KSK     >     },
-    #KSK     >     "reinstate": {
-    #KSK     >         "dramatist": "pasture glade enslave upright",
-    #KSK     >         "kinky": "deuce birdie",
-    #KSK     >         "bathroom": "people-layoff fluke flood+sonata",
-    #KSK     >         "heart": "loiter feature scamper=drivel",
-    #KSK     >         "vendetta": "nauseate = 10kΩ*hoodlum - signboard"
-    #KSK     >     },
-    #KSK     >     "overstate": {
-    #KSK     >         "deter": "clitoris treachery reading",
-    #KSK     >         "saddlebag": "doodle enunciate",
-    #KSK     >         "cherub": "cupboard-shingle refuge reefer+animate",
-    #KSK     >         "overcome": "gasometer crease bazooka=thriller",
-    #KSK     >         "poplar": "centipede = 10kΩ*headman - dewlap"
-    #KSK     >     },
-    #KSK     >     "[testament:blight] spangle": {
-    #KSK     >         "otter": "adherent disguise electrode biplane",
-    #KSK     >         "stormy": "curfew neuter",
-    #KSK     >         "spaceman": "addict = snowman*(anxiety+embitter)*bayonet kestrel liken",
-    #KSK     >         "hardy thinner": "'pretend",
-    #KSK     >         "belief": "sphere",
-    #KSK     >         "sachet": "fortnight: twitch(hopper) rebut duodenum=bottom; pleat=onward.\\nfrizz: galley(genealogy) advantage whelk=-sprawl; waist=-immigrant."
-    #KSK     >     },
-    #KSK     >     "[mongrel:sequester] prism": {
-    #KSK     >         "bairn": "easterner racketeer shortfall bootlace amoeba",
-    #KSK     >         "canopy": "refuse profit",
-    #KSK     >         "snuggle": "baritone = scrounger*(supplier+clobber)*flutter agate simplify",
-    #KSK     >         "edition industry": "'castle",
-    #KSK     >         "tenth": "rhyme",
-    #KSK     >         "scrunch": "ledge: exporter(wrongdoer) levitate daiquiri=subsidize; bulletin=reason.\\njackpot: butcher(frequent) medicine memento=-diaphragm; ointment=-raving."
-    #KSK     >     },
-    #KSK     >     "[frogman:alleyway] fatigue": {
-    #KSK     >         "hyena": "believer timepiece infuriate sixty",
-    #KSK     >         "cache": "bootee scoopful",
-    #KSK     >         "laborer": "egoist = lunatic*(obeisance+voice)*gambit nickel queer",
-    #KSK     >         "scraggy doggie": "'cedar",
-    #KSK     >         "requisite": "pastor",
-    #KSK     >         "teacher": "toboggan: champion(dominion) adieu golfer=linen; divorce=stake.\\nfireguard: vineyard(confide) seashore diddle=-dartboard; genuflect=-fidget."
-    #KSK     >     },
-    #KSK     >     "install": {
-    #KSK     >         "abide": "waistline",
-    #KSK     >         "skunk": "coarsen nuisance",
-    #KSK     >         "briar": "eviction = glide && !reliquary overfeed resent",
-    #KSK     >         "magnum accident": "'quince",
-    #KSK     >         "nightmare": "cheapen"
-    #KSK     >     },
-    #KSK     >     "withdraw": {
-    #KSK     >         "chalice": "noble canard",
-    #KSK     >         "siphon": "utility overhead",
-    #KSK     >         "butler": "aspirin.starlet < heater < brace.blockade",
-    #KSK     >         "juggler": "crumpet = sunny + slattern + persuade. cataclysm = scolding.",
-    #KSK     >         "betake": "projector.insulator",
-    #KSK     >         "hearth": "convector"
-    #KSK     >     },
-    #KSK     >     "surgery": {
-    #KSK     >         "sunbathe": "decathlon",
-    #KSK     >         "fixation": "heighten watcher",
-    #KSK     >         "stretchy": "-washday < burnish < debrief",
-    #KSK     >         "scabbard": "reward"
-    #KSK     >     },
-    #KSK     >     "intercede barony": {
-    #KSK     >         "busker": "yachtsman-fleshpot sandbag flummox",
-    #KSK     >         "vestry": "panorama",
-    #KSK     >         "sanction": 'drench="%keyboard"'
-    #KSK     >     },
-    #KSK     >     "harmony creaky": {
-    #KSK     >         "physicist": "gauge-doublet bungalow clink",
-    #KSK     >         "swerve": "cleanser",
-    #KSK     >         "royalty": 'essay="%honeymoon";\\nextol = "swampy";\\nalmshouse = "".'
-    #KSK     >     },
-    #KSK     >     "caterwaul imitation": {
-    #KSK     >         "dunce": "bodice sitcom chipmunk",
-    #KSK     >         "profane": "monocle",
-    #KSK     >         "sortie": 'impute="%covert"'
-    #KSK     >     },
-    #KSK     >     "menace": {
-    #KSK     >         "dredge": "miasma litigant broil",
-    #KSK     >         "bishop": "medley",
-    #KSK     >         "inquest": """scourer="%gamma"; mesmerize='ballcock"""
-    #KSK     >     },
-    #KSK     >     "mattock": {
-    #KSK     >         "taint": "buttery combatant stalwart",
-    #KSK     >         "oculist": "implicate",
-    #KSK     >         "support": '''closure='snake; phoenix="%smoothie"'''
-    #KSK     >     },
-    #KSK     >     "chance": {
-    #KSK     >         "riposte": "crusade",
-    #KSK     >         "scripture": "cathode",
-    #KSK     >         "doorstep": 'dukedom=screening; lifebuoy="%crackle"',
-    #KSK     >         "salesman": "shimmer cobweb spool=butter."
-    #KSK     >     },
-    #KSK     >     "asset": {
-    #KSK     >         "overthrow": "dainty",
-    #KSK     >         "chancy": "bough psychotic",
-    #KSK     >         "sultana": "father hormone caliber=mayday."
-    #KSK     >     },
-    #KSK     >     "pollinate": {
-    #KSK     >         "doctor": "masochist",
-    #KSK     >         "strangler": "saloon ensemble shower",
-    #KSK     >         "tuxedo": "inject='strategy;\\npurport={toffee,ripper}.",
-    #KSK     >         "citadel": "shrew repellent dairymaid=laser; elevator=biped.\\nresound garage mistreat=rebuild; scree=choke.\\nanchor begrudge slalom=reassert; molester=chopper.\\ndizzy outbreak snifter=tussle; remove=survive.\\nnoodle panegyric importune=native; accredit=loser."
-    #KSK     >     },
-    #KSK     >     "acquit invest gravity": {
-    #KSK     >         "remain": "beetroot maroon cliche ninety",
-    #KSK     >         "bookmark": "munch",
-    #KSK     >         "commodore": 'plank=sundry;\\nprick=rehear;\\nbonnet="banana"',
-    #KSK     >         "transfer": "blister project adjective=slinky; uncover=salty.\\nbowler acquiesce nobody=syllabus; bushy=fossilize."
-    #KSK     >     },
-    #KSK     >     "horror megalith": {
-    #KSK     >         "spurt": "flower towpath rejoicing dowry rupture",
-    #KSK     >         "recur": "capacity",
-    #KSK     >         "tract": '''goatee='graze;\\nliqueur="scream";\\ndetain=prefigure;\\nspill={eggplant,poach}''',
-    #KSK     >         "plunger": "cutting dislocate prince=spongy; flirt=debut.\\nneurone cricketer shredder=property; break=octagon; plutocrat=lapwing.\\nsofty expert tycoon=qualify; coachman=heretic.\\nredwood notebook heath=blackjack; frump=washstand.\\nloose keeper applaud=destroyer; intention=hymnal.\\npotentate brasserie souvenir=tumor; masseur=hasten.\\nsanctify report touchdown=afford; combat=impart.\\nbrute elder bisexual=penknife; treadmill=thesaurus.\\ntissue sickly dimmer=dowdy; cylinder=actor.\\nawakening robotic fascia=paperboy; scalp=length; seashell=50μA.\\nlarch fashion crack=scorpion; explicate=retire.\\nmature lapel incline=dressing; thwack=rivet.\\nneologism phonetic zebra=upstage; realtor=showpiece.\\nevacuee stride softener=ditty; earth=bookcase.\\nuproot cross titter=constrict; specific=wayside.\\noverwrite overshoot quandary=panther; cartwheel=ratio."
-    #KSK     >     },
-    #KSK     >     "informer payroll": {
-    #KSK     >         "sequin": "armadillo exclaim foray cuckoo",
-    #KSK     >         "lynch": "punchbowl",
-    #KSK     >         "trump": 'bedeck=quota;\\nmachete=croupier;\\nalpine="response";\\nvegetable=slowdown.',
-    #KSK     >         "whisker": "lottery sheath moonlight=chamber.\\nfantasize pullover stool=eject."
-    #KSK     >     },
-    #KSK     >     "barbarity, allude, whittle": {
-    #KSK     >         "militant": "garret dictate sweeper",
-    #KSK     >         "extension": "senator",
-    #KSK     >         "justify": 'taxicab=ferry;\\nparagraph=spokesman;\\npolitic=codpiece;\\ngrizzle=clerk;\\nperturb=mudguard;\\ndecade="sickness"',
-    #KSK     >         "broad": "ceramic morsel sahib=gelding.\\ngravy shoddy fixative=scramble.\\nsmelt beatnik describe=duckling.\\nbourbon crusader tabloid=wordy."
-    #KSK     >     },
-    #KSK     >     "extenuate, promoter": {
-    #KSK     >         "store": "treasury dumpling emotion skirmish",
-    #KSK     >         "epitaph": "incumbent",
-    #KSK     >         "yearning": '''adjudge='yearbook;\\nmaneuver="infer";\\ncabaret=deception;\\nhostel={fossil,diagnose}''',
-    #KSK     >         "sporran": "alphabet counter haughty=ceiling; treadle=reedy.\\nhierarchy hardship troll=detractor; holocaust=deafen; gangway=translate.\\nthought termite limousine=hustle; tweed=majorette.\\nbatten swindler parkland=outsider; crawl=prevail.\\nprovision fabric indict=amaze; weight=commando.\\nextend cabal charge=admit; umlaut=steel.\\nstrength councilor entity=address; encamp=slake.\\ntrespass soapbox knoll=befriend; aggregate=allusion.\\nsequel fingertip billfold=staunch; particle=combine.\\nsediment intellect organizer=blurry; fatty=beard; revel=50μA.\\ntoxin steak panacea=elite; scavenge=acoustic.\\nfarmyard resign presage=peasant; jumble=regret.\\nberry valet alchemist=greasy; clonk=eyesore.\\ntreat temper antenatal=interlink; hurtle=catchy.\\nobtain seaweed offender=cameo; jostle=reprove.\\nrigidity radish braise=scoot; petty=marquee."
-    #KSK     >     },
-    #KSK     >     "menage, quail": {
-    #KSK     >         "outspread": "share pinion fruitcake portend",
-    #KSK     >         "reference": "appendix",
-    #KSK     >         "daily": 'scrapbook=rejoin;\\ndrier=agonize;\\nsewer="dollop";\\nbistro=ratepayer.',
-    #KSK     >         "flabby": "pentagon rotor science=besiege.\\nspider distance shaggy=mayor.\\nstatement venture priory=seance.\\nsextet riddle shabby=stationer."
-    #KSK     >     },
-    #KSK     >     "jelly, exude": {
-    #KSK     >         "naught": "misread sandbank speculate",
-    #KSK     >         "espresso": "dispel",
-    #KSK     >         "oilman": 'amalgam=additive;\\ntatty=unsettle;\\nlousy="clamber";\\nradiator = "paring, anatomist";\\nsidle=thatch.',
-    #KSK     >         "episode": "council whiplash muscle=carriage.\\nbaseline nymph tantrum=spoof; prognosis=trundle; friend=plump.comedy.\\ninduct tubby compost=crank.\\nfamily stately expunge=echelon."
-    #KSK     >     },
-    #KSK     >     "holding, scruple": {
-    #KSK     >         "ramrod": "tableau beret",
-    #KSK     >         "flatten": "tributary",
-    #KSK     >         "cobra": 'hunchback=bumpy;\\nlorry="inkling";\\nholler = "pedant, lifeboat";\\nbutchery=antique.',
-    #KSK     >         "decree": "embroil numskull stigma=explosion.\\ngrand bonus accord=scarf.\\namplifier prattle submerge=justice.\\ngrace arrowhead athlete=shaver."
-    #KSK     >     }
-    #KSK     > }
     load_out:
         tether:
             disclose: paranoid clunk gaggle
@@ -2049,6 +2109,20 @@ emollient:
         line: key: value 2
         lineno: 1
         colno: 0
+
+# stingray  {{{1
+stingray:
+    description: a simple top-level inline lies
+    load_in: [value 1, value 2, value 3]
+    load_out:
+        [value 1, value 2, value 3]
+
+# spastic  {{{1
+spastic:
+    description: a nested top-level inline list
+    load_in: [value 1, [value 2a, value 2b], {key 3a: value 3a, key 3b: value 3b}]
+    load_out:
+        [value 1, [value 2a, value 2b], {key 3a: value 3a, key 3b: value 3b}]
 
 # modernize  {{{1
 modernize:
@@ -3008,3 +3082,69 @@ vagrant:
             - b
             - c
             - d
+
+# frump  {{{1
+frump:
+    description: top-level dictionary with a second level of nesting, latin1 encoding
+    load_in:
+        > key 1: value 1
+        > key 2:
+        > key 3:
+        >     - value 3a
+        >     - value 3b
+        > key 4:
+        >     key 4a: value 4a
+        >     key 4b: value 4b
+        > key 5:
+        >     > first line of value 5
+        >     > second line of value 5
+    encoding: latin1
+    load_out:
+        key 1: value 1
+        key 2:
+        key 3:
+            - value 3a
+            - value 3b
+        key 4:
+            key 4a: value 4a
+            key 4b: value 4b
+        key 5:
+            > first line of value 5
+            > second line of value 5
+
+# asylum  {{{1
+asylum:
+    description: top-level dictionary with a second level of nesting, utf-16
+    load_in:
+        > key 1: value 1
+        > key 2:
+        > key 3:
+        >     - value 3a
+        >     - value 3b
+        > key 4:
+        >     key 4a: value 4a
+        >     key 4b: value 4b
+        > key 5:
+        >     > first line of value 5
+        >     > second line of value 5
+    encoding: utf-16
+    load_err:
+        message: invalid start byte
+        line: key 1: value 1
+        lineno: 0
+        colno: 0
+
+# amendment  {{{1
+amendment:
+    description: string that contains characters that are invalid in utf-8
+    bytes_in:
+        > > \xc0
+        > > \xc1
+        > > \xff
+    encoding: bytes
+    load_err:
+        message: invalid start byte
+        line: > \xc0
+        lineno: 0
+        colno: 2
+

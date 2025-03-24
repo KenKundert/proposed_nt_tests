@@ -4,6 +4,7 @@ from inform import cull, indent, render
 from parametrize_from_file import parametrize
 from pathlib import Path
 from voluptuous import Schema, Optional, Required, Any, Invalid
+from base64 import b64decode
 import nestedtext as nt
 import json
 
@@ -25,7 +26,7 @@ def as_int(arg):
 
 schema = Schema({
     Required("id", default='❬not given❭'): str,
-    Required("load_in"): [str],
+    Required("load_in"): str,
     Required("load_out", default=None): Any(dict, list, str, None),
     Required("load_err", default={}): dict(
         message = str,
@@ -33,6 +34,7 @@ schema = Schema({
         lineno = Any(None, as_int),
         colno = Any(None, as_int)
     ),
+    Required("encoding", default='utf-8'): str,
     Required("types"): {str:int},
 })
 
@@ -79,11 +81,11 @@ class Checker:
     key = "load_tests",
     schema = schema,
 )
-def test_nt(tmp_path, load_in, load_out, load_err, types, request):
+def test_nt(tmp_path, load_in, load_out, load_err, encoding, types, request):
     checker = Checker(request.node.callspec.id)
 
     # check load
-    content = ''.join(load_in)
+    content = b64decode(load_in.encode('ascii'))
     try:
         result = nt.loads(content, top=any)
         if load_err:
@@ -99,6 +101,32 @@ def test_nt(tmp_path, load_in, load_out, load_err, types, request):
             colno = e.colno
         )
         checker.check(cull(load_err), cull(result), "loading")
+        return
+    except UnicodeDecodeError as e:
+        problematic = e.object[e.start:e.end]
+        prefix = e.object[:e.start]
+        suffix = e.object[e.start:]
+        lineno = prefix.count(b'\n')
+        _, _, bol = prefix.rpartition(b'\n')
+        eol, _, _ = e.object[e.start:].partition(b'\n')
+        line = bol + eol
+        colno = line.index(problematic)
+
+        if encoding != 'bytes':
+            line = line.decode(encoding)
+        else:
+            line = line.decode('ascii', errors='backslashreplace')
+            load_err['line'] = load_err['line'].encode(
+                'ascii', errors='backslashreplace'
+            ).decode('ascii')
+
+        result = dict(
+            message = e.reason,
+            line = line,
+            lineno = lineno,
+            colno = colno,
+        )
+        checker.check(load_err, result, "loading")
         return
 
     # check dump by doing a round-trip through load

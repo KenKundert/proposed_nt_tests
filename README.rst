@@ -11,32 +11,33 @@ The previous test suite had the following issues.
 
 2. The tests contain invisible characters in the form of tabs, end-of-line 
    spaces, unicode white spaces, control characters, and line termination 
-   charactors.  These invisible characters were often confusing and could easily 
+   characters.  These invisible characters were often confusing and could easily 
    be lost.
 
-3. The tests were too tailored to the specific behavior of the Python NestedText 
-   implementation.
+3. The tests were too tailored to the specific behavior of the Python 
+   *NestedText* implementation.
 
 4. The tests were categorized and numbered.  Both the categorization and 
-   numbering were problematic.  Each test often fit into many categories but was 
-   placed in one.  The numbering implied an order when no natural order exists.
+   numbering were problematic.  Each test often fit into many categories but 
+   could only be placed in one.  The numbering implied an order when no natural 
+   order exists.
 
 
 The New Test Suite
 ------------------
 
-These test cases are focused on assuring that valid NestedText input is properly 
-read and invalid NestedText is properly identified by an implementation of 
-NestedText.  No attempt is made to assure that an implementation produces valid 
-NestedText.  There is considerably flexibility in the way that NestedText may be 
-generated.  In light of this flexibility the best way to test a NestedText 
-generator is to couple it with a NestedText reader and perform a round trip 
-through both, which can be performed with these test cases.
+These test cases are focused on assuring that valid *NestedText* input is 
+properly read and invalid NestedText is properly identified by an implementation 
+of *NestedText*.  No attempt is made to assure that an implementation produces 
+valid *NestedText*.  There is considerably flexibility in the way that 
+*NestedText* may be generated.  In light of this flexibility the best way to 
+test a *NestedText* writer is to couple it with a *NestedText* reader and 
+perform a round trip through both, which can be performed with these test cases.
 
 The test cases are contained in *tests.nt*.  The convert command converts these 
 test cases into JSON (*tests.json*).  It is expected this JSON file is what is 
-used to test NestedText implementations.  The NestedText file of test cases, 
-*tests.nt*, is used to generate *tests.json*, and it only needed if you plan to 
+used to test *NestedText* implementations.  The *NestedText* file of test cases, 
+*tests.nt*, is used to generate *tests.json*, and is only needed if you plan to 
 add or modify tests.  Do not modify the JSON file directly, as any changes will 
 be overridden whenever *convert* is run.
 
@@ -50,28 +51,39 @@ The fields that may be specified are:
 description (str):
     Simply describes the test.  Is optional and unused.
 
-load_in (str):
-    This is a string that will be fed into a NestedText load function.  This 
-    string contains a *NestedText* document, though those that document may 
-    contain errors.
+string_in (str):
+    This is a string that will be fed into a *NestedText* load function.  This 
+    string contains a *NestedText* document, though that document may contain 
+    errors.  This string may contain Unicode characters and Unicode escape 
+    sequences.  It is generally recommended that Unicode white space be given 
+    using escape sequences so that there presence is obvious.
+
+bytes_in (str):
+    This is an alternate to *string_in*.  In this case the *NestedText* document 
+    is constrained to consist of ASCII characters and escape sequences such as 
+    \t, \r, \n, etc.  Also supported are binary escape sequences, \x00 to \xFF.  
+
+encoding (str):
+    The desired encoding for the *NestedText* document.  The default encoding is 
+    UTF-8.  If you specify *bytes* as the encoding, no encoding is used.
 
 load_out (None | str | list | dict):
-    The expected output from the NestedText load function if no errors are 
-    expected.  If a string is given and if the first character in the string 
-    is ‘!’, then the mark is removed and what remains is evaluated by Python, 
-    with the result being the expected output.
+    The expected output from the *NestedText* load function if no errors are 
+    expected.  If a string is given and if the first character in the string is 
+    ‘!’, then the mark is removed and what remains is evaluated by Python, with 
+    the result becoming the expected output.
 
 load_err (dict):
     Details about the error that is expected to be found and reported by the 
-    NestedText load function.  It consists of 4 fields:
+    *NestedText* load function.  It consists of 4 fields:
 
     message (str):
         The error message that is emitted by the Python implementation of 
-        NestedText.
+        *NestedText*.
 
     line (str):
-        The text of the line in the NestedText input from load_in that 
-        contains the error.
+        The text of the line in the *NestedText* input from *load_in* or 
+        *bytes_in* that contains the error.
 
     lineno (None, int):
         The line number of the line that contains the error.  The first line 
@@ -83,7 +95,7 @@ load_err (dict):
 
 Here is an example of a test with a valid *NestedText* document::
 
-    falsity:
+    pundit:
         description: a single-level dictionary
         load_in:
             > key 1: value 1
@@ -106,11 +118,11 @@ And here is an example of a test with an invalid *NestedText* document::
             lineno: 2
             colno: 2
 
-The test keys (*falisity* and *foundline*) are arbitrary.
+The test keys (*pundit* and *foundling*) are arbitrary.
 
 Control characters and Unicode white space characters are expected to be 
-backslash escaped in *load_in*, *load_out*, and *load_err.lines*.  Here are some 
-specific cases where backslash escapes should be used:
+backslash escaped in *load_in*, *bytes_in*, *load_out*, and *load_err.lines*.  
+Here are some specific cases where backslash escapes should be used:
 
 **Line Terminations**  Newlines are replaced by line feed (LF) characters unless 
 the newline is preceded by either \\r or \\n or both.  The \\r is replaced by 
@@ -146,7 +158,7 @@ modify the tests, you can simply use *tests.json* from the GitHub repository.
 <https://parametrize-from-file.readthedocs.io/en/latest/api/parametrize_from_file.html>`_, 
 which is a *pytest* plugin suitable for testing Python projects (*test_nt.py* 
 uses *parametrize_from_file* to apply *tests.json* to the Python implementation 
-of *NestedText).  However, you can use *tests.json* directly to implement tests 
+of *NestedText*).  However, you can use *tests.json* directly to implement tests 
 for any for any *NestedText* implementation in any language.
 
 It contains dictionary with a single key, *load_tests*.  The value of this key 
@@ -156,12 +168,13 @@ fields:
 
 load_in:
     This is a string that contains the *NestedText* document to be loaded for 
-    the test.  In order to make the document more readable, the document is 
-    split into lines and represented as a list of strings.  Each line includes 
-    its line termination character.
+    the test.  The string is a base64 encoded string of bytes.
 
 load_out:
-    The expected output from the *NestedText* loader if no error is expected.
+    The expected output from the *NestedText* loader if no error is expected.  
+    The structure of this value is dependent on the *NestedText* document 
+    encoded in *load_in*.  It may be a nested collection of lists, dictionaries 
+    and strings, or it may be *null*.
 
 load_err:
     Details about an expected error.  *load_err* supports the following 
@@ -206,3 +219,6 @@ Caveats
 
 Be aware that this is a trial version of the official *NestedText* tests, and so 
 is subject to change.
+
+This is the second trial version of this new test suite.  It was uploaded on 23 
+March 2025.
